@@ -1,6 +1,8 @@
 ﻿using Koinonia.Models;
+using SQLite;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +15,8 @@ namespace Koinonia
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ContactList : ContentPage
     {
+        private SQLiteAsyncConnection _connection;
+        private ObservableCollection<Contact> _contacts;
 
         //Handles search functionality. On change, calls an updated contact list with GetContacts()
         // And makes this list the new ItemsSource of contactList - A
@@ -26,27 +30,25 @@ namespace Koinonia
         //Will likely be built upon in future to pull contacts from memory rather than hard coding, as well as additional filtering. - A
         IEnumerable<Contact> GetContacts(String searchText = null)
         {
-
-
             //Placeholder hard coded contacts. WIll be more sophisiticated once database is implemented. - A
-            var contacts = new List<Contact>
+            /*var contacts = new List<Contact>
             {
-                new Contact {firstName = "Alex", lastName = "Raymond", ImageURL = "/ContactImages/contact1" },
-                new Contact { firstName = "Jordan", ImageURL = "http://lorempixel.com/100/100/people/2",
+                new Contact {FirstName = "Alex", LastName = "Raymond", ImageURL = "/ContactImages/contact1" },
+                new Contact { FirstName = "Jordan", ImageURL = "http://lorempixel.com/100/100/people/2",
                     Status = "Hello World" },
-                new Contact {firstName = "Calum", ImageURL = "http://placehold.it/100x100"},
-                new Contact {firstName = "Roshen", Status = "Hi, Hows it going?" }
+                new Contact {FirstName = "Calum", ImageURL = "http://placehold.it/100x100"},
+                new Contact {FirstName = "Roshen", Status = "Hi, Hows it going?" }
 
-             };
+             };*/
 
 
             //Search functionality - A
             if (String.IsNullOrWhiteSpace(searchText))
             {
-                return contacts;
+                return _contacts;
             }
 
-            return contacts.Where(c => c.firstName.Contains(searchText));
+            return _contacts.Where(c => c.FirstName.Contains(searchText));
         }
 
 
@@ -56,7 +58,25 @@ namespace Koinonia
         {
             InitializeComponent();
 
-            contactList.ItemsSource = GetContacts();
+            Console.WriteLine("InitComponent");
+
+            _connection = DependencyService.Get<ISQLiteDb>().GetConnection();
+
+            Console.WriteLine("_connection completed");
+            
+            //contactList.ItemsSource = GetContacts();
+        }
+
+
+        
+        protected override async void OnAppearing()
+        {
+            await _connection.CreateTableAsync<Contact>();
+            var contacts = await _connection.Table<Contact>().ToListAsync();
+            _contacts = new ObservableCollection<Contact>(contacts);
+            contactList.ItemsSource = _contacts;
+            
+            base.OnAppearing();
         }
 
 
@@ -69,7 +89,7 @@ namespace Koinonia
 
         async void Options_Button_Pressed(object sender, EventArgs e)
         {
-            var response = await DisplayActionSheet("Options", "Cancel", null, "Profile", "Settings");
+            var response = await DisplayActionSheet("Options", "Cancel", null, "Profile", "Settings", "New Contact", "Clear" );
             switch (response)
             {
 
@@ -80,6 +100,18 @@ namespace Koinonia
 
                 case "Settings":
                     await Navigation.PushAsync(new SettingsPage());
+                    break;
+
+                case "New Contact":
+                    var newContact = new Contact { FirstName = "Added" + DateTime.Now.Ticks };
+                    await _connection.InsertAsync(newContact);
+                    _contacts.Add(newContact);
+                    //await Navigation.PushAsync(new NewContactPage());
+                    break;
+
+                case "Clear":
+                    _contacts.Clear();
+                    await _connection.DeleteAllAsync<Contact>();
                     break;
 
             }

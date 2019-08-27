@@ -5,7 +5,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="Koinonia.ContactList"
-             NavigationPage.HasBackButton="False">
+             NavigationPage.HasBackButton="False"
+             Title="Contacts">
     <StackLayout>
         <SearchBar Placeholder="Search" TextChanged="SearchBar_TextChanged"/>
         <ListView x:Name="contactList" SeparatorColor="Blue" HasUnevenRows="True">
@@ -15,7 +16,7 @@
                         <StackLayout Orientation="Horizontal">
                             <Image Source="{Binding ImageURL}"/>
                             <StackLayout HorizontalOptions="StartAndExpand" Spacing="0" Padding="2">
-                                <Label Text="{Binding firstName}" />
+                                <Label Text="{Binding FirstName}" />
                                 <Label Text="{Binding Status}" TextColor="Gray" />
                             </StackLayout>
                             <Button Text="Smelly"/>
