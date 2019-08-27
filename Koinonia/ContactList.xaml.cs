@@ -13,13 +13,15 @@ namespace Koinonia
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ContactList : ContentPage
     {
-        public ContactList()
+
+        private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
         {
-            InitializeComponent();
+            contactList.ItemsSource = GetContacts(e.NewTextValue);
+        }
 
-
-
-            contactList.ItemsSource = new List<Contact>
+        IEnumerable<Contact> GetContacts(String searchText = null)
+        {
+            var contacts = new List<Contact>
             {
                 new Contact {firstName = "Alex", lastName = "Raymond", ImageURL = "/ContactImages/contact1" },
                 new Contact { firstName = "Jordan", ImageURL = "http://lorempixel.com/100/100/people/2",
@@ -27,7 +29,24 @@ namespace Koinonia
                 new Contact {firstName = "Calum", ImageURL = "http://placehold.it/100x100"},
                 new Contact {firstName = "Roshen", Status = "Hi, Hows it going?" }
 
-        };
+             };
+
+            if (String.IsNullOrWhiteSpace(searchText))
+            {
+                return contacts;
+            }
+
+            return contacts.Where(c => c.firstName.Contains(searchText));
         }
+
+
+        public ContactList()
+        {
+            InitializeComponent();
+
+            contactList.ItemsSource = GetContacts();
+        }
+
+        
     }
 }

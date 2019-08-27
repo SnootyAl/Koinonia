@@ -10,5 +10,12 @@ namespace Koinonia.Models
         public string lastName { get; set; } 
         public string Status { get; set; }
         public string ImageURL { get; set; }
+
+        public void setfirstName(String name)
+        {
+            this.firstName = name;
+        }
     }
+
+    
 }
