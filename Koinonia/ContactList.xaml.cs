@@ -14,13 +14,21 @@ namespace Koinonia
     public partial class ContactList : ContentPage
     {
 
+        //Handles search functionality. On change, calls an updated contact list with GetContacts()
+        // And makes this list the new ItemsSource of contactList - A
         private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
         {
             contactList.ItemsSource = GetContacts(e.NewTextValue);
         }
 
+
+        //Returns an IEnumerable of current contacts. Also handles filtering (currently only basic text matching)
+        //Will likely be built upon in future to pull contacts from memory rather than hard coding, as well as additional filtering. - A
         IEnumerable<Contact> GetContacts(String searchText = null)
         {
+
+
+            //Placeholder hard coded contacts. WIll be more sophisiticated once database is implemented. - A
             var contacts = new List<Contact>
             {
                 new Contact {firstName = "Alex", lastName = "Raymond", ImageURL = "/ContactImages/contact1" },
@@ -31,6 +39,8 @@ namespace Koinonia
 
              };
 
+
+            //Search functionality - A
             if (String.IsNullOrWhiteSpace(searchText))
             {
                 return contacts;
@@ -40,6 +50,8 @@ namespace Koinonia
         }
 
 
+
+        //Builder function, calls GetContacts(). - A
         public ContactList()
         {
             InitializeComponent();
@@ -47,6 +59,14 @@ namespace Koinonia
             contactList.ItemsSource = GetContacts();
         }
 
-        
+
+        //override Android back button to avoid returning to signup screen.
+        // **** Explore XAMARIN for possibility of setting this screen to the new 'home' or 'base' screen? Bottom of stack? - A
+        protected override bool OnBackButtonPressed()
+        {
+            return true;
+        }
+
+
     }
 }

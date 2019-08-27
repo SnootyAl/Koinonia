@@ -4,7 +4,8 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="Koinonia.ContactList">
+             x:Class="Koinonia.ContactList"
+             NavigationPage.HasBackButton="False">
     <StackLayout>
         <SearchBar Placeholder="Search" TextChanged="SearchBar_TextChanged"/>
         <ListView x:Name="contactList" SeparatorColor="Blue" HasUnevenRows="True">

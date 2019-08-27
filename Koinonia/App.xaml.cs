@@ -10,7 +10,7 @@ namespace Koinonia
         {
             InitializeComponent();
 
-            MainPage = new ContactList();
+            MainPage = new NavigationPage(new WelcomePage());
         }
 
         protected override void OnStart()
