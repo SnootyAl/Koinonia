@@ -67,6 +67,22 @@ namespace Koinonia
             return true;
         }
 
+        async void Options_Button_Pressed(object sender, EventArgs e)
+        {
+            var response = await DisplayActionSheet("Options", "Cancel", null, "Profile", "Settings");
+            switch (response)
+            {
 
+                //**BUG** Title back button persists for a moment after pressing, allowing user to spam button and return to SignupPage
+                case "Profile":
+                    await Navigation.PushAsync(new ProfilePage());
+                    break;
+
+                case "Settings":
+                    await Navigation.PushAsync(new SettingsPage());
+                    break;
+
+            }
+        }
     }
 }
