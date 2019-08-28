@@ -8,7 +8,7 @@
              NavigationPage.HasBackButton="False"
              Title="Contacts">
     <StackLayout>
-        <SearchBar Placeholder="Search" TextChanged="SearchBar_TextChanged"/>
+        <SearchBar Placeholder="Search"/>
         <ListView x:Name="contactList" SeparatorColor="Blue" HasUnevenRows="True">
             <ListView.ItemTemplate>
                 <DataTemplate>
@@ -17,9 +17,9 @@
                             <Image Source="{Binding ImageURL}"/>
                             <StackLayout HorizontalOptions="StartAndExpand" Spacing="0" Padding="2">
                                 <Label Text="{Binding FirstName}" />
-                                <Label Text="{Binding Status}" TextColor="Gray" />
+                                <Label Text="{Binding PhoneNumber}" TextColor="Gray" />
                             </StackLayout>
-                            <Button Text="Smelly"/>
+                            <Label Text="{Binding ContactID}"/>
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>

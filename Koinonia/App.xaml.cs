@@ -1,11 +1,29 @@
 ﻿using System;
+using System.IO;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Koinonia.Data;
+
 
 namespace Koinonia
 {
     public partial class App : Application
     {
+
+        static ContactDatabase contactDB;
+
+        public static ContactDatabase Database
+        {
+            get
+            {
+                if (contactDB == null)
+                {
+                    contactDB = new ContactDatabase(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Contacts.db3"));
+                }
+                return contactDB;
+            }
+        }
+
         public App()
         {
             InitializeComponent();

@@ -14,6 +14,7 @@ namespace Koinonia.Models
         public string LastName { get; set; } 
         public string Status { get; set; }
         public string ImageURL { get; set; }
+        public string PhoneNumber { get; set; }
 
         
     }
