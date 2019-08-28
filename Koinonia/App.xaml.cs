@@ -12,7 +12,7 @@ namespace Koinonia
 
         static ContactDatabase contactDB;
 
-        public static ContactDatabase Database
+        public static ContactDatabase ContactDatabase
         {
             get
             {

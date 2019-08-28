@@ -17,6 +17,7 @@ namespace Koinonia.Data
         {
             _database = new SQLiteAsyncConnection(dbPath);
             _database.CreateTableAsync<Contact>().Wait();
+            _database.CreateTableAsync<Profile>().Wait();
         }
 
         public Task<List<Contact>> GetContactsAsync()
@@ -52,5 +53,26 @@ namespace Koinonia.Data
         {
             return _database.DeleteAllAsync<Contact>();
         }
+
+        public Task<Profile> GetProfileAsync()
+        {
+            return _database.Table<Profile>()
+                            .Where(i => i.ContactID == 1)
+                            .FirstOrDefaultAsync();
+        }
+
+        public Task<int> SaveProfileAsync(Profile profile)
+        {
+            if (profile.ContactID != 0)
+            {
+                return _database.UpdateAsync(profile);
+            }
+            else
+            {
+                return _database.InsertAsync(profile);
+            }
+        }
     }
+
+
 }

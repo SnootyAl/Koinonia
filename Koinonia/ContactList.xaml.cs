@@ -44,7 +44,7 @@ namespace Koinonia
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-            contactList.ItemsSource = await App.Database.GetContactsAsync();
+            contactList.ItemsSource = await App.ContactDatabase.GetContactsAsync();
         }
 
 
@@ -88,7 +88,7 @@ namespace Koinonia
 
                 case "Clear":
                     
-                    await App.Database.DeleteAllAsync();
+                    await App.ContactDatabase.DeleteAllAsync();
                     OnAppearing();
                     break;
 
@@ -97,7 +97,7 @@ namespace Koinonia
 
         private async void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
         {
-            _contacts = await App.Database.GetContactsAsync();
+            _contacts = await App.ContactDatabase.GetContactsAsync();
             if (String.IsNullOrWhiteSpace(e.NewTextValue))
             {
                 contactList.ItemsSource = _contacts;
