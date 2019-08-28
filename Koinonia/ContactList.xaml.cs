@@ -44,7 +44,6 @@ namespace Koinonia
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-
             contactList.ItemsSource = await App.Database.GetContactsAsync();
         }
 
@@ -78,16 +77,13 @@ namespace Koinonia
                         _contacts.Add(newContact);
                         //await Navigation.PushAsync(new NewContactPage());
                         break;*/
-
-
-                    //https://docs.microsoft.com/en-us/xamarin/get-started/quickstarts/database?pivots=windows
+                    
 
                 case "New Contact":
+
+                    //****Bug? Table ID continues to increment? Probably not an issue, saves conflicts in future.
                     
                     await Navigation.PushAsync(new NewContactPage());
-
-                    Console.WriteLine("Nope");
-
                     break;
 
                 case "Clear":
@@ -97,6 +93,20 @@ namespace Koinonia
                     break;
 
             }
+        }
+
+        private async void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            _contacts = await App.Database.GetContactsAsync();
+            if (String.IsNullOrWhiteSpace(e.NewTextValue))
+            {
+                contactList.ItemsSource = _contacts;
+            }
+            else
+            {
+                contactList.ItemsSource = _contacts.Where(c => c.FirstName.Contains(e.NewTextValue));
+            }
+           
         }
     }
 }

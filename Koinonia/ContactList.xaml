@@ -8,7 +8,7 @@
              NavigationPage.HasBackButton="False"
              Title="Contacts">
     <StackLayout>
-        <SearchBar Placeholder="Search"/>
+        <SearchBar Placeholder="Search" TextChanged="SearchBar_TextChanged"/>
         <ListView x:Name="contactList" SeparatorColor="Blue" HasUnevenRows="True">
             <ListView.ItemTemplate>
                 <DataTemplate>

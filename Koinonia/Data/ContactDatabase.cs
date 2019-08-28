@@ -3,6 +3,10 @@ using System.Threading.Tasks;
 using SQLite;
 using Koinonia.Models;
 
+
+//Implementing Database storage
+//https://docs.microsoft.com/en-us/xamarin/get-started/quickstarts/database?pivots=windows
+
 namespace Koinonia.Data
 {
     public class ContactDatabase
