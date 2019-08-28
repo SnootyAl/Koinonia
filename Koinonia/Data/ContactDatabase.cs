@@ -43,5 +43,10 @@ namespace Koinonia.Data
         {
             return _database.DeleteAsync(contact);
         }
+
+        public Task<int> DeleteAllAsync()
+        {
+            return _database.DeleteAllAsync<Contact>();
+        }
     }
 }

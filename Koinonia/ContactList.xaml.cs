@@ -91,8 +91,9 @@ namespace Koinonia
                     break;
 
                 case "Clear":
-                    _contacts.Clear();
-                    await _connection.DeleteAllAsync<Contact>();
+                    
+                    await App.Database.DeleteAllAsync();
+                    OnAppearing();
                     break;
 
             }
