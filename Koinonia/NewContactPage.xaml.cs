@@ -30,7 +30,7 @@ namespace Koinonia
 
         private async void Cancel_Pressed(object sender, EventArgs e)
         {
-            Navigation.PopAsync();
+            await Navigation.PopAsync();
         }
 
         private async void Save_Pressed(object sender, EventArgs e)
@@ -50,6 +50,8 @@ namespace Koinonia
             }
         }
 
+
+        //****Change to Binding please, this is ugly -A
         private void First_TextChanged(object sender, TextChangedEventArgs e)
         {
             contact.FirstName = e.NewTextValue;

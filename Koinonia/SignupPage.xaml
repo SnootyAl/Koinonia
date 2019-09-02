@@ -8,10 +8,11 @@
              NavigationPage.BackButtonTitle="false"
              NavigationPage.HasBackButton="false">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Probably put some fields here at some point hey"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout x:Name="ProfileFields">
+            <Entry x:Name="First" Placeholder="First" Text="{Binding FirstName}"/>
+            <Entry x:Name="Last" Placeholder="Last" Text="{Binding LastName}"/>
+            <Entry x:Name="Phone" Placeholder="Phone" Keyboard="Numeric" Text="{Binding PhoneNumber}"/>
+            <Entry x:Name="Email" Placeholder="Email" Text="{Binding Email}"/>
             <Button Text="Next" Pressed="Button_Pressed"/>
         </StackLayout>
     </ContentPage.Content>

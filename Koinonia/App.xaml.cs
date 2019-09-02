@@ -3,6 +3,7 @@ using System.IO;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Koinonia.Data;
+using Xamarin.Essentials;
 
 
 namespace Koinonia
@@ -22,13 +23,24 @@ namespace Koinonia
                 }
                 return contactDB;
             }
-        }
+        }       
 
         public App()
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new WelcomePage());
+            if(Preferences.Get("ProfileExists", false))
+            {
+                MainPage = new NavigationPage(new ContactList());
+            }
+            else
+            {
+                MainPage = new NavigationPage(new WelcomePage());
+            }
+
+            
+            
+            
         }
 
         protected override void OnStart()

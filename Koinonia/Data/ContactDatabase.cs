@@ -52,5 +52,40 @@ namespace Koinonia.Data
         {
             return _database.DeleteAllAsync<Contact>();
         }
+<<<<<<< Updated upstream
+=======
+
+        public Task<Profile> GetProfileAsync()
+        {
+            return _database.Table<Profile>()
+                            .Where(i => i.ContactID == 0)
+                            .FirstOrDefaultAsync();
+        }
+
+        
+
+        public Task<int> SaveProfileAsync(Profile profile)
+        {
+
+            if (profile.ContactID != 0)
+            {
+                return _database.UpdateAsync(profile);
+            }
+            else
+            {
+                return _database.InsertAsync(profile);                
+            }
+        }
+
+        //For testing purposes. May also be used for 'Delete profile' functionality?
+        public Task<int> DeleteProfileAsync()
+        {
+            return _database.DeleteAllAsync<Profile>();
+        }
+
+        
+
+        
+>>>>>>> Stashed changes
     }
 }

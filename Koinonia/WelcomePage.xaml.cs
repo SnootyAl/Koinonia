@@ -19,7 +19,10 @@ namespace Koinonia
 
         async void Button_Pressed(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new SignupPage());
+
+            //await DisplayAlert("Title", App.ContactDatabase.GetProfileAsync().ToString(), "Cancel");
+            await Navigation.PushAsync(new SignupPage());    
+
         }
     }
 }
