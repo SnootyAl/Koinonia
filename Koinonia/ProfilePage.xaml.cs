@@ -23,18 +23,18 @@ namespace Koinonia
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-            profileDetails.BindingContext = await App.ContactDatabase.GetProfileAsync();            
+            profileDetails.BindingContext = await App.Database.GetProfileAsync();            
         }
 
         private async void DeleteButton_Pressed(object sender, EventArgs e)
         {
             try
             {
-                var profileTemp = await App.ContactDatabase.GetProfileAsync();
+                var profileTemp = await App.Database.GetProfileAsync();
                 Console.WriteLine(profileTemp.ContactID);
                 if (await DisplayAlert("Confirmation", "Are you sure you wish to delete Profile?", "Confirm", "Cancel"))
                 {
-                    await App.ContactDatabase.DeleteProfileAsync();
+                    await App.Database.DeleteProfileAsync();
                     Preferences.Set("ProfileExists", false);
                     await Navigation.PopAsync();
                     await Navigation.PopAsync();

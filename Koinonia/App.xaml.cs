@@ -4,6 +4,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Koinonia.Data;
 using Xamarin.Essentials;
+using SQLite;
 
 
 namespace Koinonia
@@ -11,15 +12,15 @@ namespace Koinonia
     public partial class App : Application
     {
 
-        static ContactDatabase contactDB;
+        static Database contactDB;
 
-        public static ContactDatabase Database
+        public static Database Database
         {
             get
             {
                 if (contactDB == null)
                 {
-                    contactDB = new ContactDatabase(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Contacts.db3"));
+                    contactDB = new Database(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Contacts.db3"));
                 }
                 return contactDB;
             }

@@ -26,7 +26,7 @@ namespace Koinonia
         async void Button_Pressed(object sender, EventArgs e)
         {
             await DisplayAlert(profile.FirstName, profile.ContactID.ToString(), "Cancel");
-            await App.ContactDatabase.SaveProfileAsync(profile);
+            await App.Database.SaveProfileAsync(profile);
             Preferences.Set("ProfileExists", true);
             await Navigation.PushAsync(new ContactList());
         }

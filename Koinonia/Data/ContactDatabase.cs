@@ -9,14 +9,15 @@ using Koinonia.Models;
 
 namespace Koinonia.Data
 {
-    public class ContactDatabase
+    public class Database
     {
         readonly SQLiteAsyncConnection _database;
 
-        public ContactDatabase(string dbPath)
+        public Database(string dbPath)
         {
             _database = new SQLiteAsyncConnection(dbPath);
             _database.CreateTableAsync<Contact>().Wait();
+            _database.CreateTableAsync<Profile>().Wait();
         }
 
         public Task<List<Contact>> GetContactsAsync()
@@ -52,8 +53,6 @@ namespace Koinonia.Data
         {
             return _database.DeleteAllAsync<Contact>();
         }
-<<<<<<< Updated upstream
-=======
 
         public Task<Profile> GetProfileAsync()
         {
@@ -86,6 +85,5 @@ namespace Koinonia.Data
         
 
         
->>>>>>> Stashed changes
     }
 }

@@ -94,7 +94,7 @@ namespace Koinonia
 
                 case "Debug":
 
-                    var tempProfile = await App.ContactDatabase.GetProfileAsync();
+                    var tempProfile = await App.Database.GetProfileAsync();
                     if(tempProfile.FirstName == null)
                     {
                         Console.WriteLine(tempProfile.ContactID);
