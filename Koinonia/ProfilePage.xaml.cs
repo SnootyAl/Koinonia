@@ -31,13 +31,11 @@ namespace Koinonia
             try
             {
                 var profileTemp = await App.Database.GetProfileAsync();
-                Console.WriteLine(profileTemp.ContactID);
                 if (await DisplayAlert("Confirmation", "Are you sure you wish to delete Profile?", "Confirm", "Cancel"))
                 {
                     await App.Database.DeleteProfileAsync();
                     Preferences.Set("ProfileExists", false);
-                    await Navigation.PopAsync();
-                    await Navigation.PopAsync();
+                    await Navigation.PopAsync();                    
                 }
             }
             catch (Exception ex)
@@ -47,6 +45,11 @@ namespace Koinonia
             
 
             OnAppearing();
+        }
+
+        private async void EditButton_Pressed(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new EditProfilePage());
         }
     }
 }

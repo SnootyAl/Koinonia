@@ -66,7 +66,7 @@ namespace Koinonia.Data
         public Task<int> SaveProfileAsync(Profile profile)
         {
 
-            if (profile.ContactID != 0)
+            if (profile.ContactID == 0)
             {
                 return _database.UpdateAsync(profile);
             }

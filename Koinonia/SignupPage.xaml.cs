@@ -23,6 +23,7 @@ namespace Koinonia
             BindingContext = profile;
         }
 
+        //Add check for all fields entered otherwise nullpointer exception for Database
         async void Button_Pressed(object sender, EventArgs e)
         {
             await DisplayAlert(profile.FirstName, profile.ContactID.ToString(), "Cancel");
