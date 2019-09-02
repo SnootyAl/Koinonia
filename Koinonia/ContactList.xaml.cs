@@ -89,7 +89,7 @@ namespace Koinonia
 
         async void Options_Button_Pressed(object sender, EventArgs e)
         {
-            var response = await DisplayActionSheet("Options", "Cancel", null, "Profile", "Settings", "New Contact", "Clear" );
+            var response = await DisplayActionSheet("Options", "Cancel", null, "Profile", "Settings", "New Contact", "Clear", "Tags" );
             switch (response)
             {
 
@@ -112,6 +112,10 @@ namespace Koinonia
                 case "Clear":
                     _contacts.Clear();
                     await _connection.DeleteAllAsync<Contact>();
+                    break;
+
+                case "Tags":
+                    await Navigation.PushAsync(new Tags());
                     break;
 
             }
