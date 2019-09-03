@@ -3,127 +3,26 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:xampane="clr-namespace:XamPane;assembly=XamPane"
+             xmlns:polygon="clr-namespace:Xamarin.Forms.PolygonFrame;assembly=Xamarin.Forms.PolygonFrame"
              mc:Ignorable="d"
              x:Class="Koinonia.DebugPage">
     <ContentPage.Content>
-        <Grid Grid.Row="1" Grid.Column="1" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-            <ScrollView Orientation="Both" Padding="10">
-                <StackLayout>
-                <StackLayout Orientation="Horizontal" Padding="50">
-                    <BoxView BackgroundColor="Blue" MinimumWidthRequest="100"/>
-                    <Label Text="Goodbye"/>
-                    <BoxView BackgroundColor="Blue" MinimumWidthRequest="100"/>
-                    <Label Text="Goodbye"/>
-                    <BoxView BackgroundColor="Blue" MinimumWidthRequest="100"/>
-                    <Label Text="Goodbye"/>
-                    <BoxView BackgroundColor="Blue" MinimumWidthRequest="100"/>
-                    <Label Text="Goodbye"/>
-                    <BoxView BackgroundColor="Blue" MinimumWidthRequest="100"/>
-                    <Label Text="Goodbye"/>
-                    <BoxView BackgroundColor="Blue" MinimumWidthRequest="100"/>
-                    <Label Text="Goodbye"/>
-                </StackLayout>
-                <StackLayout Orientation="Horizontal" Padding="50">
-                    <BoxView BackgroundColor="Blue" MinimumWidthRequest="100"/>
-                    <Label Text="Goodbye"/>
-                    <BoxView BackgroundColor="Blue" MinimumWidthRequest="100"/>
-                    <Label Text="Goodbye"/>
-                    <BoxView BackgroundColor="Blue" MinimumWidthRequest="100"/>
-                    <Label Text="Goodbye"/>
-                    <BoxView BackgroundColor="Blue" MinimumWidthRequest="100"/>
-                    <Label Text="Goodbye"/>
-                    <BoxView BackgroundColor="Blue" MinimumWidthRequest="100"/>
-                    <Label Text="Goodbye"/>
-                    <BoxView BackgroundColor="Blue" MinimumWidthRequest="100"/>
-                    <Label Text="Goodbye"/>
-                </StackLayout>
-                    <StackLayout Orientation="Horizontal" Padding="50">
-                    <BoxView BackgroundColor="Blue" MinimumWidthRequest="100"/>
-                    <Label Text="Goodbye"/>
-                    <BoxView BackgroundColor="Blue" MinimumWidthRequest="100"/>
-                    <Label Text="Goodbye"/>
-                    <BoxView BackgroundColor="Blue" MinimumWidthRequest="100"/>
-                    <Label Text="Goodbye"/>
-                    <BoxView BackgroundColor="Blue" MinimumWidthRequest="100"/>
-                    <Label Text="Goodbye"/>
-                    <BoxView BackgroundColor="Blue" MinimumWidthRequest="100"/>
-                    <Label Text="Goodbye"/>
-                    <BoxView BackgroundColor="Blue" MinimumWidthRequest="100"/>
-                    <Label Text="Goodbye"/>
-                </StackLayout>
-                    <StackLayout Orientation="Horizontal" Padding="50">
-                    <BoxView BackgroundColor="Blue" MinimumWidthRequest="100"/>
-                    <Label Text="Goodbye"/>
-                    <BoxView BackgroundColor="Blue" MinimumWidthRequest="100"/>
-                    <Label Text="Goodbye"/>
-                    <BoxView BackgroundColor="Blue" MinimumWidthRequest="100"/>
-                    <Label Text="Goodbye"/>
-                    <BoxView BackgroundColor="Blue" MinimumWidthRequest="100"/>
-                    <Label Text="Goodbye"/>
-                    <BoxView BackgroundColor="Blue" MinimumWidthRequest="100"/>
-                    <Label Text="Goodbye"/>
-                    <BoxView BackgroundColor="Blue" MinimumWidthRequest="100"/>
-                    <Label Text="Goodbye"/>
-                </StackLayout>
-                    <StackLayout Orientation="Horizontal" Padding="50">
-                    <BoxView BackgroundColor="Blue" MinimumWidthRequest="100"/>
-                    <Label Text="Goodbye"/>
-                    <BoxView BackgroundColor="Blue" MinimumWidthRequest="100"/>
-                    <Label Text="Goodbye"/>
-                    <BoxView BackgroundColor="Blue" MinimumWidthRequest="100"/>
-                    <Label Text="Goodbye"/>
-                    <BoxView BackgroundColor="Blue" MinimumWidthRequest="100"/>
-                    <Label Text="Goodbye"/>
-                    <BoxView BackgroundColor="Blue" MinimumWidthRequest="100"/>
-                    <Label Text="Goodbye"/>
-                    <BoxView BackgroundColor="Blue" MinimumWidthRequest="100"/>
-                    <Label Text="Goodbye"/>
-                </StackLayout>
-                    <StackLayout Orientation="Horizontal" Padding="50">
-                    <BoxView BackgroundColor="Blue" MinimumWidthRequest="100"/>
-                    <Label Text="Goodbye"/>
-                    <BoxView BackgroundColor="Blue" MinimumWidthRequest="100"/>
-                    <Label Text="Goodbye"/>
-                    <BoxView BackgroundColor="Blue" MinimumWidthRequest="100"/>
-                    <Label Text="Goodbye"/>
-                    <BoxView BackgroundColor="Blue" MinimumWidthRequest="100"/>
-                    <Label Text="Goodbye"/>
-                    <BoxView BackgroundColor="Blue" MinimumWidthRequest="100"/>
-                    <Label Text="Goodbye"/>
-                    <BoxView BackgroundColor="Blue" MinimumWidthRequest="100"/>
-                    <Label Text="Goodbye"/>
-                </StackLayout>
-                    <StackLayout Orientation="Horizontal" Padding="50">
-                    <BoxView BackgroundColor="Blue" MinimumWidthRequest="100"/>
-                    <Label Text="Goodbye"/>
-                    <BoxView BackgroundColor="Blue" MinimumWidthRequest="100"/>
-                    <Label Text="Goodbye"/>
-                    <BoxView BackgroundColor="Blue" MinimumWidthRequest="100"/>
-                    <Label Text="Goodbye"/>
-                    <BoxView BackgroundColor="Blue" MinimumWidthRequest="100"/>
-                    <Label Text="Goodbye"/>
-                    <BoxView BackgroundColor="Blue" MinimumWidthRequest="100"/>
-                    <Label Text="Goodbye"/>
-                    <BoxView BackgroundColor="Blue" MinimumWidthRequest="100"/>
-                    <Label Text="Goodbye"/>
-                </StackLayout>
-                    <StackLayout Orientation="Horizontal" Padding="50">
-                    <BoxView BackgroundColor="Blue" MinimumWidthRequest="100"/>
-                    <Label Text="Goodbye"/>
-                    <BoxView BackgroundColor="Blue" MinimumWidthRequest="100"/>
-                    <Label Text="Goodbye"/>
-                    <BoxView BackgroundColor="Blue" MinimumWidthRequest="100"/>
-                    <Label Text="Goodbye"/>
-                    <BoxView BackgroundColor="Blue" MinimumWidthRequest="100"/>
-                    <Label Text="Goodbye"/>
-                    <BoxView BackgroundColor="Blue" MinimumWidthRequest="100"/>
-                    <Label Text="Goodbye"/>
-                    <BoxView BackgroundColor="Blue" MinimumWidthRequest="100"/>
-                    <Label Text="Goodbye"/>
-                </StackLayout>
-                </StackLayout>
+        <ScrollView Orientation="Both">
+            <xampane:HexLayout
+                    RowCount="3"
+                    ColumnCount="3"
+                    Orientation="Vertical">
 
-            </ScrollView>
-        </Grid>
+                <polygon:PolygonFrame xampane:HexLayout.Row="0" xampane:HexLayout.Column="1" OffsetAngle="90" BackgroundColor="Red"/>
+                <polygon:PolygonFrame xampane:HexLayout.Row="0" xampane:HexLayout.Column="2" OffsetAngle="90" BackgroundColor="Green"/>
+                <polygon:PolygonFrame xampane:HexLayout.Row="1" xampane:HexLayout.Column="0" OffsetAngle="90" BackgroundColor="Blue"/>
+                <polygon:PolygonFrame xampane:HexLayout.Row="1" xampane:HexLayout.Column="1" OffsetAngle="90" BackgroundColor="Yellow"/>
+                <polygon:PolygonFrame xampane:HexLayout.Row="1" xampane:HexLayout.Column="2" OffsetAngle="90" BackgroundColor="Orange"/>
+                <polygon:PolygonFrame xampane:HexLayout.Row="2" xampane:HexLayout.Column="1" OffsetAngle="90" BackgroundColor="Purple"/>
+                <Button xampane:HexLayout.Row="2" xampane:HexLayout.Column="2" BorderRadius="20" WidthRequest="40" HeightRequest="40" BackgroundColor="Pink"/>
+            </xampane:HexLayout>
+        </ScrollView>
     </ContentPage.Content>
+   
 </ContentPage>

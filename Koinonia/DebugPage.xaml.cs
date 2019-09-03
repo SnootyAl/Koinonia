@@ -47,5 +47,10 @@ namespace Koinonia
             //ContactGrid2.ItemsSource = list2;
 
         }
+
+        private async void Button_Pressed(object sender, EventArgs e)
+        {
+            await DisplayAlert("Congrats", "Youre kinda there", "Coolio");
+        }
     }
 }

@@ -13,6 +13,8 @@
     <PackageReference Include="sqlite-net-pcl" Version="1.5.231" />
     <PackageReference Include="Xamarin.Forms" Version="4.2.0.709249" />
     <PackageReference Include="Xamarin.Essentials" Version="1.3.0" />
+    <PackageReference Include="Xamarin.Forms.PolygonFrame" Version="1.0.0" />
+    <PackageReference Include="XamPane" Version="1.0.0" />
   </ItemGroup>
 
   <ItemGroup>
