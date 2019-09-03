@@ -9,19 +9,30 @@
              x:Class="Koinonia.DebugPage">
     <ContentPage.Content>
         <ScrollView Orientation="Both">
-            <xampane:HexLayout
-                    RowCount="3"
-                    ColumnCount="3"
-                    Orientation="Vertical">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="900" />
+                    
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="900" />
+                  
+                </Grid.ColumnDefinitions>
+                <xampane:HexLayout
+                    RowCount="6"
+                    ColumnCount="6"
+                    Orientation="Vertical"
+                    >
 
-                <polygon:PolygonFrame xampane:HexLayout.Row="0" xampane:HexLayout.Column="1" OffsetAngle="90" BackgroundColor="Red"/>
-                <polygon:PolygonFrame xampane:HexLayout.Row="0" xampane:HexLayout.Column="2" OffsetAngle="90" BackgroundColor="Green"/>
-                <polygon:PolygonFrame xampane:HexLayout.Row="1" xampane:HexLayout.Column="0" OffsetAngle="90" BackgroundColor="Blue"/>
-                <polygon:PolygonFrame xampane:HexLayout.Row="1" xampane:HexLayout.Column="1" OffsetAngle="90" BackgroundColor="Yellow"/>
-                <polygon:PolygonFrame xampane:HexLayout.Row="1" xampane:HexLayout.Column="2" OffsetAngle="90" BackgroundColor="Orange"/>
-                <polygon:PolygonFrame xampane:HexLayout.Row="2" xampane:HexLayout.Column="1" OffsetAngle="90" BackgroundColor="Purple"/>
-                <Button xampane:HexLayout.Row="2" xampane:HexLayout.Column="2" BorderRadius="20" WidthRequest="40" HeightRequest="40" BackgroundColor="Pink"/>
-            </xampane:HexLayout>
+                    <polygon:PolygonFrame xampane:HexLayout.Row="0" xampane:HexLayout.Column="1" OffsetAngle="90" BackgroundColor="Red"/>
+                    <polygon:PolygonFrame xampane:HexLayout.Row="0" xampane:HexLayout.Column="2" OffsetAngle="90" BackgroundColor="Green"/>
+                    <polygon:PolygonFrame xampane:HexLayout.Row="1" xampane:HexLayout.Column="0" OffsetAngle="90" BackgroundColor="Blue"/>
+                    <polygon:PolygonFrame xampane:HexLayout.Row="1" xampane:HexLayout.Column="1" OffsetAngle="90" BackgroundColor="Yellow"/>
+                    <polygon:PolygonFrame xampane:HexLayout.Row="1" xampane:HexLayout.Column="2" OffsetAngle="90" BackgroundColor="Orange"/>
+                    <polygon:PolygonFrame xampane:HexLayout.Row="2" xampane:HexLayout.Column="1" OffsetAngle="90" BackgroundColor="Purple"/>
+                    <polygon:PolygonFrame xampane:HexLayout.Row="2" xampane:HexLayout.Column="2" OffsetAngle="90" BackgroundColor="Pink"/>
+                </xampane:HexLayout>
+            </Grid>
         </ScrollView>
     </ContentPage.Content>
    
