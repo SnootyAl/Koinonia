@@ -12,9 +12,11 @@ namespace Koinonia
     public partial class App : Application
     {
 
+
         static Database contactDB;
 
         public static Database Database
+
         {
             get
             {
@@ -25,6 +27,7 @@ namespace Koinonia
                 return contactDB;
             }
         }       
+
 
         public App()
         {

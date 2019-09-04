@@ -57,6 +57,7 @@ namespace Koinonia.Data
         public Task<Profile> GetProfileAsync()
         {
             return _database.Table<Profile>()
+
                             .Where(i => i.ContactID == 0)
                             .FirstOrDefaultAsync();
         }
@@ -80,10 +81,9 @@ namespace Koinonia.Data
         public Task<int> DeleteProfileAsync()
         {
             return _database.DeleteAllAsync<Profile>();
-        }
+        }  
 
-        
-
-        
     }
+
+
 }

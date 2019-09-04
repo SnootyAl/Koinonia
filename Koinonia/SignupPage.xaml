@@ -8,12 +8,26 @@
              NavigationPage.BackButtonTitle="false"
              NavigationPage.HasBackButton="false">
     <ContentPage.Content>
+
         <StackLayout x:Name="ProfileFields">
             <Entry x:Name="First" Placeholder="First" Text="{Binding FirstName}"/>
             <Entry x:Name="Last" Placeholder="Last" Text="{Binding LastName}"/>
             <Entry x:Name="Phone" Placeholder="Phone" Keyboard="Numeric" Text="{Binding PhoneNumber}"/>
             <Entry x:Name="Email" Placeholder="Email" Text="{Binding Email}"/>
-            <Button Text="Next" Pressed="Button_Pressed"/>
+            <Button Text="Next" Pressed="Button_Pressed"/>       
+            
+            <Button Text="Next"
+                    TextColor="White"
+                    FontFamily="Roboto"
+                    FontSize="Large"
+                    FontAttributes="Bold"
+                    CornerRadius="20"
+                    BackgroundColor="#17A7B2"
+                    Pressed="Button_Pressed"
+                    Margin="25, 1, 25, 50"
+            />
+                    <!--Margin: left, top, right, bottom-->
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

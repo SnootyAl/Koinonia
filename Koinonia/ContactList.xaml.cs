@@ -44,7 +44,7 @@ namespace Koinonia
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-            contactList.ItemsSource = await App.Database.GetContactsAsync();
+            contactList.ItemsSource = await App.ContactDatabase.GetContactsAsync();
         }
 
 
@@ -57,7 +57,9 @@ namespace Koinonia
 
         async void Options_Button_Pressed(object sender, EventArgs e)
         {
-            var response = await DisplayActionSheet("Options", "Cancel", null, "Profile", "Settings", "New Contact", "Clear", "Debug" );
+
+            var response = await DisplayActionSheet("Options", "Cancel", null, "Profile", "Settings", "New Contact", "Clear", "Debug", "Tags" );
+
             switch (response)
             {
 
@@ -87,25 +89,27 @@ namespace Koinonia
 
                 case "Clear":
                     
-                    await App.Database.DeleteAllAsync();
+                    await App.ContactDatabase.DeleteAllAsync();
                     OnAppearing();
                     break;
-
 
                 case "Debug":
 
                     await Navigation.PushAsync(new DebugPage());
+                    break;         
+
+
+                case "Tags":
+                    await Navigation.PushAsync(new Tags());
                     break;
 
-
-             
 
             }
         }
 
         private async void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
         {
-            _contacts = await App.Database.GetContactsAsync();
+            _contacts = await App.ContactDatabase.GetContactsAsync();
             if (String.IsNullOrWhiteSpace(e.NewTextValue))
             {
                 contactList.ItemsSource = _contacts;
