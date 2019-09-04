@@ -9,7 +9,7 @@
              x:Class="Koinonia.DebugPage">
     <ContentPage.Content>
         <ScrollView Orientation="Both">
-            <Grid x:Name="ContainerGrid">
+            <Grid x:Name="ContainerGrid" BackgroundColor = "#17A7B2">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="{Binding screenHeight}" />
                     

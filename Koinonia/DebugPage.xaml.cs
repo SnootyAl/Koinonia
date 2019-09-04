@@ -16,8 +16,8 @@ namespace Koinonia
     {
 
         public int screenWidth, screenHeight;
-        public int hexRows = 7;
-        public int hexColumns = 7;
+        public int hexRows = 5;
+        public int hexColumns = 5;
        
         
         
@@ -53,7 +53,7 @@ namespace Koinonia
                 {
                     var tempButton = new Button
                     {
-                        BackgroundColor = Color.FromRgb(0, 0, 255),
+                        BackgroundColor = Color.FromRgb(255, 255, 255),
                         HeightRequest = 150,
                         WidthRequest = 150,
                         HorizontalOptions = LayoutOptions.Center,
