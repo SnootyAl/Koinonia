@@ -9,29 +9,17 @@
              x:Class="Koinonia.DebugPage">
     <ContentPage.Content>
         <ScrollView Orientation="Both">
-            <Grid>
+            <Grid x:Name="ContainerGrid">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="900" />
+                    <RowDefinition Height="{Binding screenHeight}" />
                     
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="900" />
+                    <ColumnDefinition Width="{Binding screenWidth}" />
                   
                 </Grid.ColumnDefinitions>
-                <xampane:HexLayout
-                    RowCount="6"
-                    ColumnCount="6"
-                    Orientation="Vertical"
-                    >
-
-                    <polygon:PolygonFrame xampane:HexLayout.Row="0" xampane:HexLayout.Column="1" OffsetAngle="90" BackgroundColor="Red"/>
-                    <polygon:PolygonFrame xampane:HexLayout.Row="0" xampane:HexLayout.Column="2" OffsetAngle="90" BackgroundColor="Green"/>
-                    <polygon:PolygonFrame xampane:HexLayout.Row="1" xampane:HexLayout.Column="0" OffsetAngle="90" BackgroundColor="Blue"/>
-                    <polygon:PolygonFrame xampane:HexLayout.Row="1" xampane:HexLayout.Column="1" OffsetAngle="90" BackgroundColor="Yellow"/>
-                    <polygon:PolygonFrame xampane:HexLayout.Row="1" xampane:HexLayout.Column="2" OffsetAngle="90" BackgroundColor="Orange"/>
-                    <polygon:PolygonFrame xampane:HexLayout.Row="2" xampane:HexLayout.Column="1" OffsetAngle="90" BackgroundColor="Purple"/>
-                    <polygon:PolygonFrame xampane:HexLayout.Row="2" xampane:HexLayout.Column="2" OffsetAngle="90" BackgroundColor="Pink"/>
-                </xampane:HexLayout>
+                
+                
             </Grid>
         </ScrollView>
     </ContentPage.Content>

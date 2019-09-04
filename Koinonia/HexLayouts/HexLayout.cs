@@ -40,13 +40,22 @@ namespace Koinonia.HexLayouts
         }
 
         public static readonly BindableProperty ColumnProperty =
-            BindableProperty.Create(nameof(Column), typeof(int), typeof(HexLayout), 1,
-                BindingMode.TwoWay, null);
+            BindableProperty.CreateAttached("Column", typeof(int), typeof(HexLayout), 1);
 
-        public int Column
+        /*public int Column
         {
             get { return (int)GetValue(ColumnProperty); }
             set { SetValue(ColumnProperty, value); }
+        }*/
+
+        public static int GetColumn(BindableObject target)
+        {
+            return (int)target.GetValue(ColumnProperty);
+        }
+
+        public static void SetColumn(BindableObject view, int value)
+        {
+            view.SetValue(ColumnProperty, value);
         }
 
         private int GetColumn(VisualElement e)
@@ -58,13 +67,22 @@ namespace Koinonia.HexLayouts
         }
 
         public static readonly BindableProperty RowProperty =
-            BindableProperty.Create(nameof(Row), typeof(int), typeof(HexLayout), 1,
-                BindingMode.TwoWay, null);
+            BindableProperty.CreateAttached("Row", typeof(int), typeof(HexLayout), 1);
 
-        public int Row
+        /*public int Row
         {
             get { return (int)GetValue(RowProperty); }
             set { SetValue(RowProperty, value); }
+        }*/
+
+        public static int GetRow(BindableObject target)
+        {           
+            return (int)target.GetValue(RowProperty);
+        }
+
+        public static void SetRow(BindableObject view, int value)
+        {
+            view.SetValue(RowProperty, value);
         }
 
         private int GetRow(VisualElement e)

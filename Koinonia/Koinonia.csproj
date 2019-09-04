@@ -48,4 +48,8 @@
   <ItemGroup>
     <Folder Include="ContactImages\" />
   </ItemGroup>
+
+  <ItemGroup>
+    <None Include="HexLayouts\XamPane.csproj" />
+  </ItemGroup>
 </Project>
