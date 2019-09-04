@@ -1,13 +1,33 @@
 ﻿using System;
+using System.IO;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Koinonia.Data;
+
 
 namespace Koinonia
 {
     public partial class App : Application
     {
+
         public static int ScreenHeight { get; set; }
         public static int ScreenWidth { get; set; }
+
+
+        static ContactDatabase contactDB;
+
+        public static ContactDatabase ContactDatabase
+        {
+            get
+            {
+                if (contactDB == null)
+                {
+                    contactDB = new ContactDatabase(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Contacts.db3"));
+                }
+                return contactDB;
+            }
+        }
+
 
         public App()
         {
