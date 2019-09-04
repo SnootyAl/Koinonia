@@ -9,7 +9,7 @@
              Title="Contacts">
     <StackLayout>
         <SearchBar Placeholder="Search" TextChanged="SearchBar_TextChanged"/>
-        <ListView x:Name="contactList" SeparatorColor="Blue" HasUnevenRows="True">
+        <ListView x:Name="contactList" SeparatorColor="#17A7B2" HasUnevenRows="True">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
@@ -17,7 +17,7 @@
                             <Image Source="{Binding ImageURL}"/>
                             <StackLayout HorizontalOptions="StartAndExpand" Spacing="0" Padding="2">
                                 <Label Text="{Binding FirstName}" />
-                                <Label Text="{Binding Status}" TextColor="Gray" />
+                                <Label Text="{Binding Status}" TextColor="#17A7B2" />
                             </StackLayout>
                             <Button Text="Smelly"/>
                         </StackLayout>
@@ -25,6 +25,16 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Button Text="Temp Options" Pressed="Options_Button_Pressed" />
+        <Button Text="Temp Options"
+                    TextColor="White"
+                    FontFamily="Roboto"
+                    FontSize="Large"
+                    FontAttributes="Bold"
+                    CornerRadius="20"
+                    BackgroundColor="#17A7B2"
+                    Pressed="Options_Button_Pressed"
+                    Margin="25, 1, 25, 50"
+            />
+                    <!--Margin: left, top, right, bottom-->
     </StackLayout>
 </ContentPage>

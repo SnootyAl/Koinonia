@@ -4,13 +4,32 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
+
              x:Class="Koinonia.WelcomePage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome screen with pretty graphics"
+            <!--Image />-->
+
+            <Label
+                Text="Koinonia is the app to help you map, manage, sort and track your relationships."
+                LineBreakMode="WordWrap"
+                Margin="25, 1, 25, 50"
+                HorizontalTextAlignment="Center"
                 VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-            <Button Text="Start Now" Pressed="Button_Pressed"/>
+                HorizontalOptions="CenterAndExpand"
+
+            />
+            <Button Text="Start Now"
+                    TextColor="White"
+                    FontFamily="Roboto"
+                    FontSize="Large"
+                    FontAttributes="Bold"
+                    CornerRadius="20"
+                    BackgroundColor="#17A7B2"
+                    Pressed="Button_Pressed"
+                    Margin="25, 1, 25, 50"
+            />
+                    <!--Margin: left, top, right, bottom-->
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
