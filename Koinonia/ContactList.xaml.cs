@@ -58,7 +58,7 @@ namespace Koinonia
         async void Options_Button_Pressed(object sender, EventArgs e)
         {
 
-            var response = await DisplayActionSheet("Options", "Cancel", null, "Profile", "Settings", "New Contact", "Clear", "Tags" );
+            var response = await DisplayActionSheet("Options", "Cancel", null, "Profile", "Settings", "New Contact", "Clear", "Debug", "Tags" );
 
             switch (response)
             {
@@ -78,8 +78,7 @@ namespace Koinonia
                         await _connection.InsertAsync(newContact);
                         _contacts.Add(newContact);
                         //await Navigation.PushAsync(new NewContactPage());
-                        break;*/
-                    
+                        break;*/                    
 
                 case "New Contact":
 
@@ -94,9 +93,16 @@ namespace Koinonia
                     OnAppearing();
                     break;
 
+                case "Debug":
+
+                    await Navigation.PushAsync(new DebugPage());
+                    break;         
+
+
                 case "Tags":
                     await Navigation.PushAsync(new Tags());
                     break;
+
 
             }
         }

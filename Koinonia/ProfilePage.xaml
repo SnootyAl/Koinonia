@@ -7,10 +7,15 @@
              x:Class="Koinonia.ProfilePage"
              Title="Profile">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Profile"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout x:Name="profileDetails">
+            <Label Text="{Binding FirstName}"/>
+            <Label Text="{Binding LastName}"/>
+            <Label Text="{Binding PhoneNumber}"/>
+            <Label Text="{Binding Email}"/>
+            <StackLayout Orientation="Horizontal">
+                <Button Text="Delete Profile" Pressed="DeleteButton_Pressed" />
+                <Button Text="Edit" Pressed="EditButton_Pressed"/>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

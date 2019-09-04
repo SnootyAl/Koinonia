@@ -9,11 +9,11 @@ using Koinonia.Models;
 
 namespace Koinonia.Data
 {
-    public class ContactDatabase
+    public class Database
     {
         readonly SQLiteAsyncConnection _database;
 
-        public ContactDatabase(string dbPath)
+        public Database(string dbPath)
         {
             _database = new SQLiteAsyncConnection(dbPath);
             _database.CreateTableAsync<Contact>().Wait();
@@ -57,21 +57,32 @@ namespace Koinonia.Data
         public Task<Profile> GetProfileAsync()
         {
             return _database.Table<Profile>()
-                            .Where(i => i.ContactID == 1)
+
+                            .Where(i => i.ContactID == 0)
                             .FirstOrDefaultAsync();
         }
 
+        
+
         public Task<int> SaveProfileAsync(Profile profile)
         {
-            if (profile.ContactID != 0)
+
+            if (profile.ContactID == 0)
             {
                 return _database.UpdateAsync(profile);
             }
             else
             {
-                return _database.InsertAsync(profile);
+                return _database.InsertAsync(profile);                
             }
         }
+
+        //For testing purposes. May also be used for 'Delete profile' functionality?
+        public Task<int> DeleteProfileAsync()
+        {
+            return _database.DeleteAllAsync<Profile>();
+        }  
+
     }
 
 

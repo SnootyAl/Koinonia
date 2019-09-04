@@ -7,7 +7,9 @@ namespace Koinonia.Models
 {
     public class Profile
     {
-        [PrimaryKey, AutoIncrement]
+
+        [PrimaryKey]
+
         public int ContactID { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }

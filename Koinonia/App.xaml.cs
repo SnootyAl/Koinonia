@@ -3,6 +3,8 @@ using System.IO;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Koinonia.Data;
+using Xamarin.Essentials;
+using SQLite;
 
 
 namespace Koinonia
@@ -10,30 +12,39 @@ namespace Koinonia
     public partial class App : Application
     {
 
-        public static int ScreenHeight { get; set; }
-        public static int ScreenWidth { get; set; }
 
+        static Database contactDB;
 
-        static ContactDatabase contactDB;
+        public static Database Database
 
-        public static ContactDatabase ContactDatabase
         {
             get
             {
                 if (contactDB == null)
                 {
-                    contactDB = new ContactDatabase(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Contacts.db3"));
+                    contactDB = new Database(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Contacts.db3"));
                 }
                 return contactDB;
             }
-        }
+        }       
 
 
         public App()
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new WelcomePage());
+            if(Preferences.Get("ProfileExists", false))
+            {
+                MainPage = new NavigationPage(new ContactList());
+            }
+            else
+            {
+                MainPage = new NavigationPage(new WelcomePage());
+            }
+
+            
+            
+            
         }
 
         protected override void OnStart()
