@@ -31,6 +31,9 @@
     <EmbeddedResource Update="SignupPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Tags.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="WelcomePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -38,5 +41,6 @@
 
   <ItemGroup>
     <Folder Include="ContactImages\" />
+    <Folder Include="TagImages\" />
   </ItemGroup>
 </Project>

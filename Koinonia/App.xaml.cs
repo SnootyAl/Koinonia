@@ -10,6 +10,10 @@ namespace Koinonia
     public partial class App : Application
     {
 
+        public static int ScreenHeight { get; set; }
+        public static int ScreenWidth { get; set; }
+
+
         static ContactDatabase contactDB;
 
         public static ContactDatabase ContactDatabase
@@ -23,6 +27,7 @@ namespace Koinonia
                 return contactDB;
             }
         }
+
 
         public App()
         {

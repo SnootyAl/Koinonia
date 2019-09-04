@@ -12,7 +12,17 @@
             <Label Text="Probably put some fields here at some point hey"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
-            <Button Text="Next" Pressed="Button_Pressed"/>
+            <Button Text="Next"
+                    TextColor="White"
+                    FontFamily="Roboto"
+                    FontSize="Large"
+                    FontAttributes="Bold"
+                    CornerRadius="20"
+                    BackgroundColor="#17A7B2"
+                    Pressed="Button_Pressed"
+                    Margin="25, 1, 25, 50"
+            />
+                    <!--Margin: left, top, right, bottom-->
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
