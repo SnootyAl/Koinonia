@@ -15,6 +15,7 @@ namespace Koinonia.Models
         public string Status { get; set; }
         public string ImageURL { get; set; }
         public string PhoneNumber { get; set; }
+        public string Email { get; set; }
 
         
     }

@@ -3,6 +3,7 @@ using MvvmHelpers;
 using System;
 using System.Windows.Input;
 using Xamarin.Forms;
+using Koinonia.Views;
 
 namespace Koinonia.ViewModel
 {
