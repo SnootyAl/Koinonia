@@ -1,9 +1,8 @@
 ﻿using Koinonia.Models;
+using Koinonia.Views;
 using MvvmHelpers;
 using SQLite;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
 
