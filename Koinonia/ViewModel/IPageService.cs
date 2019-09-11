@@ -10,7 +10,7 @@ namespace Koinonia.ViewModel
     {
         Task PushAsync(Page page);
         Task PopAsync();
-        Task<bool> DisplayAlert(string title, string message, string ok, string cancel);
+        Task<bool> DisplayAlert(string title, string message, string ok, string cancel = null);
         Task<string> DisplayActionSheet(string title, string cancel, string destruction = null, params string[] buttons);
 
 

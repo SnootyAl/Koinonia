@@ -11,13 +11,13 @@ namespace Koinonia.ViewModel
     {
         public Profile newProfile { get; set; }
         private readonly IPageService _pageService;        
-        //public ICommand CancelCommand;
-        public ICommand SaveCommand;
+        public ICommand CancelCommand { get; private set; }
+        public ICommand SaveCommand { get; private set; }
 
         public EditProfileViewModel(IPageService pageService)
         {
             _pageService = pageService;
-            //CancelCommand = new Command(Cancel);
+            CancelCommand = new Command(Cancel);
             SaveCommand = new Command(Save);
             newProfile = new Profile()
             {
@@ -28,10 +28,10 @@ namespace Koinonia.ViewModel
             };
         }
 
-        /*private async void Cancel()
+        private async void Cancel()
         {
             await _pageService.PopAsync();
-        }*/
+        }
 
         private async void Save()
         {
@@ -39,9 +39,7 @@ namespace Koinonia.ViewModel
             //Implement a check for all fields valid
             if (await _pageService.DisplayAlert("Confirm", "Save changes?", "Save", "Cancel"))
             {
-                //Implement Database saving
-
-                //PopAsync not functional?
+                //Implement Database saving                
                 await _pageService.PopAsync();
             }
         }

@@ -27,7 +27,7 @@ namespace Koinonia.ViewModel
                 Email = "notarealemail@email.com"
             };
 
-            debugProfile.OnPropertyChanged(nameof(ProfileViewModel));
+            //debugProfile.OnPropertyChanged(nameof(ProfileViewModel));
 
         }
 

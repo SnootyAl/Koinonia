@@ -4,18 +4,18 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="Koinonia.NewContactPage"
+             x:Class="Koinonia.Views.NewContactPage"
              Title="New Contact">
     <ContentPage.Content>
         <StackLayout>
-            <Entry x:Name="First" Placeholder="First" TextChanged="First_TextChanged"/>
-            <Entry x:Name="Last" Placeholder="Last"/>
-            <Entry x:Name="Phone" Placeholder="Phone" Keyboard="Numeric" TextChanged="Phone_TextChanged"/>
+            <Entry Placeholder="First" Text="{Binding newContact.FirstName}"/>
+            <Entry Placeholder="Last" Text="{Binding newContact.LastName}"/>
+            <Entry Placeholder="Phone" Keyboard="Numeric" Text="{Binding newContact.PhoneNumber}"/>
             <StackLayout Orientation="Horizontal">
-                <Button Text="Cancel" Pressed="Cancel_Pressed"/>
-                <Button Text="Save" Pressed="Save_Pressed"/>
+                <Button Text="Cancel" Command="{Binding CancelCommand}"/>
+                <Button Text="Save" Command="{Binding SaveCommand}"/>
             </StackLayout>
-            <Label x:Name="ErrorLabel" Text="First and Phone are Mandatory!" IsVisible="False"/>
+            <Label x:Name="ErrorLabel" Text="{Binding errorLabel}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
