@@ -32,7 +32,6 @@ namespace Koinonia
         public App()
         {
             InitializeComponent();
-
             if(Preferences.Get("ProfileExists", false))
             {
                 MainPage = new NavigationPage(new ContactList());

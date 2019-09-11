@@ -9,17 +9,17 @@ namespace Koinonia.ViewModel
 {
     class EditProfileViewModel
     {
-        public Contact newContact { get; set; }
+        public Profile newProfile { get; set; }
         private readonly IPageService _pageService;        
-        public ICommand CancelCommand;
+        //public ICommand CancelCommand;
         public ICommand SaveCommand;
 
         public EditProfileViewModel(IPageService pageService)
         {
             _pageService = pageService;
-            CancelCommand = new Command(Cancel);
+            //CancelCommand = new Command(Cancel);
             SaveCommand = new Command(Save);
-            newContact = new Contact()
+            newProfile = new Profile()
             {
                 FirstName = "TempContact",
                 LastName = "HardCoded",
@@ -28,10 +28,10 @@ namespace Koinonia.ViewModel
             };
         }
 
-        private async void Cancel()
+        /*private async void Cancel()
         {
             await _pageService.PopAsync();
-        }
+        }*/
 
         private async void Save()
         {
@@ -40,6 +40,8 @@ namespace Koinonia.ViewModel
             if (await _pageService.DisplayAlert("Confirm", "Save changes?", "Save", "Cancel"))
             {
                 //Implement Database saving
+
+                //PopAsync not functional?
                 await _pageService.PopAsync();
             }
         }
