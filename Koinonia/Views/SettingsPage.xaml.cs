@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 
+using Koinonia.ViewModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace Koinonia
+namespace Koinonia.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SettingsPage : ContentPage
@@ -15,6 +12,7 @@ namespace Koinonia
         public SettingsPage()
         {
             InitializeComponent();
+            BindingContext = new SettingsViewModel(new PageService());
         }
     }
 }
