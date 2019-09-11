@@ -54,15 +54,18 @@ namespace Koinonia.Data
             return _database.DeleteAllAsync<Contact>();
         }
 
-        public Task<Profile> GetProfileAsync()
+        public Task<Profile> GetProfileAsync(int id)
         {
             return _database.Table<Profile>()
 
-                            .Where(i => i.ContactID == 0)
+                            .Where(i => i.ContactID == id)
                             .FirstOrDefaultAsync();
         }
 
-        
+        public async Task<IEnumerable<Profile>> GetProfiles()
+        {
+            return  await _database.Table<Profile>().ToListAsync();
+        }
 
         public Task<int> SaveProfileAsync(Profile profile)
         {

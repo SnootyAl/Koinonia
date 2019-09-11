@@ -4,18 +4,19 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="Koinonia.SignupPage"
+             x:Class="Koinonia.Views.SignupPage"
              NavigationPage.BackButtonTitle="false"
              NavigationPage.HasBackButton="false">
     <ContentPage.Content>
 
-        <StackLayout x:Name="ProfileFields">
-            <Entry x:Name="First" Placeholder="First" Text="{Binding FirstName}"/>
-            <Entry x:Name="Last" Placeholder="Last" Text="{Binding LastName}"/>
-            <Entry x:Name="Phone" Placeholder="Phone" Keyboard="Numeric" Text="{Binding PhoneNumber}"/>
-            <Entry x:Name="Email" Placeholder="Email" Text="{Binding Email}"/>
-            <Button Text="Next" Pressed="Button_Pressed"/>       
+        <StackLayout >
             
+            <Entry Placeholder="First" Text="{Binding Profile.FirstName}"/>
+            <Entry Placeholder="Last" Text="{Binding Profile.LastName}"/>
+            <Entry Placeholder="Phone" Keyboard="Numeric" Text="{Binding Profile.PhoneNumber}"/>
+            <Entry Placeholder="Email" Text="{Binding Profile.Email}"/>
+            
+
             <Button Text="Next"
                     TextColor="White"
                     FontFamily="Roboto"
@@ -23,7 +24,7 @@
                     FontAttributes="Bold"
                     CornerRadius="20"
                     BackgroundColor="#17A7B2"
-                    Pressed="Button_Pressed"
+                    Command="{Binding NextButtonCommand}"
                     Margin="25, 1, 25, 50"
             />
                     <!--Margin: left, top, right, bottom-->

@@ -8,21 +8,18 @@ using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Koinonia.HexLayouts;
+using Koinonia;
+using Koinonia.ViewModel;
 
-namespace Koinonia
+namespace Koinonia.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DebugPage : ContentPage
     {
 
-        public int screenWidth, screenHeight;
-        public int hexRows = 5;
-        public int hexColumns = 5;
-       
-        
-        
         public DebugPage()
-        {            
+        {
+            BindingContext = new DebugViewModel();
             InitializeComponent();
             GetScreenDimensions();
             CreateAndShowGrid();

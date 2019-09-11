@@ -5,7 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
 
-             x:Class="Koinonia.WelcomePage">
+             x:Class="Koinonia.Views.WelcomePage">
     <ContentPage.Content>
         <StackLayout>
             <!--Image />-->
@@ -26,7 +26,7 @@
                     FontAttributes="Bold"
                     CornerRadius="20"
                     BackgroundColor="#17A7B2"
-                    Pressed="Button_Pressed"
+                    Command="{Binding StartNowCommand}"
                     Margin="25, 1, 25, 50"
             />
                     <!--Margin: left, top, right, bottom-->

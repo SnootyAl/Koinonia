@@ -6,7 +6,7 @@
              xmlns:xampane="clr-namespace:XamPane;assembly=XamPane"
              xmlns:polygon="clr-namespace:Xamarin.Forms.PolygonFrame;assembly=Xamarin.Forms.PolygonFrame"
              mc:Ignorable="d"
-             x:Class="Koinonia.DebugPage">
+             x:Class="Koinonia.Views.DebugPage">
     <ContentPage.Content>
         <ScrollView Orientation="Both">
             <Grid x:Name="ContainerGrid" BackgroundColor = "#17A7B2">

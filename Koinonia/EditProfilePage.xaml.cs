@@ -1,10 +1,5 @@
 ﻿using Koinonia.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SQLite;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -23,7 +18,7 @@ namespace Koinonia
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-            tempProfile = await App.Database.GetProfileAsync();
+            tempProfile = await App.Database.GetProfileAsync(0);
             profileDetails.BindingContext = tempProfile;
         }
 

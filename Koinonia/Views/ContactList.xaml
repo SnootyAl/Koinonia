@@ -4,11 +4,12 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="Koinonia.ContactList"
+             x:Class="Koinonia.Views.ContactList"
              NavigationPage.HasBackButton="False"
              Title="Contacts">
     <StackLayout>
-        <SearchBar Placeholder="Search" TextChanged="SearchBar_TextChanged"/>
+    <!-- Searchbar not working -->
+    <SearchBar Placeholder="Search"/>
         <ListView x:Name="contactList" SeparatorColor="#17A7B2" HasUnevenRows="True">
             <ListView.ItemTemplate>
                 <DataTemplate>
@@ -36,7 +37,7 @@
                     FontAttributes="Bold"
                     CornerRadius="20"
                     BackgroundColor="#17A7B2"
-                    Pressed="Options_Button_Pressed"
+                    Command="{Binding TempButtonCommand}"
                     Margin="25, 1, 25, 50"
             />
                     <!--Margin: left, top, right, bottom-->
