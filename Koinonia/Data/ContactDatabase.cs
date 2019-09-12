@@ -49,7 +49,7 @@ namespace Koinonia.Data
             return _database.DeleteAsync(contact);
         }
 
-        public Task<int> DeleteAllAsync()
+        public Task<int> DeleteAllContactsAsync()
         {
             return _database.DeleteAllAsync<Contact>();
         }

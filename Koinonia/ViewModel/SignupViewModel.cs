@@ -1,4 +1,5 @@
-﻿using Koinonia.Models;
+﻿
+using Koinonia.Models;
 using System.Windows.Input;
 using Xamarin.Forms;
 using MvvmHelpers;

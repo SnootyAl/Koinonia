@@ -14,6 +14,8 @@ namespace Koinonia.Views
             InitializeComponent();
             BindingContext = new ContactViewModel(new PageService());
         }
+
+        
         
 
 

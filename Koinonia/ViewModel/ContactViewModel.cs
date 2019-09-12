@@ -2,7 +2,10 @@
 using Koinonia.Views;
 using MvvmHelpers;
 using SQLite;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -15,7 +18,9 @@ namespace Koinonia.ViewModel
         public ICommand SearchTextChangedCommand { get; private set; }
         private readonly IPageService _pageService;
         private SQLiteAsyncConnection _connection;
-        public List<Contact> contacts;
+
+        public ObservableCollection<Contact> Contacts { get; set; }
+
 
         public ContactViewModel(IPageService pageService)
         {
@@ -23,7 +28,18 @@ namespace Koinonia.ViewModel
             SearchTextChangedCommand = new Command(SearchBarTextChanged);
             _pageService = pageService;
             _connection = DependencyService.Get<ISQLiteDb>().GetConnection();
+            SetContactCollection();
+            
         }
+
+        async void SetContactCollection()
+        {
+            Contacts = new ObservableCollection<Contact>(await App.Database.GetContactsAsync());
+            Debug.WriteLine(Contacts);
+            
+        }
+        
+       
 
 
         async void TempButtonPressed()
@@ -60,7 +76,7 @@ namespace Koinonia.ViewModel
 
                 case "Clear":
 
-                    await App.Database.DeleteAllAsync();                    
+                    await App.Database.DeleteAllContactsAsync();                    
                     break;
 
                 case "Debug":

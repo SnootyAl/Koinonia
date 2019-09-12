@@ -40,17 +40,17 @@ namespace Koinonia.ViewModel
         {
             await _pageService.DisplayAlert(newContact.FirstName, newContact.LastName, "OK", "Cancel");
             Console.WriteLine("SavePressed");
-            /*if ((newContact.FirstName != null) && (newContact.PhoneNumber != null))
-            { 
-                *//*Console.WriteLine(newContact.FirstName);
+            if ((newContact.FirstName != null) && (newContact.PhoneNumber != null))
+            {
+                Console.WriteLine(newContact.FirstName);
                 await App.Database.SaveContactAsync(newContact);
-                await _pageService.PopAsync();*//*
+                await _pageService.PopAsync();
             }
             else
             {
                 //Needs INotifyPropertyChanged
                 errorLabel = "Please enter all fields";
-            }*/
+            }
         }
     }
 }

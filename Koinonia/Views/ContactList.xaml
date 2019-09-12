@@ -10,7 +10,7 @@
     <StackLayout>
     <!-- Searchbar not working -->
     <SearchBar Placeholder="Search"/>
-        <ListView x:Name="contactList" SeparatorColor="#17A7B2" HasUnevenRows="True">
+        <ListView SeparatorColor="#17A7B2" HasUnevenRows="True" ItemsSource="{Binding Contacts}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
