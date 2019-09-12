@@ -8,7 +8,7 @@
              Title="Profile">
     
     <ContentPage.Content>
-        <StackLayout x:Name="profileDetails">
+        <StackLayout>
             <Label Text="{Binding debugProfile.FirstName}"/>
             <Label Text="{Binding debugProfile.LastName}"/>
             <Label Text="{Binding debugProfile.PhoneNumber}"/>

@@ -14,8 +14,6 @@ namespace Koinonia.Views
             InitializeComponent();
             BindingContext = new ProfileViewModel(new PageService());
 
-        }
-
-        
+        } 
     }
 }

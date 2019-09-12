@@ -27,16 +27,15 @@ namespace Koinonia.ViewModel
             TempButtonCommand = new Command(TempButtonPressed);
             SearchTextChangedCommand = new Command(SearchBarTextChanged);
             _pageService = pageService;
-            _connection = DependencyService.Get<ISQLiteDb>().GetConnection();
             SetContactCollection();
+            //_connection = DependencyService.Get<ISQLiteDb>().GetConnection();
+            
             
         }
 
         async void SetContactCollection()
         {
-            Contacts = new ObservableCollection<Contact>(await App.Database.GetContactsAsync());
-            Debug.WriteLine(Contacts);
-            
+            Contacts = new ObservableCollection<Contact>(await App.Database.GetContactsAsync());            
         }
         
        

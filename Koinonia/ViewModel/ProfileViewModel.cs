@@ -12,24 +12,38 @@ namespace Koinonia.ViewModel
     {
         public ICommand DeleteCommand { get; private set; }
         public ICommand EditCommand { get; private set; }
+        //public ICommand AppearingCommand { get; private set; }
         private readonly IPageService _pageService;
-        public Profile debugProfile { get; set; }
+
+
+        //Super Jank but it works so sue me:
+        Profile _debugProfile { get; set; }
+        public Profile debugProfile
+        {
+            get { return _debugProfile; }
+            set
+            {
+                if (_debugProfile == value)
+                {
+                    return;
+                }
+                _debugProfile = value;
+                OnPropertyChanged(nameof(debugProfile));
+            }
+        }
 
         public ProfileViewModel(IPageService pageService)
         {
             DeleteCommand = new Command(Delete);
             EditCommand = new Command(Edit);
+            //AppearingCommand = new Command(Appearing);
             _pageService = pageService;
-            debugProfile = new Profile()
-            {
-                FirstName = "Testing",
-                LastName = "Debug",
-                PhoneNumber = "12345",
-                Email = "notarealemail@email.com"
-            };
+            SetProfile();
+        }
 
-            //debugProfile.OnPropertyChanged(nameof(ProfileViewModel));
-
+        private async void SetProfile()
+        {
+            debugProfile = await App.Database.GetProfileAsync(0);
         }
 
 
@@ -37,7 +51,7 @@ namespace Koinonia.ViewModel
         {
             try
             {
-                var profileTemp = await App.Database.GetProfileAsync(0);
+                
                 if (await _pageService.DisplayAlert("Confirmation", "Are you sure you wish to delete Profile?", "Confirm", "Cancel"))
                 {
                     await App.Database.DeleteProfileAsync();

@@ -25,10 +25,11 @@ namespace Koinonia.Data
             return _database.Table<Contact>().ToListAsync();
         }
 
+        //Database lookup problems are likely here. GetContactsAsync works fine
         public Task<Contact> GetContactAsync(int id)
         {
             return _database.Table<Contact>()
-                            .Where(i => i.ContactID == id)
+                            .Where(i => i.FirstName == "Alex")
                             .FirstOrDefaultAsync();
         }
 

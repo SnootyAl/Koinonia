@@ -30,8 +30,8 @@ namespace Koinonia.ViewModel
         {
                       
             await _pageService.DisplayAlert(Profile.FirstName, Profile.ContactID.ToString(), "OK", "Cancel");
-            //var x = await App.Database.SaveProfileAsync(Profile);
-            var records = await App.Database.GetProfileAsync(0);
+            await App.Database.SaveProfileAsync(Profile);
+            var records = await App.Database.GetContactAsync(0);
 
             //Need to figure out preferences in MVVM model
             Preferences.Set("ProfileExists", true);
