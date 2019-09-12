@@ -3,6 +3,7 @@ using MvvmHelpers;
 using System;
 using System.Windows.Input;
 using Xamarin.Forms;
+using Xamarin.Essentials;
 using Koinonia.Views;
 
 namespace Koinonia.ViewModel
@@ -40,8 +41,12 @@ namespace Koinonia.ViewModel
                 if (await _pageService.DisplayAlert("Confirmation", "Are you sure you wish to delete Profile?", "Confirm", "Cancel"))
                 {
                     await App.Database.DeleteProfileAsync();
-                    //Need to figure out preferences
-                    //Preferences.Set("ProfileExists", false);
+                    Preferences.Set("ProfileExists", false);
+
+
+                    //Bugged, takes you back to Profile creation screen.
+                    //Actually not a terrible idea, as profile deletion needs a new profile?
+                    //"Its not a bug, its a feature!?"
                     await _pageService.PopAsync();
                     
                 }

@@ -1,10 +1,9 @@
 ﻿using System;
 using System.IO;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 using Koinonia.Data;
 using Xamarin.Essentials;
-using SQLite;
+
 using Koinonia.Views;
 
 namespace Koinonia

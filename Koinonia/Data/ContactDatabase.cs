@@ -69,15 +69,7 @@ namespace Koinonia.Data
 
         public Task<int> SaveProfileAsync(Profile profile)
         {
-
-            if (profile.ContactID == 0)
-            {
-                return _database.UpdateAsync(profile);
-            }
-            else
-            {
-                return _database.InsertAsync(profile);                
-            }
+            return _database.InsertAsync(profile);
         }
 
         //For testing purposes. May also be used for 'Delete profile' functionality?

@@ -4,6 +4,7 @@ using System.Windows.Input;
 using Xamarin.Forms;
 using MvvmHelpers;
 using Koinonia.Views;
+using Xamarin.Essentials;
 
 namespace Koinonia.ViewModel
 {
@@ -29,10 +30,11 @@ namespace Koinonia.ViewModel
         {
                       
             await _pageService.DisplayAlert(Profile.FirstName, Profile.ContactID.ToString(), "OK", "Cancel");
-            var x = await App.Database.SaveProfileAsync(Profile);
-            var recprds = await App.Database.GetProfileAsync(0);
+            //var x = await App.Database.SaveProfileAsync(Profile);
+            var records = await App.Database.GetProfileAsync(0);
+
             //Need to figure out preferences in MVVM model
-            //App.Current.Preferences.Set("ProfileExists", true);
+            Preferences.Set("ProfileExists", true);
             await _pageService.PushAsync(new ContactList());
         }
 
