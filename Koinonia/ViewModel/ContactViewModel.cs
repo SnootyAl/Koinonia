@@ -12,14 +12,31 @@ using Xamarin.Forms;
 
 namespace Koinonia.ViewModel
 {
-    class ContactViewModel : BaseViewModel
+    public class ContactViewModel : BaseViewModel
     {
         public ICommand TempButtonCommand { get; private set; }
         public ICommand SearchTextChangedCommand { get; private set; }
         private readonly IPageService _pageService;
         private SQLiteAsyncConnection _connection;
 
-        public ObservableCollection<Contact> Contacts { get; set; }
+        private ObservableCollection<Contact> _contacts { get; set; }
+
+        public ObservableCollection<Contact> Contacts
+        {
+            get { return _contacts; }
+            set
+            {
+                if (_contacts == value)
+                {
+                    return;
+                }
+                _contacts = value;
+                OnPropertyChanged(nameof(Contacts));
+            }
+
+        }
+
+        
 
 
         public ContactViewModel(IPageService pageService)
@@ -33,8 +50,8 @@ namespace Koinonia.ViewModel
             
         }
 
-        async void SetContactCollection()
-        {
+        public async void SetContactCollection()
+        {            
             Contacts = new ObservableCollection<Contact>(await App.Database.GetContactsAsync());            
         }
         
@@ -70,7 +87,8 @@ namespace Koinonia.ViewModel
 
                     //****Bug? Table ID continues to increment? Probably not an issue, saves conflicts in future.
 
-                    await _pageService.PushAsync(new NewContactPage());
+                    await _pageService.PushAsync((new NewContactPage(this)));
+                    SetContactCollection();
                     break;
 
                 case "Clear":

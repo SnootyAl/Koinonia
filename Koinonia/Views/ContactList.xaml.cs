@@ -15,8 +15,14 @@ namespace Koinonia.Views
             BindingContext = new ContactViewModel(new PageService());
         }
 
-        
-        
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            
+        }
+
+
+
 
 
         //override Android back button to avoid returning to signup screen.

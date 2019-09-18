@@ -10,10 +10,10 @@ namespace Koinonia.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class NewContactPage : ContentPage
     {
-        public NewContactPage()
+        public NewContactPage(ContactViewModel parent)
         {
             InitializeComponent();
-            BindingContext = new NewContactViewModel(new PageService());
+            BindingContext = new NewContactViewModel(new PageService(), parent);
         }
     }
 }

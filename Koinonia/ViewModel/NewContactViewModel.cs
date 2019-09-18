@@ -15,12 +15,14 @@ namespace Koinonia.ViewModel
         private readonly IPageService _pageService;
         public ICommand CancelCommand { get; private set; }
         public ICommand SaveCommand { get; private set; }
+        public ContactViewModel _parent;
 
         public string errorLabel = "Hello";
 
-        public NewContactViewModel(IPageService pageService)
+        public NewContactViewModel(IPageService pageService, ContactViewModel parent)
         {
             _pageService = pageService;
+            _parent = parent;
             newContact = new Contact()
             {
                 FirstName = "If you can see this",
@@ -43,7 +45,9 @@ namespace Koinonia.ViewModel
             if ((newContact.FirstName != null) && (newContact.PhoneNumber != null))
             {
                 Console.WriteLine(newContact.FirstName);
+                
                 await App.Database.SaveContactAsync(newContact);
+                _parent.SetContactCollection();
                 await _pageService.PopAsync();
             }
             else
