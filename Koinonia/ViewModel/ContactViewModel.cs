@@ -84,7 +84,7 @@ namespace Koinonia.ViewModel
             TempButtonCommand = new Command(TempButtonPressed);
             _pageService = pageService;
             SetContactCollection();
-            FilteredContacts = _contacts;  
+              
         }
         /*I believe this is pretty inefficient, some way to optimise?
         CUrrently, Addnewcontact page adds to the database, then calls this function.
@@ -92,7 +92,8 @@ namespace Koinonia.ViewModel
         Works. call it 'AGILE methodology' --Alex   */
         public async void SetContactCollection()
         {            
-            Contacts = new ObservableCollection<Contact>(await App.Database.GetContactsAsync());            
+            Contacts = new ObservableCollection<Contact>(await App.Database.GetContactsAsync());
+            FilteredContacts = Contacts;
         }
 
         public void AddContact(Contact newContact)

@@ -23,11 +23,11 @@ namespace Koinonia.ViewModel
         {
             _pageService = pageService;
             _parent = parent;
-            newContact = new Contact()
+            newContact = new Contact
             {
-                FirstName = "If you can see this",
-                LastName = "DataBinding is working",
-                PhoneNumber = "12345"
+                FirstName = "",
+                LastName = "",
+                PhoneNumber = ""
             };
             CancelCommand = new Command(CancelPressed);
             SaveCommand = new Command(SavePressed);
@@ -40,20 +40,19 @@ namespace Koinonia.ViewModel
 
         private async void SavePressed()
         {
-            await _pageService.DisplayAlert(newContact.FirstName, newContact.LastName, "OK", "Cancel");
+            
             Console.WriteLine("SavePressed");
-            if ((newContact.FirstName != null) && (newContact.PhoneNumber != null))
+            if ((newContact.FirstName.Length > 0) && (newContact.LastName.Length > 0) &&
+                (newContact.PhoneNumber.Length > 0))
             {
-                Console.WriteLine(newContact.FirstName);
-                
+                await _pageService.DisplayAlert(newContact.FirstName, newContact.LastName, "Cancel", "OK");
                 await App.Database.SaveContactAsync(newContact);
                 _parent.AddContact(newContact);
                 await _pageService.PopAsync();
             }
             else
             {
-                //Needs INotifyPropertyChanged
-                errorLabel = "Please enter all fields";
+                await _pageService.DisplayAlert("Error", "Please enter all fields", "My Bad!");
             }
         }
     }

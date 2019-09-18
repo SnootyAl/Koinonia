@@ -11,9 +11,10 @@ namespace Koinonia.ViewModel
         //Extract Mainpage
 
         //Helper functions implementing Xamarin commands, to remove usage from ViewModels
-        public async Task<bool> DisplayAlert(string title, string message, string ok, string cancel)
+        public async Task<bool> DisplayAlert(string title, string message, string cancel, string ok = null)
         {
             return await Application.Current.MainPage.DisplayAlert(title, message, ok, cancel);
+            
         }
         public async Task<string> DisplayActionSheet(string title, string cancel, string destruction = null, 
                                                         params string[] buttons)
