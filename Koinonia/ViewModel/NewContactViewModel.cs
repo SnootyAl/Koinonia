@@ -47,7 +47,7 @@ namespace Koinonia.ViewModel
                 Console.WriteLine(newContact.FirstName);
                 
                 await App.Database.SaveContactAsync(newContact);
-                _parent.SetContactCollection();
+                _parent.AddContact(newContact);
                 await _pageService.PopAsync();
             }
             else

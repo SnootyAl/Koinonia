@@ -9,8 +9,8 @@
              Title="Contacts">
     <StackLayout>
     <!-- Searchbar not working -->
-    <SearchBar Placeholder="Search"/>
-        <ListView SeparatorColor="#17A7B2" HasUnevenRows="True" ItemsSource="{Binding Contacts}">
+    <SearchBar Placeholder="Search" Text="{Binding SearchText}"/>
+        <ListView SeparatorColor="#17A7B2" HasUnevenRows="True" ItemsSource="{Binding FilteredContacts}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
