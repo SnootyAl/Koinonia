@@ -149,7 +149,7 @@ namespace Koinonia.ViewModel
 
 
                 case "Tags":
-                    await _pageService.PushAsync(new Tags());
+                    await _pageService.PushAsync(new TagsPage());
                     break;
 
 
