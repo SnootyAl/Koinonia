@@ -25,10 +25,11 @@ namespace Koinonia.Data
             return _database.Table<Contact>().ToListAsync();
         }
 
+        //Database lookup problems are likely here. GetContactsAsync works fine
         public Task<Contact> GetContactAsync(int id)
         {
             return _database.Table<Contact>()
-                            .Where(i => i.ContactID == id)
+                            .Where(i => i.FirstName == "Alex")
                             .FirstOrDefaultAsync();
         }
 
@@ -49,32 +50,27 @@ namespace Koinonia.Data
             return _database.DeleteAsync(contact);
         }
 
-        public Task<int> DeleteAllAsync()
+        public Task<int> DeleteAllContactsAsync()
         {
             return _database.DeleteAllAsync<Contact>();
         }
 
-        public Task<Profile> GetProfileAsync()
+        public Task<Profile> GetProfileAsync(int id)
         {
             return _database.Table<Profile>()
 
-                            .Where(i => i.ContactID == 0)
+                            .Where(i => i.ContactID == id)
                             .FirstOrDefaultAsync();
         }
 
-        
+        public async Task<IEnumerable<Profile>> GetProfiles()
+        {
+            return  await _database.Table<Profile>().ToListAsync();
+        }
 
         public Task<int> SaveProfileAsync(Profile profile)
         {
-
-            if (profile.ContactID == 0)
-            {
-                return _database.UpdateAsync(profile);
-            }
-            else
-            {
-                return _database.InsertAsync(profile);                
-            }
+            return _database.InsertAsync(profile);
         }
 
         //For testing purposes. May also be used for 'Delete profile' functionality?

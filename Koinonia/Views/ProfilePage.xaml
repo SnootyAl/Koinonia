@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"             
+             mc:Ignorable="d"
+             x:Class="Koinonia.Views.ProfilePage"
+             Title="Profile">
+    
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="{Binding debugProfile.FirstName}"/>
+            <Label Text="{Binding debugProfile.LastName}"/>
+            <Label Text="{Binding debugProfile.PhoneNumber}"/>
+            <Label Text="{Binding debugProfile.Email}"/>
+            <StackLayout Orientation="Horizontal">
+                <Button Text="Delete Profile" Command="{Binding DeleteCommand}" />
+                <Button Text="Edit" Command="{Binding EditCommand}"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
