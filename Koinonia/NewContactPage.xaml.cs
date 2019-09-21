@@ -41,7 +41,7 @@ namespace Koinonia
                 contact.FirstName = First.Text.ToString();
                 contact.PhoneNumber = Phone.Text.ToString();*/
                 Console.WriteLine(contact.FirstName);
-                await App.ContactDatabase.SaveContactAsync(contact);
+                //await App.ContactDatabase.SaveContactAsync(contact);
                 await Navigation.PopAsync();
             }
             else
