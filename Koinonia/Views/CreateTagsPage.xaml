@@ -4,33 +4,24 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="Koinonia.Views.TagsPage">
+             x:Class="Koinonia.Views.CreateTagsPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Tags"
+            <Label Text="Create Tag"
                    HorizontalOptions="Center"
                    VerticalOptions="Center"
                    FontSize="24"
                    Margin="0, 45, 0, 0"
-                   FontFamily="Roboto" 
+                   FontFamily="Roboto"
                    FontAttributes="Bold"/>
-            
-            <ListView x:Name="list" ItemsSource="{Binding ListData}" 
-                      HorizontalOptions="CenterAndExpand" 
-                      VerticalOptions="FillAndExpand"
-                      IsGroupingEnabled="False">
-                
-            </ListView>
 
-            <Button x:Name="CreateTag" Text="Create New Tag" Command="{Binding ChangePage}"
-                    HorizontalOptions="CenterAndExpand"
-                    VerticalOptions="CenterAndExpand"
-            >
+            <Entry Placeholder="Tag Name">
+                
+            </Entry>
+
+            <Button Text="Create">
                 
             </Button>
-
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
-    
- 
