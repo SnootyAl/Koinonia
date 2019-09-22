@@ -8,10 +8,10 @@
     <ContentPage.Content>
         <StackLayout x:Name="profileDetails">
             
-            <Entry x:Name="First" Placeholder="First" Text="{Binding newProfile.FirstName}"/>
-            <Entry x:Name="Last" Placeholder="Last" Text="{Binding newProfile.LastName}"/>
-            <Entry x:Name="Phone" Placeholder="Phone" Keyboard="Numeric" Text="{Binding newProfile.PhoneNumber}"/>
-            <Entry x:Name="Email" Placeholder="Email" Text="{Binding newProfile.Email}"/>
+            <Entry x:Name="First" Placeholder="First" Text="{Binding editedProfile.FirstName}"/>
+            <Entry x:Name="Last" Placeholder="Last" Text="{Binding editedProfile.LastName}"/>
+            <Entry x:Name="Phone" Placeholder="Phone" Keyboard="Numeric" Text="{Binding editedProfile.PhoneNumber}"/>
+            <Entry x:Name="Email" Placeholder="Email" Text="{Binding editedProfile.Email}"/>
 
             <StackLayout Orientation="Horizontal">
                     <!--Button Text="Cancel" Command="{Binding CancelCommand}"/-->

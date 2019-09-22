@@ -1,6 +1,7 @@
 ﻿using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Koinonia.ViewModel;
+using Koinonia.Models;
 
 
 namespace Koinonia.Views
@@ -9,10 +10,10 @@ namespace Koinonia.Views
     public partial class EditProfilePage : ContentPage
     {
         
-        public EditProfilePage()
+        public EditProfilePage(Profile mainProfile)
         {
             InitializeComponent();
-            BindingContext = new EditProfileViewModel(new PageService());
+            BindingContext = new EditProfileViewModel(new PageService(), mainProfile);
                
         }    
     }

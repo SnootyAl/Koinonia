@@ -18,6 +18,12 @@ namespace Koinonia.ViewModel
         public ICommand TempButtonCommand { get; private set; }
         public ICommand SearchTextChangedCommand { get; private set; }
         private readonly IPageService _pageService;
+
+         void OnAppearing()
+        {
+            throw new NotImplementedException();
+        }
+
         private SQLiteAsyncConnection _connection;
 
         private ObservableCollection<Contact> _contacts { get; set; }

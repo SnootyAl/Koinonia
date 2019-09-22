@@ -15,11 +15,11 @@ namespace Koinonia.Views
             BindingContext = new ContactViewModel(new PageService());
         }
 
-        protected override void OnAppearing()
+        /*protected override void OnAppearing()
         {
             base.OnAppearing();
-            
-        }
+            ((ContactViewModel)BindingContext).OnAppearing();
+        }*/
 
 
 

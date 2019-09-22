@@ -29,7 +29,7 @@ namespace Koinonia.ViewModel
         private async void Next()
         {
                       
-            await _pageService.DisplayAlert(Profile.FirstName, Profile.ContactID.ToString(), "OK", "Cancel");
+            await _pageService.DisplayAlert(Profile.FirstName, Profile.ContactID.ToString(), "Cancel", "OK");
             await App.Database.SaveProfileAsync(Profile);
             var records = await App.Database.GetContactAsync(0);
 

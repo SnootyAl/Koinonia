@@ -17,18 +17,18 @@ namespace Koinonia.ViewModel
 
 
         //Super Jank but it works so sue me:
-        Profile _debugProfile { get; set; }
-        public Profile debugProfile
+        Profile _profile { get; set; }
+        public Profile Profile
         {
-            get { return _debugProfile; }
+            get { return _profile; }
             set
             {
-                if (_debugProfile == value)
+                if (_profile == value)
                 {
                     return;
                 }
-                _debugProfile = value;
-                OnPropertyChanged(nameof(debugProfile));
+                _profile = value;
+                OnPropertyChanged(nameof(Profile));
             }
         }
 
@@ -43,7 +43,7 @@ namespace Koinonia.ViewModel
 
         private async void SetProfile()
         {
-            debugProfile = await App.Database.GetProfileAsync(0);
+            Profile = await App.Database.GetProfileAsync(0);
         }
 
 
@@ -52,7 +52,7 @@ namespace Koinonia.ViewModel
             try
             {
                 
-                if (await _pageService.DisplayAlert("Confirmation", "Are you sure you wish to delete Profile?", "Confirm", "Cancel"))
+                if (await _pageService.DisplayAlert("Confirmation", "Are you sure you wish to delete Profile?", "Cancel", "Confirm"))
                 {
                     await App.Database.DeleteProfileAsync();
                     Preferences.Set("ProfileExists", false);
@@ -73,7 +73,7 @@ namespace Koinonia.ViewModel
 
         private async void Edit()
         {
-            await _pageService.PushAsync(new EditProfilePage());
+            await _pageService.PushAsync(new EditProfilePage(Profile));
         }
     }
 }

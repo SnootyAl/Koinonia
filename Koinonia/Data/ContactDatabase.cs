@@ -73,6 +73,11 @@ namespace Koinonia.Data
             return _database.InsertAsync(profile);
         }
 
+        public Task<int> UpdateProfileAsync(Profile profile)
+        {
+            return _database.UpdateAsync(profile);
+        }
+
         //For testing purposes. May also be used for 'Delete profile' functionality?
         public Task<int> DeleteProfileAsync()
         {
