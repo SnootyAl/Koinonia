@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Koinonia.Views.ContactList"
+             NavigationPage.HasBackButton="False"
+             Title="Contacts">
+    <StackLayout>
+    <!-- Searchbar not working -->
+    <SearchBar Placeholder="Search" Text="{Binding SearchText}"/>
+        <ListView SeparatorColor="#17A7B2" HasUnevenRows="True" ItemsSource="{Binding FilteredContacts}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <Image Source="{Binding ImageURL}"/>
+                            <StackLayout HorizontalOptions="StartAndExpand" Spacing="0" Padding="2">
+                                <Label Text="{Binding FirstName}" />
+
+                                <Label Text="{Binding Status}" TextColor="#17A7B2" />
+
+                                <Label Text="{Binding PhoneNumber}" TextColor="Gray" />
+
+                            </StackLayout>
+                            <Label Text="{Binding ContactID}"/>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Button Text="Temp Options"
+                    TextColor="White"
+                    FontFamily="Roboto"
+                    FontSize="Large"
+                    FontAttributes="Bold"
+                    CornerRadius="20"
+                    BackgroundColor="#17A7B2"
+                    Command="{Binding TempButtonCommand}"
+                    Margin="25, 1, 25, 50"
+            />
+                    <!--Margin: left, top, right, bottom-->
+    </StackLayout>
+</ContentPage>
