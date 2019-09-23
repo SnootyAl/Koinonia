@@ -10,10 +10,10 @@ namespace Koinonia.Views
     public partial class EditProfilePage : ContentPage
     {
         
-        public EditProfilePage(Profile mainProfile)
+        public EditProfilePage(ProfileViewModel _parent)
         {
             InitializeComponent();
-            BindingContext = new EditProfileViewModel(new PageService(), mainProfile);
+            BindingContext = new EditProfileViewModel(new PageService(), _parent);
                
         }    
     }

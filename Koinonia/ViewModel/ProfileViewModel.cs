@@ -8,7 +8,7 @@ using Koinonia.Views;
 
 namespace Koinonia.ViewModel
 {
-    class ProfileViewModel : BaseViewModel
+    public class ProfileViewModel : BaseViewModel
     {
         public ICommand DeleteCommand { get; private set; }
         public ICommand EditCommand { get; private set; }
@@ -73,7 +73,12 @@ namespace Koinonia.ViewModel
 
         private async void Edit()
         {
-            await _pageService.PushAsync(new EditProfilePage(Profile));
+            await _pageService.PushAsync(new EditProfilePage(this));
+        }
+
+        public void UpdateProfile(Profile newProfile)
+        {
+            Profile = newProfile;
         }
     }
 }
