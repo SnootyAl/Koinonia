@@ -105,9 +105,7 @@ namespace Koinonia.ViewModel
         public void AddContact(Contact newContact)
         {
             Contacts.Add(newContact);
-        }
-        
-       
+        } 
 
 
         async void TempButtonPressed()

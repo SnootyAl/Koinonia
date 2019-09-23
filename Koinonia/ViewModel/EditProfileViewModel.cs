@@ -1,4 +1,5 @@
 ﻿using Koinonia.Models;
+using MvvmHelpers;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,18 +8,20 @@ using Xamarin.Forms;
 
 namespace Koinonia.ViewModel
 {
-    class EditProfileViewModel
+    class EditProfileViewModel : BaseViewModel
     {
         public Profile _mainProfile { get; set; }
-        private Profile editedProfile { get; set; }
+        public Profile editedProfile { get; set; }
+        public ProfileViewModel _parent;
         private readonly IPageService _pageService;        
         public ICommand CancelCommand { get; private set; }
         public ICommand SaveCommand { get; private set; }
 
-        public EditProfileViewModel(IPageService pageService, Profile mainProfile)
+        public EditProfileViewModel(IPageService pageService, ProfileViewModel parent)
         {
+            _parent = parent;
             _pageService = pageService;
-            _mainProfile = mainProfile;
+            _mainProfile = _parent.Profile;
             editedProfile = new Profile
             {
                 FirstName = _mainProfile.FirstName,
@@ -50,7 +53,8 @@ namespace Koinonia.ViewModel
                 //As Josh mentioned, two sources of truth. Works for now, but scalability is an issue
                 //Profile exists both as an Object in ProfileViewModel and a database entry, set independently.
                 _mainProfile = editedProfile;
-                await App.Database.UpdateProfileAsync(_mainProfile);                
+                await App.Database.UpdateProfileAsync(_mainProfile);
+                _parent.UpdateProfile(_mainProfile);
                 await _pageService.PopAsync();
             }
         }

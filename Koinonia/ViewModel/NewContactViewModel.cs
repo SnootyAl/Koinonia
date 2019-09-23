@@ -41,11 +41,10 @@ namespace Koinonia.ViewModel
         private async void SavePressed()
         {
             
-            Console.WriteLine("SavePressed");
+           
             if ((newContact.FirstName.Length > 0) && (newContact.LastName.Length > 0) &&
                 (newContact.PhoneNumber.Length > 0))
             {
-                await _pageService.DisplayAlert(newContact.FirstName, newContact.LastName, "Cancel", "OK");
                 await App.Database.SaveContactAsync(newContact);
                 _parent.AddContact(newContact);
                 await _pageService.PopAsync();
