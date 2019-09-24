@@ -17,8 +17,6 @@ namespace Koinonia.ViewModel
         public ICommand SaveCommand { get; private set; }
         public ContactViewModel _parent;
 
-        public string errorLabel = "Hello";
-
         public NewContactViewModel(IPageService pageService, ContactViewModel parent)
         {
             _pageService = pageService;
@@ -27,7 +25,8 @@ namespace Koinonia.ViewModel
             {
                 FirstName = "",
                 LastName = "",
-                PhoneNumber = ""
+                PhoneNumber = "",
+                Notes = ""
             };
             CancelCommand = new Command(CancelPressed);
             SaveCommand = new Command(SavePressed);
