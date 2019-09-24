@@ -10,3 +10,8 @@ implementation of EventToCommandBehaviour at:
 https://docs.microsoft.com/en-us/xamarin/xamarin-forms/app-fundamentals/behaviors/reusable/event-to-command-behavior,
 
 HexLayout is a custom Layout Manager by Alexander Sharykin, found at https://github.com/AlexanderSharykin/HexGrid
+
+Future Optimization: Reduce hard coding of fields displayed, probably with for loop + Object properties for Profile
+and Contact object.
+
+

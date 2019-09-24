@@ -9,10 +9,11 @@
         
         <StackLayout>
 
-            <Entry x:Name="First" Placeholder="First" Text="{Binding CurrentContact.FirstName}" ReturnType="Next" IsReadOnly="{Binding EditDisabled}"/>
-            <Entry x:Name="Last" Placeholder="Last" Text="{Binding CurrentContact.LastName}" IsReadOnly="{Binding EditDisabled}"/>
-            <Entry x:Name="Phone" Placeholder="Phone" Keyboard="Numeric" Text="{Binding CurrentContact.PhoneNumber}" IsReadOnly="{Binding EditDisabled}"/>
-            <Entry x:Name="Email" Placeholder="Email" Text="{Binding CurrentContact.Email}" IsReadOnly="{Binding EditDisabled}"/>
+            <Entry Placeholder="First" Text="{Binding CurrentContact.FirstName}" ReturnType="Next" IsReadOnly="{Binding EditDisabled}"/>
+            <Entry Placeholder="Last" Text="{Binding CurrentContact.LastName}" IsReadOnly="{Binding EditDisabled}"/>
+            <Entry Placeholder="Phone" Keyboard="Numeric" Text="{Binding CurrentContact.PhoneNumber}" IsReadOnly="{Binding EditDisabled}"/>
+            <Entry Placeholder="Email" Text="{Binding CurrentContact.Email}" IsReadOnly="{Binding EditDisabled}"/>
+            <Entry Placeholder="Notes" Text="{Binding CurrentContact.Notes}" IsReadOnly="{Binding EditDisabled}"/>
 
             <StackLayout Orientation="Horizontal">
                 <!--Button Text="Cancel" Command="{Binding CancelCommand}"/-->
