@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:behaviours="clr-namespace:EventToCommandBehavior"
              mc:Ignorable="d"
              x:Class="Koinonia.Views.ContactList"
              NavigationPage.HasBackButton="False"
@@ -10,7 +11,12 @@
     <StackLayout>
     <!-- Searchbar not working -->
     <SearchBar Placeholder="Search" Text="{Binding SearchText}"/>
-        <ListView SeparatorColor="#17A7B2" HasUnevenRows="True" ItemsSource="{Binding FilteredContacts}">
+        
+        <ListView SeparatorColor="#17A7B2" 
+                  HasUnevenRows="True" 
+                  ItemsSource="{Binding FilteredContacts}" 
+                  RefreshCommand="{Binding ContactSelectedCommand}"
+                  SelectedItem="{Binding SelectedContact, Mode=TwoWay}" >
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
@@ -29,6 +35,9 @@
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
+            <ListView.Behaviors>
+                <behaviours:EventToCommandBehavior EventName="ItemSelected" Command="{Binding ContactSelectedCommand}"/>
+            </ListView.Behaviors>
         </ListView>
         <Button Text="Temp Options"
                     TextColor="White"
