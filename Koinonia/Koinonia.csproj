@@ -62,6 +62,7 @@
   <ItemGroup>
     <Folder Include="Assets\ContactImages\" />
     <Folder Include="Assets\TagImages\" />
+    <Folder Include="NewFolder\" />
     <Folder Include="Properties\PublishProfiles\" />
   </ItemGroup>
 

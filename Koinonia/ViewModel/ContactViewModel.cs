@@ -15,16 +15,9 @@ namespace Koinonia.ViewModel
 {
     public class ContactViewModel : BaseViewModel
     {
-        public ICommand TempButtonCommand { get; private set; }
-        public ICommand SearchTextChangedCommand { get; private set; }
-        private readonly IPageService _pageService;
-
-         void OnAppearing()
-        {
-            throw new NotImplementedException();
-        }
-
-        private SQLiteAsyncConnection _connection;
+        public ICommand TempButtonCommand { get; private set; }        
+        public ICommand ContactSelectedCommand { get; set; }
+        private readonly IPageService _pageService;       
 
         private ObservableCollection<Contact> _contacts { get; set; }
         public ObservableCollection<Contact> Contacts
@@ -56,8 +49,21 @@ namespace Koinonia.ViewModel
             }
         }
 
-        
-
+        private Contact _selectedContact;
+        public Contact  SelectedContact
+        {
+            get { return _selectedContact; }
+            set
+            {
+                if (_selectedContact == value)
+                {
+                    return;
+                }
+                _selectedContact = value;
+                OnPropertyChanged(nameof(SelectedContact));
+                
+            }
+        }
 
         private string _searchText;
         public string SearchText
@@ -88,10 +94,13 @@ namespace Koinonia.ViewModel
         public ContactViewModel(IPageService pageService)
         {
             TempButtonCommand = new Command(TempButtonPressed);
+            ContactSelectedCommand = new Command(ContactSelected);
             _pageService = pageService;
             SetContactCollection();
               
         }
+        
+        
         /*I believe this is pretty inefficient, some way to optimise?
         CUrrently, Addnewcontact page adds to the database, then calls this function.
         This function creates an entirely new ObservableCollection rather than adding to the list.
@@ -105,7 +114,13 @@ namespace Koinonia.ViewModel
         public void AddContact(Contact newContact)
         {
             Contacts.Add(newContact);
-        } 
+        }
+
+        async void ContactSelected()
+        {
+            await _pageService.PushAsync(new ContactInfoPage(SelectedContact));
+            //SelectedContact = null;
+        }
 
 
         async void TempButtonPressed()
