@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
+using System.Threading;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -60,8 +61,7 @@ namespace Koinonia.ViewModel
                     return;
                 }
                 _selectedContact = value;
-                OnPropertyChanged(nameof(SelectedContact));
-                
+                OnPropertyChanged(nameof(SelectedContact));                
             }
         }
 
@@ -116,10 +116,23 @@ namespace Koinonia.ViewModel
             Contacts.Add(newContact);
         }
 
+        public void UpdateContact(Contact updatedContact)
+        {
+            Contact contact = Contacts.Where(c => c.ContactID == updatedContact.ContactID).Single<Contact>();
+            int index = Contacts.IndexOf(contact);
+            Contacts[index] = updatedContact;
+        }
+
         async void ContactSelected()
         {
-            await _pageService.PushAsync(new ContactInfoPage(SelectedContact));
-            //SelectedContact = null;
+
+            //Kind of ugly way to deal with deselecting SelectedContact to remove selection on list screen
+            if(SelectedContact != null)
+            {
+                await _pageService.PushAsync(new ContactInfoPage(this));
+                SelectedContact = null;
+            }
+            
         }
 
 

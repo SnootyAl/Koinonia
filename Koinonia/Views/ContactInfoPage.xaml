@@ -16,7 +16,7 @@
 
             <StackLayout Orientation="Horizontal">
                 <!--Button Text="Cancel" Command="{Binding CancelCommand}"/-->
-                <Button Text="Edit" Command="{Binding EditCommand}"/>
+                <Button Text="{Binding EditButtonText}" Command="{Binding EditCommand}"/>
             </StackLayout>
 
         </StackLayout>
