@@ -64,8 +64,8 @@ namespace Koinonia.ViewModel
             }
         }
 
-        private ObservableCollection<Contact> _contacts { get; set; }
-        public ObservableCollection<Contact> Contacts
+        private CustomObservableCollection<Contact> _contacts { get; set; }
+        public CustomObservableCollection<Contact> Contacts
         {
             get { return _contacts; }
             set
@@ -75,11 +75,12 @@ namespace Koinonia.ViewModel
                     return;
                 }
                 _contacts = value;
+                Console.WriteLine("Contacts List update fired");
                 OnPropertyChanged(nameof(Contacts));
             }
         }
-        private ObservableCollection<Contact> _filteredContacts { get; set; }
-        public ObservableCollection<Contact> FilteredContacts
+        private CustomObservableCollection<Contact> _filteredContacts { get; set; }
+        public CustomObservableCollection<Contact> FilteredContacts
         {
             get { return _filteredContacts; }
             set
@@ -92,7 +93,22 @@ namespace Koinonia.ViewModel
                 OnPropertyChanged(nameof(FilteredContacts));
             }
         }
+        private Contact _selectedContact { get; set; }
+        public Contact SelectedContact
+        {
+            get { return _selectedContact; }
+            set
+            {
+                if (_selectedContact == value)
+                {
+                    return;
+                }
+                _selectedContact = value;
+                OnPropertyChanged(nameof(SelectedContact));
+            }
+        }
 
+        
 
 
 
@@ -102,19 +118,20 @@ namespace Koinonia.ViewModel
             contactSelected = new Command(ContactSelected);            
             ScreenHeight = 1000;
             ScreenWidth = 1000;
-            SetContactCollection();
+            ScreenSetup();
             //CreateAndShowGrid();
             
         }
-
-        public async void SetContactCollection()
+        public async void ScreenSetup()
         {
-            Contacts = new ObservableCollection<Contact>(await App.Database.GetContactsAsync());
+            Contacts = new CustomObservableCollection<Contact>(await App.Database.GetContactsAsync());
             FilteredContacts = Contacts;
-            contactRows = (int)Math.Round(Math.Sqrt(Contacts.Count())+0.5);
-            contactColumns = contactRows;
+            contactRows = (int)Math.Round(Math.Sqrt(Contacts.Count()) + 0.5);
+            contactColumns = contactRows;            
             CreateAndShowGrid();
         }
+
+      
 
 
         //Screen dimensions are platform specific. Will need to work on this.
@@ -204,12 +221,29 @@ namespace Koinonia.ViewModel
             int index = Convert.ToInt32(param);
 
             //Find associated contact object in Contacts ObservableCollection
-            Contact contact = Contacts.Where(c => c.ContactID == index).Single<Contact>();
+            SelectedContact = Contacts.Where(c => c.ContactID == index).Single<Contact>();
+
+            //Set next page to push to
+            
+
+            MessagingCenter.Subscribe<ContactInfoViewModel, Contact>(this, "ContactUpdated", UpdateContact);
 
             //Push new page with this returned contact as the parameter
-            await _pageService.PushAsync(new ContactInfoPage(contact));
+            await _pageService.PushAsync(new ContactInfoPage(SelectedContact));
 
             //await _pageService.DisplayAlert("Hello", index.ToString(), "Ok") ;
         }
+
+        public void UpdateContact(ContactInfoViewModel source, Contact updatedContact)
+        {
+            Contact contact = Contacts.Where(c => c.ContactID == updatedContact.ContactID).Single<Contact>();
+            int index = Contacts.IndexOf(contact);
+            Contacts[index] = updatedContact;
+        }
+
+        /*private async void UpdateContacts(ContactInfoViewModel source)
+        {
+            Contacts = new ObservableCollection<Contact>(await App.Database.GetContactsAsync());
+        }*/
     }
 }

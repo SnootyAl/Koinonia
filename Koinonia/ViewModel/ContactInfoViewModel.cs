@@ -8,22 +8,22 @@ using Xamarin.Forms;
 
 namespace Koinonia.ViewModel
 {
-    class ContactInfoViewModel : BaseViewModel
+    public class ContactInfoViewModel : BaseViewModel
     {
 
         private readonly IPageService _pageService;
-        private Contact _contact;
-        public Contact Contact
+        private Contact _selectedContact;
+        public Contact SelectedContact
         {
-            get { return _contact; }
+            get { return _selectedContact; }
             set
             {
-                if (_contact == value)
+                if (_selectedContact == value)
                 {
                     return;
                 }
-                _contact = value;
-                OnPropertyChanged(nameof(Contact));
+                _selectedContact = value;
+                OnPropertyChanged(nameof(SelectedContact));
 
             }
         }
@@ -64,7 +64,7 @@ namespace Koinonia.ViewModel
 
         public ContactInfoViewModel(IPageService pageService, Contact _contact)
         {
-            Contact = _contact;
+            SelectedContact = _contact;
             _pageService = pageService;
             EditCommand = new Command(Edit);      
             
@@ -81,7 +81,8 @@ namespace Koinonia.ViewModel
             if (EditDisabled)
             {
                 EditButtonText = "Edit";
-                await App.Database.SaveContactAsync(Contact);
+                await App.Database.SaveContactAsync(SelectedContact);
+                MessagingCenter.Send(this, "ContactUpdated", SelectedContact);
                 
             }
 
