@@ -174,10 +174,10 @@ namespace Koinonia.ViewModel
                     Contacts.Clear();
                     break;
 
-                case "Debug":
+                //case "Debug":
 
                     //await Navigation.PushAsync(new DebugPage());
-                    break;
+                    //break;
 
 
                 case "Tags":
