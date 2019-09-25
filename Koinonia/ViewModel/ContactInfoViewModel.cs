@@ -12,18 +12,18 @@ namespace Koinonia.ViewModel
     {
 
         private readonly IPageService _pageService;
-        private Contact _currentContact;
-        public Contact CurrentContact
+        private Contact _contact;
+        public Contact Contact
         {
-            get { return _currentContact; }
+            get { return _contact; }
             set
             {
-                if (_currentContact == value)
+                if (_contact == value)
                 {
                     return;
                 }
-                _currentContact = value;
-                OnPropertyChanged(nameof(CurrentContact));
+                _contact = value;
+                OnPropertyChanged(nameof(Contact));
 
             }
         }
@@ -44,7 +44,6 @@ namespace Koinonia.ViewModel
             }
         }
         public ICommand EditCommand { get; private set; }
-        public ContactViewModel parent;
 
         private string editButtonText = "Edit";
         public string EditButtonText
@@ -63,10 +62,9 @@ namespace Koinonia.ViewModel
         }
 
 
-        public ContactInfoViewModel(IPageService pageService, ContactViewModel _parent)
+        public ContactInfoViewModel(IPageService pageService, Contact _contact)
         {
-            parent = _parent;
-            CurrentContact = parent.SelectedContact;
+            Contact = _contact;
             _pageService = pageService;
             EditCommand = new Command(Edit);      
             
@@ -83,8 +81,8 @@ namespace Koinonia.ViewModel
             if (EditDisabled)
             {
                 EditButtonText = "Edit";
-                await App.Database.SaveContactAsync(CurrentContact);
-                parent.UpdateContact(CurrentContact);
+                await App.Database.SaveContactAsync(Contact);
+                
             }
 
             //Edit button has just been pressed. Fields are now editable

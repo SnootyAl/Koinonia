@@ -129,7 +129,7 @@ namespace Koinonia.ViewModel
             //Kind of ugly way to deal with deselecting SelectedContact to remove selection on list screen
             if(SelectedContact != null)
             {
-                await _pageService.PushAsync(new ContactInfoPage(this));
+                await _pageService.PushAsync(new ContactInfoPage(SelectedContact));
                 SelectedContact = null;
             }
             

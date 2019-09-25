@@ -1,5 +1,6 @@
 ﻿using Koinonia.HexLayouts;
 using Koinonia.Models;
+using Koinonia.Views;
 using MvvmHelpers;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,7 @@ namespace Koinonia.ViewModel
     public class HexViewModel : BaseViewModel
     {
         private readonly IPageService _pageService;
-        public ICommand helloWorld { get; private set; }
+        public ICommand contactSelected { get; private set; }
         public int hexColumns, hexRows;
         private int contactColumns, contactRows;
 
@@ -98,7 +99,7 @@ namespace Koinonia.ViewModel
         public HexViewModel(IPageService pageService)
         {
             _pageService = pageService;
-            helloWorld = new Command(HelloWorld);            
+            contactSelected = new Command(ContactSelected);            
             ScreenHeight = 1000;
             ScreenWidth = 1000;
             SetContactCollection();
@@ -193,14 +194,22 @@ namespace Koinonia.ViewModel
                 ContactID = contact.ContactID,
                 CommandParameter = contact.ContactID
             };
-            tempButton.SetBinding(Button.CommandProperty, new Binding("helloWorld"));
+            tempButton.SetBinding(Button.CommandProperty, new Binding("contactSelected"));
             return tempButton;
         }
 
-        public async void HelloWorld(object param)
+        public async void ContactSelected(object param)
         {
+            //Index becomes ContactID of requested Contact
             int index = Convert.ToInt32(param);
-            await _pageService.DisplayAlert("Hello", index.ToString(), "Ok") ;
+
+            //Find associated contact object in Contacts ObservableCollection
+            Contact contact = Contacts.Where(c => c.ContactID == index).Single<Contact>();
+
+            //Push new page with this returned contact as the parameter
+            await _pageService.PushAsync(new ContactInfoPage(contact));
+
+            //await _pageService.DisplayAlert("Hello", index.ToString(), "Ok") ;
         }
     }
 }
