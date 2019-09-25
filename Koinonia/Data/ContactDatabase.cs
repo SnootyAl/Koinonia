@@ -18,6 +18,7 @@ namespace Koinonia.Data
             _database = new SQLiteAsyncConnection(dbPath);
             _database.CreateTableAsync<Contact>().Wait();
             _database.CreateTableAsync<Profile>().Wait();
+            _database.CreateTableAsync<Tags>().Wait();
         }
 
         public Task<List<Contact>> GetContactsAsync()
@@ -77,8 +78,27 @@ namespace Koinonia.Data
         public Task<int> DeleteProfileAsync()
         {
             return _database.DeleteAllAsync<Profile>();
-        }  
+        }
 
+
+        // returns all tags with in the table for the list view
+        public Task<List<Tags>> getTagsAsync()
+        {
+            return _database.Table<Tags>().ToListAsync();
+        }
+
+        // inserts new tag into database
+        public Task<int> SavetagAsync(Tags tags)
+        {
+            return _database.InsertAsync(tags);
+            //return _database.DropTableAsync<Tags>();
+        }
+
+        public Task<Tags> GetTagIDAsync(int id)
+        {
+            return _database.Table<Tags>().Where(i => i.TagsID == id)
+                .FirstOrDefaultAsync();
+        }
     }
 
 

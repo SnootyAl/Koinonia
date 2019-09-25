@@ -15,13 +15,11 @@
                    FontFamily="Roboto"
                    FontAttributes="Bold"/>
 
-            <Entry Placeholder="Tag Name">
-                
-            </Entry>
+            <Label Text="{Binding Name}"
+                HorizontalOptions="CenterAndExpand"
+                    VerticalOptions="CenterAndExpand"/>
 
-            <Button Text="Create">
-                
-            </Button>
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

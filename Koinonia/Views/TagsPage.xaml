@@ -14,18 +14,23 @@
                    Margin="0, 45, 0, 0"
                    FontFamily="Roboto" 
                    FontAttributes="Bold"/>
-            
-            <ListView x:Name="list" ItemsSource="{Binding ListData}" 
+
+            <Entry x:Name="Tagnames" Placeholder="Tag Name" Text="{Binding Tagname.TagName}"
+                
+                />
+
+            <ListView x:Name="list" ItemsSource="{Binding tags}" 
                       HorizontalOptions="CenterAndExpand" 
                       VerticalOptions="FillAndExpand"
                       IsGroupingEnabled="False">
                 
             </ListView>
 
+
+
             <Button x:Name="CreateTag" Text="Create New Tag" Command="{Binding ChangePage}"
                     HorizontalOptions="CenterAndExpand"
-                    VerticalOptions="CenterAndExpand"
-            >
+                    VerticalOptions="CenterAndExpand">
                 
             </Button>
 
