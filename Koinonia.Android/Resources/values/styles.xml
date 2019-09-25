@@ -28,9 +28,4 @@
     <item name="colorAccent">#17A7B2</item>
   </style>
 
-<!-- Custom -->
-
-  <style name="SplashScreen.Base" parent="Theme.AppCompat.Light">
-  </style>
-
 </resources>

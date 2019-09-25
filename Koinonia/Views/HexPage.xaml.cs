@@ -19,7 +19,7 @@ namespace Koinonia.Views
 
         public DebugPage()
         {
-            BindingContext = new DebugViewModel();
+            //BindingContext = new DebugViewModel();
             InitializeComponent();
             GetScreenDimensions();
             CreateAndShowGrid();
@@ -28,8 +28,8 @@ namespace Koinonia.Views
         public async void GetScreenDimensions()
         {
             var displayInfo = DeviceDisplay.MainDisplayInfo;
-            screenWidth = (int)displayInfo.Width;
-            screenHeight = (int)displayInfo.Height;
+            //screenWidth = (int)displayInfo.Width;
+            //screenHeight = (int)displayInfo.Height;
             //Console.WriteLine("Screen Width: " + screenWidth);
             //await DisplayAlert("Dimensions", screenWidth + "x" + screenHeight, "Coolio");
 
@@ -39,14 +39,14 @@ namespace Koinonia.Views
         {
             var tempHexGrid = new HexLayout
             {
-                RowCount = hexRows,
-                ColumnCount = hexColumns,
+                //RowCount = hexRows,
+                //ColumnCount = hexColumns,
                 Orientation = StackOrientation.Vertical
             };
 
-            for(int i=0; i<hexRows; i++)
+            //for(int i=0; i<hexRows; i++)
             {
-                for(int j=0; j<hexColumns; j++)
+                //for(int j=0; j<hexColumns; j++)
                 {
                     var tempButton = new Button
                     {
@@ -59,8 +59,8 @@ namespace Koinonia.Views
 
                     };
 
-                    HexLayout.SetRow(tempButton, i);
-                    HexLayout.SetColumn(tempButton, j);
+                    //HexLayout.SetRow(tempButton, i);
+                    //HexLayout.SetColumn(tempButton, j);
                     tempHexGrid.Children.Add(tempButton);
 
                 }

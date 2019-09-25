@@ -9,8 +9,7 @@
     <ContentPage.Content>
         <StackLayout>
             <Label Text="Settings"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+                Style="{StaticResource TitleTxt}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

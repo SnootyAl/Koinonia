@@ -8,14 +8,19 @@
     <ContentPage.Content>
         
         <StackLayout>
-
+            <Label Text="Edit Contact"
+                   Style="{StaticResource TitleTxt}"
+                   HorizontalOptions="CenterAndExpand"
+                   ></Label>
+            <StackLayout Margin="10, 10, 10, 0">
             <Entry Placeholder="First" Text="{Binding CurrentContact.FirstName}" ReturnType="Next" IsReadOnly="{Binding EditDisabled}"/>
             <Entry Placeholder="Last" Text="{Binding CurrentContact.LastName}" IsReadOnly="{Binding EditDisabled}"/>
             <Entry Placeholder="Phone" Keyboard="Numeric" Text="{Binding CurrentContact.PhoneNumber}" IsReadOnly="{Binding EditDisabled}"/>
             <Entry Placeholder="Email" Text="{Binding CurrentContact.Email}" IsReadOnly="{Binding EditDisabled}"/>
             <Entry Placeholder="Notes" Text="{Binding CurrentContact.Notes}" IsReadOnly="{Binding EditDisabled}"/>
+            </StackLayout>
 
-            <StackLayout Orientation="Horizontal">
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
                 <!--Button Text="Cancel" Command="{Binding CancelCommand}"/-->
                 <Button Text="{Binding EditButtonText}" Command="{Binding EditCommand}"/>
             </StackLayout>

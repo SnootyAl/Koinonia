@@ -10,14 +10,43 @@
     <ContentPage.Content>
         <!-- Add binding context to remove Profile.property necessity? -->
         <StackLayout>
-            <Label Text="{Binding Profile.FirstName}"/>
-            <Label Text="{Binding Profile.LastName}"/>
-            <Label Text="{Binding Profile.PhoneNumber}"/>
-            <Label Text="{Binding Profile.Email}"/>
-            <StackLayout Orientation="Horizontal">
-                <Button Text="Delete Profile" Command="{Binding DeleteCommand}" />
-                <Button Text="Edit" Command="{Binding EditCommand}"/>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+
+                <Label Text="{Binding Profile.FirstName}"
+                       Style="{StaticResource TitleTxt}"
+                />
+
+                <Label Text="{Binding Profile.LastName}"
+                       Style="{StaticResource TitleTxt}"
+                />
+
             </StackLayout>
+
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+
+                <Label Text="{Binding Profile.PhoneNumber}"
+                       Margin="0, 0, 0, 20"
+                />
+
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+
+                <Label Text="{Binding Profile.Email}"
+                       Margin="0, 0, 0, 20"
+                />
+
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                <Button Text="Delete Profile"
+                        Command="{Binding DeleteCommand}"
+                />
+                <Button Text="Edit"
+                        Command="{Binding EditCommand}"
+                />
+            </StackLayout>
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
