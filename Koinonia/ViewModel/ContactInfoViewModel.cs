@@ -8,22 +8,22 @@ using Xamarin.Forms;
 
 namespace Koinonia.ViewModel
 {
-    class ContactInfoViewModel : BaseViewModel
+    public class ContactInfoViewModel : BaseViewModel
     {
 
         private readonly IPageService _pageService;
-        private Contact _currentContact;
-        public Contact CurrentContact
+        private Contact _selectedContact;
+        public Contact SelectedContact
         {
-            get { return _currentContact; }
+            get { return _selectedContact; }
             set
             {
-                if (_currentContact == value)
+                if (_selectedContact == value)
                 {
                     return;
                 }
-                _currentContact = value;
-                OnPropertyChanged(nameof(CurrentContact));
+                _selectedContact = value;
+                OnPropertyChanged(nameof(SelectedContact));
 
             }
         }
@@ -44,7 +44,6 @@ namespace Koinonia.ViewModel
             }
         }
         public ICommand EditCommand { get; private set; }
-        public ContactViewModel parent;
 
         private string editButtonText = "Edit";
         public string EditButtonText
@@ -63,10 +62,9 @@ namespace Koinonia.ViewModel
         }
 
 
-        public ContactInfoViewModel(IPageService pageService, ContactViewModel _parent)
+        public ContactInfoViewModel(IPageService pageService, Contact _contact)
         {
-            parent = _parent;
-            CurrentContact = parent.SelectedContact;
+            SelectedContact = _contact;
             _pageService = pageService;
             EditCommand = new Command(Edit);      
             
@@ -83,8 +81,9 @@ namespace Koinonia.ViewModel
             if (EditDisabled)
             {
                 EditButtonText = "Edit";
-                await App.Database.SaveContactAsync(CurrentContact);
-                parent.UpdateContact(CurrentContact);
+                await App.Database.SaveContactAsync(SelectedContact);
+                //MessagingCenter.Send(this, "ContactUpdated", SelectedContact);
+                
             }
 
             //Edit button has just been pressed. Fields are now editable

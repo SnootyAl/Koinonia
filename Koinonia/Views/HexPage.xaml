@@ -6,21 +6,27 @@
              xmlns:xampane="clr-namespace:XamPane;assembly=XamPane"
              xmlns:polygon="clr-namespace:Xamarin.Forms.PolygonFrame;assembly=Xamarin.Forms.PolygonFrame"
              mc:Ignorable="d"
-             x:Class="Koinonia.Views.DebugPage">
+             x:Class="Koinonia.Views.HexPage">
     <ContentPage.Content>
         <ScrollView Orientation="Both">
-            <Grid x:Name="ContainerGrid" BackgroundColor = "#17A7B2">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="{Binding screenHeight}" />
-                    
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="{Binding screenWidth}" />
-                  
-                </Grid.ColumnDefinitions>
-                
-                
-            </Grid>
+            <Frame HeightRequest="{Binding ScreenHeight}"
+                   WidthRequest="{Binding ScreenWidth}"
+                   Content="{Binding DisplayHexGrid}"
+                   >
+                <!--<Frame.GestureRecognizers>
+                    <PinchGestureRecognizer PinchUpdated="PinchGestureRecognizer_PinchUpdated"
+                </Frame.GestureRecognizers>-->
+                <!--<xampane:HexLayout
+                    RowCount="3"
+                    ColumnCount="3"
+                    Orientation="Vertical">
+                    <polygon:PolygonFrame Grid.Row="0" Grid.Column="1" OffsetAngle="90" BackgroundColor="Red"/>
+
+                </xampane:HexLayout>-->
+            </Frame>
+
+
+
         </ScrollView>
     </ContentPage.Content>
    

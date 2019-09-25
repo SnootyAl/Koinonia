@@ -14,10 +14,10 @@ namespace Koinonia.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ContactInfoPage : ContentPage
     {
-        public ContactInfoPage(ContactViewModel _parent)
+        public ContactInfoPage(Contact _contact)
         {
             InitializeComponent();
-            BindingContext = new ContactInfoViewModel(new PageService(), _parent);
+            BindingContext = new ContactInfoViewModel(new PageService(), _contact);
         }
     }
 }

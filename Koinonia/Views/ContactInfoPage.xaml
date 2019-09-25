@@ -8,6 +8,7 @@
     <ContentPage.Content>
         
         <StackLayout>
+
             <Label Text="Edit Contact"
                    Style="{StaticResource TitleTxt}"
                    HorizontalOptions="CenterAndExpand"
@@ -19,6 +20,7 @@
             <Entry Placeholder="Email" Text="{Binding CurrentContact.Email}" IsReadOnly="{Binding EditDisabled}"/>
             <Entry Placeholder="Notes" Text="{Binding CurrentContact.Notes}" IsReadOnly="{Binding EditDisabled}"/>
             </StackLayout>
+
 
             <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
                 <!--Button Text="Cancel" Command="{Binding CancelCommand}"/-->
