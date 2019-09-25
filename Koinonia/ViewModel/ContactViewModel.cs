@@ -135,6 +135,11 @@ namespace Koinonia.ViewModel
             
         }
 
+        public void OnAppearing()
+        {
+            SetContactCollection();            
+        }
+
 
         async void TempButtonPressed()
         {

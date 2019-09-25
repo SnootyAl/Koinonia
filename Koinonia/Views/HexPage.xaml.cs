@@ -16,12 +16,12 @@ namespace Koinonia.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class HexPage : ContentPage
     {
-
+        readonly HexViewModel vm;
         public HexPage()
         {            
             
             InitializeComponent();
-            BindingContext = new HexViewModel(new PageService());
+            BindingContext = vm = new HexViewModel(new PageService());
             //GetScreenDimensions();
             
         }
@@ -73,8 +73,7 @@ namespace Koinonia.Views
 
         protected override void OnAppearing()
         {
-            //CreateAndShowGrid();
-            
+            vm.OnAppearing();
             base.OnAppearing();
         }
 

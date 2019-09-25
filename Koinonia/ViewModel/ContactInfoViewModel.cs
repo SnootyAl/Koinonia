@@ -82,7 +82,7 @@ namespace Koinonia.ViewModel
             {
                 EditButtonText = "Edit";
                 await App.Database.SaveContactAsync(SelectedContact);
-                MessagingCenter.Send(this, "ContactUpdated", SelectedContact);
+                //MessagingCenter.Send(this, "ContactUpdated", SelectedContact);
                 
             }
 

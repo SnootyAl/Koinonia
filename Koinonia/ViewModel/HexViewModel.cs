@@ -64,8 +64,8 @@ namespace Koinonia.ViewModel
             }
         }
 
-        private CustomObservableCollection<Contact> _contacts { get; set; }
-        public CustomObservableCollection<Contact> Contacts
+        private ObservableCollection<Contact> _contacts { get; set; }
+        public ObservableCollection<Contact> Contacts
         {
             get { return _contacts; }
             set
@@ -79,8 +79,8 @@ namespace Koinonia.ViewModel
                 OnPropertyChanged(nameof(Contacts));
             }
         }
-        private CustomObservableCollection<Contact> _filteredContacts { get; set; }
-        public CustomObservableCollection<Contact> FilteredContacts
+        private ObservableCollection<Contact> _filteredContacts { get; set; }
+        public ObservableCollection<Contact> FilteredContacts
         {
             get { return _filteredContacts; }
             set
@@ -171,29 +171,6 @@ namespace Koinonia.ViewModel
                     hex_column++;
                 }
 
-
-
-
-
-                /*for (int i = 0; i < hexRows; i++)
-                {
-                    for (int j = 0; j < hexColumns; j++)
-                    {
-
-                        //Button contactButton = CreateContactButton(Contacts[contactIndex]);
-                        Button contactButton = new Button
-                        {
-                            Text = (i + "," + j),
-                            HeightRequest = 300,
-                            WidthRequest = 300
-                        };
-                        HexLayout.SetRow(contactButton, i);
-                        HexLayout.SetColumn(contactButton, j);
-                        DisplayHexGrid.Children.Add(contactButton);
-                        contactIndex += 1;
-
-                    }
-                }*/
             }
         }
 
@@ -226,7 +203,7 @@ namespace Koinonia.ViewModel
             //Set next page to push to
             
 
-            MessagingCenter.Subscribe<ContactInfoViewModel, Contact>(this, "ContactUpdated", UpdateContact);
+            //MessagingCenter.Subscribe<ContactInfoViewModel, Contact>(this, "ContactUpdated", UpdateContact);
 
             //Push new page with this returned contact as the parameter
             await _pageService.PushAsync(new ContactInfoPage(SelectedContact));
@@ -239,11 +216,25 @@ namespace Koinonia.ViewModel
             Contact contact = Contacts.Where(c => c.ContactID == updatedContact.ContactID).Single<Contact>();
             int index = Contacts.IndexOf(contact);
             Contacts[index] = updatedContact;
+            
         }
 
-        /*private async void UpdateContacts(ContactInfoViewModel source)
+        private async void UpdateContacts()
         {
             Contacts = new ObservableCollection<Contact>(await App.Database.GetContactsAsync());
-        }*/
+        }
+
+
+
+        /*OnAppearing()
+         * 
+         * Fairly resource intensive, redraws the buttons every time the screen is shown with updated contacts.
+           Could be improved by Binding the text of the buttons to the ObservableCollection rather than hard coding them,
+           But need to figure out how to do this programatically CreateContactButton() */
+        public void OnAppearing()
+        {
+            UpdateContacts();
+            CreateAndShowGrid();
+        }
     }
 }
