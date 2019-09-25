@@ -11,7 +11,7 @@
             <!--Image />-->
 
             <Label
-                Text="Koinonia is the app to help you map, manage, sort and track your relationships."
+                Text="Nonia is the app to help you map, manage, sort and track your relationships."
                 LineBreakMode="WordWrap"
                 Margin="25, 1, 25, 50"
                 HorizontalTextAlignment="Center"

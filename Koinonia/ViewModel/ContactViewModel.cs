@@ -171,10 +171,12 @@ namespace Koinonia.ViewModel
                     Contacts.Clear();
                     break;
 
+
                 case "Hex":
 
                     await _pageService.PushAsync(new HexPage());
                     break;
+
 
 
                 case "Tags":

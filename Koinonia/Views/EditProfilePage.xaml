@@ -13,10 +13,10 @@
             <Entry x:Name="Phone" Placeholder="Phone" Keyboard="Numeric" Text="{Binding editedProfile.PhoneNumber}"/>
             <Entry x:Name="Email" Placeholder="Email" Text="{Binding editedProfile.Email}"/>
 
-            <StackLayout Orientation="Horizontal">
+            <StackLayout  Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
                     <!--Button Text="Cancel" Command="{Binding CancelCommand}"/-->
                     <Button Text="Save" Command="{Binding SaveCommand}"/>
-                </StackLayout>
+            </StackLayout>
 
         </StackLayout>
     </ContentPage.Content>

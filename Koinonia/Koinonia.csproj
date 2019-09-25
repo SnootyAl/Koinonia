@@ -64,6 +64,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Views\EmptyXmlFile.xml" />
+    <None Remove="Views\Colors.xml" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="HexLayouts\XamPane.csproj" />
   </ItemGroup>
 
