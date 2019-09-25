@@ -139,7 +139,7 @@ namespace Koinonia.ViewModel
         async void TempButtonPressed()
         {
 
-            var response = await _pageService.DisplayActionSheet("Options", "Cancel", null, "Profile", "Settings", "New Contact", "Clear", "Debug", "Tags");
+            var response = await _pageService.DisplayActionSheet("Options", "Cancel", null, "Profile", "Settings", "New Contact", "Clear", "Hex", "Tags");
 
             switch (response)
             {
@@ -152,17 +152,9 @@ namespace Koinonia.ViewModel
                 case "Settings":
                     await _pageService.PushAsync(new SettingsPage());
                     break;
-
-                //Temporary add new contact for list debugging and search. Will delete once proper add contact implemented.
-                /*case "New Contact":
-                    var newContact = new Contact { FirstName = "Added" + DateTime.Now.Ticks };
-                    await _connection.InsertAsync(newContact);
-                    _contacts.Add(newContact);
-                    //await Navigation.PushAsync(new NewContactPage());
-                    break;*/
+                
 
                 case "New Contact":
-
                     //****Bug? Table ID continues to increment? Probably not an issue, saves conflicts in future.
 
                     await _pageService.PushAsync((new NewContactPage(this)));                    
@@ -174,9 +166,9 @@ namespace Koinonia.ViewModel
                     Contacts.Clear();
                     break;
 
-                case "Debug":
+                case "Hex":
 
-                    //await Navigation.PushAsync(new DebugPage());
+                    await _pageService.PushAsync(new HexPage());
                     break;
 
 

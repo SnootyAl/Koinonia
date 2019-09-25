@@ -14,18 +14,19 @@ using Koinonia.ViewModel;
 namespace Koinonia.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class DebugPage : ContentPage
+    public partial class HexPage : ContentPage
     {
 
-        public DebugPage()
-        {
-            BindingContext = new DebugViewModel();
+        public HexPage()
+        {            
+            
             InitializeComponent();
-            GetScreenDimensions();
-            CreateAndShowGrid();
+            BindingContext = new HexViewModel(new PageService());
+            //GetScreenDimensions();
+            
         }
 
-        public async void GetScreenDimensions()
+        /*public async void GetScreenDimensions()
         {
             var displayInfo = DeviceDisplay.MainDisplayInfo;
             screenWidth = (int)displayInfo.Width;
@@ -33,9 +34,9 @@ namespace Koinonia.Views
             //Console.WriteLine("Screen Width: " + screenWidth);
             //await DisplayAlert("Dimensions", screenWidth + "x" + screenHeight, "Coolio");
 
-        }
+        }*/
 
-        public void CreateAndShowGrid()
+        /*public void CreateAndShowGrid()
         {
             var tempHexGrid = new HexLayout
             {
@@ -68,18 +69,23 @@ namespace Koinonia.Views
 
             ContainerGrid.Children.Add(tempHexGrid);
 
-       }
+       }*/
 
         protected override void OnAppearing()
         {
             //CreateAndShowGrid();
-            GetScreenDimensions();
+            
             base.OnAppearing();
         }
 
         private async void Button_Pressed(object sender, EventArgs e)
         {
             await DisplayAlert("Congrats", "Youre kinda there", "Coolio");
+        }
+
+        private void PinchGestureRecognizer_PinchUpdated(object sender, PinchGestureUpdatedEventArgs e)
+        {
+
         }
     }
 }

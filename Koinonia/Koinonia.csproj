@@ -12,12 +12,10 @@
 
   <ItemGroup>
     <Compile Remove="MainPage.xaml.cs" />
-    <Compile Remove="Views\DebugPage.xaml.cs" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Remove="MainPage.xaml" />
-    <EmbeddedResource Remove="Views\DebugPage.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -71,6 +69,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\HexPage.xaml.cs">
+      <DependentUpon>HexPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\TagsPage.xaml.cs">
       <DependentUpon>TagsPage.xaml</DependentUpon>
     </Compile>

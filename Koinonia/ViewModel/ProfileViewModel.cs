@@ -17,7 +17,7 @@ namespace Koinonia.ViewModel
 
 
         //Super Jank but it works so sue me:
-        Profile _profile { get; set; }
+        private Profile _profile { get; set; }
         public Profile Profile
         {
             get { return _profile; }
