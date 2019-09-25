@@ -16,6 +16,7 @@ namespace Koinonia.ViewModel
         private readonly IPageService _pageService;
         public ICommand helloWorld { get; private set; }
         public int hexColumns, hexRows;
+        private int contactColumns, contactRows;
 
         private HexLayout displayHexGrid { get; set; }
         public HexLayout DisplayHexGrid
@@ -97,11 +98,9 @@ namespace Koinonia.ViewModel
         public HexViewModel(IPageService pageService)
         {
             _pageService = pageService;
-            helloWorld = new Command(HelloWorld);
-            hexRows = 7;
-            hexColumns = 7;
-            ScreenHeight = 500;
-            ScreenWidth = 500;
+            helloWorld = new Command(HelloWorld);            
+            ScreenHeight = 1000;
+            ScreenWidth = 1000;
             SetContactCollection();
             //CreateAndShowGrid();
             
@@ -111,6 +110,8 @@ namespace Koinonia.ViewModel
         {
             Contacts = new ObservableCollection<Contact>(await App.Database.GetContactsAsync());
             FilteredContacts = Contacts;
+            contactRows = (int)Math.Round(Math.Sqrt(Contacts.Count())+0.5);
+            contactColumns = contactRows;
             CreateAndShowGrid();
         }
 
@@ -126,33 +127,55 @@ namespace Koinonia.ViewModel
             
             DisplayHexGrid = new HexLayout
             {
-                RowCount = hexRows,
-                ColumnCount = hexColumns,
+                RowCount = contactRows + 1,
+                ColumnCount = contactColumns + 1,
                 Orientation = StackOrientation.Vertical,
                 BackgroundColor = Color.FromHex("#17A7B2"),
 
             };
 
             int contactIndex = 0;
-
-            for (int i = 0; i < hexRows; i++)
+            int hex_row = 0;
+            int hex_column = 0;
+            foreach (Contact contact in Contacts)
             {
-                for (int j = 0; j < hexColumns; j++)
+                Button contactButton = CreateContactButton(contact);
+                HexLayout.SetRow(contactButton, hex_row);
+                HexLayout.SetColumn(contactButton, hex_column);
+                DisplayHexGrid.Children.Add(contactButton);
+                if (hex_column == contactColumns - 1)
                 {
-
-                    //Button contactButton = CreateContactButton(Contacts[contactIndex]);
-                    Button contactButton = new Button
-                    {
-                        Text = (i + "," + j),
-                        HeightRequest = 300,
-                        WidthRequest = 300
-                    };
-                    HexLayout.SetRow(contactButton, i);
-                    HexLayout.SetColumn(contactButton, j);
-                    DisplayHexGrid.Children.Add(contactButton);
-                    contactIndex += 1;
-
+                    hex_column = 0;
+                    hex_row++;
                 }
+                else
+                {
+                    hex_column++;
+                }
+
+
+
+
+
+                /*for (int i = 0; i < hexRows; i++)
+                {
+                    for (int j = 0; j < hexColumns; j++)
+                    {
+
+                        //Button contactButton = CreateContactButton(Contacts[contactIndex]);
+                        Button contactButton = new Button
+                        {
+                            Text = (i + "," + j),
+                            HeightRequest = 300,
+                            WidthRequest = 300
+                        };
+                        HexLayout.SetRow(contactButton, i);
+                        HexLayout.SetColumn(contactButton, j);
+                        DisplayHexGrid.Children.Add(contactButton);
+                        contactIndex += 1;
+
+                    }
+                }*/
             }
         }
 
