@@ -12,6 +12,6 @@ namespace Koinonia.Models
     {
         [PrimaryKey, AutoIncrement]
         public int TagsID { get; set; }
-        public string TagName { get; set; }
+        public string TagNames { get; set; }
     }
 }

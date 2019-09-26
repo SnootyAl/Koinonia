@@ -15,9 +15,7 @@
                    FontFamily="Roboto"
                    FontAttributes="Bold"/>
 
-            <Label Text="{Binding Name}"
-                HorizontalOptions="CenterAndExpand"
-                    VerticalOptions="CenterAndExpand"/>
+            
 
 
         </StackLayout>

@@ -47,6 +47,7 @@ namespace Koinonia.ViewModel
             {
                 await _pageService.DisplayAlert(newContact.FirstName, newContact.LastName, "Cancel", "OK");
                 await App.Database.SaveContactAsync(newContact);
+                Console.WriteLine(newContact);
                 _parent.AddContact(newContact);
                 await _pageService.PopAsync();
             }

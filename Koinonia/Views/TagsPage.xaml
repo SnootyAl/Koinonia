@@ -15,15 +15,26 @@
                    FontFamily="Roboto" 
                    FontAttributes="Bold"/>
 
-            <Entry x:Name="Tagnames" Placeholder="Tag Name" Text="{Binding Tagname.TagName}"
+            <Entry x:Name="Tagnames" Placeholder="Tag Name" Text="{Binding Tagname.TagNames}"
                 
                 />
 
-            <ListView x:Name="list" ItemsSource="{Binding tags}" 
+            <ListView x:Name="list" ItemsSource="{Binding TagNameCollection}" 
                       HorizontalOptions="CenterAndExpand" 
                       VerticalOptions="FillAndExpand"
                       IsGroupingEnabled="False">
-                
+                <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <StackLayout HorizontalOptions="StartAndExpand" Spacing="0" Padding="2">
+                                    <Label Text="{Binding TagNames}" />
+                                </StackLayout>
+                            </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+                </ListView.ItemTemplate>
+
             </ListView>
 
 

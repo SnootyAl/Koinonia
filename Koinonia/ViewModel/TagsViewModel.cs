@@ -27,18 +27,13 @@ namespace Koinonia.ViewModel
         {
             _pageService = pageService;
 
-           /* ListData = new List<string>()
-            {
-                "Hello"
-            };*/
-
             Tagname = new Tags
             {
-                TagName = ""
+                TagNames = ""
             };
+            showtags();
         }
 
-        string test = "yeet";
 
         // Navigation for the tag creation page using create tag button page
 
@@ -46,16 +41,29 @@ namespace Koinonia.ViewModel
             get {
                 return new Command(async () =>
                 {
-                    Console.WriteLine("Hello");
-                    await _pageService.DisplayAlert(Tagname.TagName, "cancel ", "okay");
-                    await App.Database.SavetagAsync(Tagname);
+                    if (Tagname.TagNames.Length > 0)
+                    {
+                        // display alert with tag name and 
+                        await _pageService.DisplayAlert(Tagname.TagNames, "This tag will be created", "Okay");
+                        await App.Database.SavetagAsync(Tagname);
+                        TagNameCollection.Add(Tagname);
+                        // test to see what is being printed
+                        Console.WriteLine(Tagname);
+                        Console.WriteLine(Tagname.TagNames);
+                        
+                    }
+                    else
+                    {
+                        await _pageService.DisplayAlert("error", "Null value", "try again");
+                    }
+
                 });
             }
         }
 
-
+       
         private ObservableCollection<Tags> _tags { get; set; }
-        public ObservableCollection<Tags> tags {
+        public ObservableCollection<Tags> TagNameCollection {
             get { return _tags; }
             set {
                 if (_tags == value)
@@ -63,8 +71,13 @@ namespace Koinonia.ViewModel
                     return;
                 }
                 _tags = value;
-                OnPropertyChanged(nameof(tags));
+                OnPropertyChanged(nameof(TagNameCollection));
             }
+        }
+
+        public async void showtags()
+        {
+            TagNameCollection = new ObservableCollection<Tags>(await App.Database.getTagsAsync());
         }
 
     }

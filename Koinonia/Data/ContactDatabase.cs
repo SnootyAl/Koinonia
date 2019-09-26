@@ -90,10 +90,17 @@ namespace Koinonia.Data
         // inserts new tag into database
         public Task<int> SavetagAsync(Tags tags)
         {
-            return _database.InsertAsync(tags);
-            //return _database.DropTableAsync<Tags>();
+            if(tags.TagsID != 0)
+            {
+                return _database.UpdateAsync(tags);
+            }
+            else
+            {
+                return _database.InsertAsync(tags);
+            }
         }
 
+        // assign ids to each tag
         public Task<Tags> GetTagIDAsync(int id)
         {
             return _database.Table<Tags>().Where(i => i.TagsID == id)
