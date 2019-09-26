@@ -8,21 +8,30 @@
              mc:Ignorable="d"
              x:Class="Koinonia.Views.HexPage">
     <ContentPage.Content>
-        <ScrollView Orientation="Both">
-            <Frame HeightRequest="{Binding ScreenHeight}"
-                   WidthRequest="{Binding ScreenWidth}"
-                   Content="{Binding DisplayHexGrid}"
+        
+        <!-- HexView shits the bed if you try to set its HorizontalOption to center in order to resize.
+        Simple workaround: Have a frame as a 'bounding box' inside a larger frame to achieve the seamless look.
+        Inner Frame is bound to the center of the larger one, enabling the hexview to be scaled without modifying
+        the parameters of hexview directly. -->
+        
+        <ScrollView Orientation="Both"
                    >
-                <!--<Frame.GestureRecognizers>
-                    <PinchGestureRecognizer PinchUpdated="PinchGestureRecognizer_PinchUpdated"
-                </Frame.GestureRecognizers>-->
-                <!--<xampane:HexLayout
-                    RowCount="3"
-                    ColumnCount="3"
-                    Orientation="Vertical">
-                    <polygon:PolygonFrame Grid.Row="0" Grid.Column="1" OffsetAngle="90" BackgroundColor="Red"/>
-
-                </xampane:HexLayout>-->
+            <Frame HeightRequest="{Binding OuterFrame}"
+                   WidthRequest="{Binding OuterFrame}"
+                   BackgroundColor="Red"
+                   Padding="0">
+                <Frame HeightRequest="{Binding BoundingHeight}"                   
+                       WidthRequest="{Binding BoundingWidth}"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center"
+                       Padding="0"
+                       Content="{Binding DisplayHexGrid}"
+                       >
+                    <!--<Frame.GestureRecognizers>
+                        <PinchGestureRecognizer PinchUpdated="PinchGestureRecognizer_PinchUpdated"
+                    </Frame.GestureRecognizers>-->
+                    
+                </Frame>
             </Frame>
 
 

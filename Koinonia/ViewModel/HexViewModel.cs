@@ -34,33 +34,48 @@ namespace Koinonia.ViewModel
             }
         }
 
-        private int screenHeight { get; set; }
-        public int ScreenHeight
+        private double boundingHeight { get; set; }
+        public double BoundingHeight
         {
-            get { return screenHeight; }
+            get { return boundingHeight; }
             set
             {
-                if (screenHeight == value)
+                if (boundingHeight == value)
                 {
                     return;
                 }
-                screenHeight = value;
-                OnPropertyChanged(nameof(ScreenHeight));
+                boundingHeight = value;
+                OnPropertyChanged(nameof(BoundingHeight));
             }
         }
 
-        private int screenWidth { get; set; }
-        public int ScreenWidth
+        private double boundingWidth { get; set; }
+        public double BoundingWidth
         {
-            get { return screenWidth; }
+            get { return boundingWidth; }
             set
             {
-                if (screenWidth == value)
+                if (boundingWidth == value)
                 {
                     return;
                 }
-                screenWidth = value;
-                OnPropertyChanged(nameof(ScreenWidth));
+                boundingWidth = value;
+                OnPropertyChanged(nameof(BoundingWidth));
+            }
+        }
+
+        private double outerFrame { get; set; }
+        public double OuterFrame
+        {
+            get { return outerFrame; }
+            set
+            {
+                if (outerFrame == value)
+                {
+                    return;
+                }
+                outerFrame = value;
+                OnPropertyChanged(nameof(OuterFrame));
             }
         }
 
@@ -108,6 +123,10 @@ namespace Koinonia.ViewModel
             }
         }
 
+
+        private double ButtonDiameter;
+        private double BoundingFrameLength;
+        private double ScalingFactor;
         
 
 
@@ -115,29 +134,55 @@ namespace Koinonia.ViewModel
         public HexViewModel(IPageService pageService)
         {
             _pageService = pageService;
-            contactSelected = new Command(ContactSelected);            
-            ScreenHeight = 1000;
-            ScreenWidth = 1000;
+            contactSelected = new Command(ContactSelected);
+            SetScaling();
+            _pageService.DisplayAlert("Dimensions", BoundingHeight + "x" + BoundingWidth, "OK");
             ScreenSetup();
             //CreateAndShowGrid();
+            
+        }
+
+        /*All Visual elements are bound/scaled to the size of a button, which in turn is one third the width of the screen
+          by default. This lends itself to pinch to zoom in the future, as binding this change to the button size will
+          (Hopefully) scale the rest of the UI accordingly.*/
+        private void SetScaling()
+        {
+            ButtonDiameter = App.screenWidth / 3;
+            //Why does Pi always end up in the weirdest spots?
+            BoundingHeight = ButtonDiameter * 6.28;
+            //BoundingHeight = App.screenHeight;
+            BoundingWidth = BoundingHeight;
+            OuterFrame = BoundingHeight * 2;
             
         }
         public async void ScreenSetup()
         {
             Contacts = new CustomObservableCollection<Contact>(await App.Database.GetContactsAsync());
             FilteredContacts = Contacts;
+
+            //Will not save to database, just in ObserableCollection. Purely to test scaling of HexLayout
+            AddDummyContacts(15);
+
             contactRows = (int)Math.Round(Math.Sqrt(Contacts.Count()) + 0.5);
             contactColumns = contactRows;            
             CreateAndShowGrid();
+
+            
         }
 
-      
-
-
-        //Screen dimensions are platform specific. Will need to work on this.
-        public async void GetScreenDimensions()
+        private void AddDummyContacts(int numberOfContacts)
         {
-            
+            for (int i = 0; i < numberOfContacts; i++)
+            {
+                Contact temp = new Contact()
+                {
+                    FirstName = i.ToString(),
+                    LastName = i.ToString(),
+                    PhoneNumber = i.ToString()
+                };
+                Contacts.Add(temp);
+            }
+
         }
 
         public void CreateAndShowGrid()
@@ -146,10 +191,9 @@ namespace Koinonia.ViewModel
             DisplayHexGrid = new HexLayout
             {
                 RowCount = contactRows + 1,
-                ColumnCount = contactColumns + 1,
+                ColumnCount = contactColumns + 1,                
                 Orientation = StackOrientation.Vertical,
-                BackgroundColor = Color.FromHex("#17A7B2"),
-
+                BackgroundColor = Color.FromHex("#17A7B2")     
             };
 
             int contactIndex = 0;
@@ -180,8 +224,8 @@ namespace Koinonia.ViewModel
             {
                 Text = contact.FirstName,
                 BackgroundColor = Color.FromRgb(255, 255, 255),
-                HeightRequest = 150,
-                WidthRequest = 150,
+                HeightRequest = ButtonDiameter,
+                WidthRequest = ButtonDiameter,
                 HorizontalOptions = LayoutOptions.Center,
                 VerticalOptions = LayoutOptions.Center,
                 CornerRadius = 75,

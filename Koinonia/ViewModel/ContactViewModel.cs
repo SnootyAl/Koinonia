@@ -77,6 +77,7 @@ namespace Koinonia.ViewModel
                 
             }
         }
+
         
         private void SearchUserText(string _searchText)
         {
@@ -95,9 +96,11 @@ namespace Koinonia.ViewModel
         {
             TempButtonCommand = new Command(TempButtonPressed);
             ContactSelectedCommand = new Command(ContactSelected);
+            
             _pageService = pageService;
             SetContactCollection();
-              
+            
+
         }
         
         
@@ -109,11 +112,29 @@ namespace Koinonia.ViewModel
         {            
             Contacts = new ObservableCollection<Contact>(await App.Database.GetContactsAsync());
             FilteredContacts = Contacts;
+
+            //For Dummy contacts
+            AddDummyContacts(15);
         }
 
         public void AddContact(Contact newContact)
         {
             Contacts.Add(newContact);
+        }
+
+        private void AddDummyContacts(int numberOfContacts)
+        {
+            for (int i = 0; i < numberOfContacts; i++)
+            {
+                Contact temp = new Contact()
+                {
+                    FirstName = i.ToString(),
+                    LastName = i.ToString(),
+                    PhoneNumber = i.ToString()
+                };
+                Contacts.Add(temp);
+            }
+            
         }
 
         public void UpdateContact(Contact updatedContact)
@@ -125,14 +146,12 @@ namespace Koinonia.ViewModel
 
         async void ContactSelected()
         {
-
             //Kind of ugly way to deal with deselecting SelectedContact to remove selection on list screen
             if(SelectedContact != null)
             {
                 await _pageService.PushAsync(new ContactInfoPage(SelectedContact));
                 SelectedContact = null;
-            }
-            
+            }            
         }
 
         public void OnAppearing()
