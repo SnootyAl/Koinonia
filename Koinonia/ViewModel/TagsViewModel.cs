@@ -44,17 +44,17 @@ namespace Koinonia.ViewModel
                     if (Tagname.TagNames.Length > 0)
                     {
                         // display alert with tag name and 
-                        await _pageService.DisplayAlert(Tagname.TagNames, "This tag will be created", "Okay");
+                        await _pageService.DisplayAlert(Tagname.TagNames, "This tag will be created","Cancel", "Okay");
                         await App.Database.SavetagAsync(Tagname);
                         TagNameCollection.Add(Tagname);
-                        // test to see what is being printed
+                        // test to see what is being printed (remove when done)
                         Console.WriteLine(Tagname);
                         Console.WriteLine(Tagname.TagNames);
                         
                     }
                     else
                     {
-                        await _pageService.DisplayAlert("error", "Null value", "try again");
+                        await _pageService.DisplayAlert("Error", "Tag Name was not entered", "try again");
                     }
 
                 });
