@@ -59,7 +59,7 @@ namespace Koinonia.Data
         {
             return _database.Table<Profile>()
 
-                            .Where(i => i.ContactID == id)
+                            /*.Where(i => i.ContactID == id)*/
                             .FirstOrDefaultAsync();
         }
 

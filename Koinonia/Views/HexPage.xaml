@@ -15,16 +15,17 @@
         the parameters of hexview directly. -->
         
         <ScrollView Orientation="Both"
-                   >
+                    x:Name="scrollView">
             <Frame HeightRequest="{Binding OuterFrame}"
                    WidthRequest="{Binding OuterFrame}"
-                   BackgroundColor="Red"
-                   Padding="0">
+                   BackgroundColor="#17A7B2"
+                   Padding="0"                   >
                 <Frame HeightRequest="{Binding BoundingHeight}"                   
                        WidthRequest="{Binding BoundingWidth}"
                        VerticalOptions="Center"
                        HorizontalOptions="Center"
                        Padding="0"
+                       HasShadow="False"                       
                        Content="{Binding DisplayHexGrid}"
                        >
                     <!--<Frame.GestureRecognizers>
