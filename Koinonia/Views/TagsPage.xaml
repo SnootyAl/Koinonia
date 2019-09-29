@@ -16,7 +16,8 @@
             <ListView x:Name="list" ItemsSource="{Binding TagNameCollection}" 
                       HorizontalOptions="CenterAndExpand" 
                       VerticalOptions="FillAndExpand"
-                      IsGroupingEnabled="False">
+                      IsGroupingEnabled="False"
+                      SeparatorColor="#17A7B2">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
