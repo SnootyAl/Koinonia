@@ -4,17 +4,11 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="Koinonia.Views.TagsPage">
+             x:Class="Koinonia.Views.TagsPage"
+             Title="Tags">
+             
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Tags"
-                   HorizontalOptions="Center"
-                   VerticalOptions="Center"
-                   FontSize="24"
-                   Margin="0, 45, 0, 0"
-                   FontFamily="Roboto" 
-                   FontAttributes="Bold"/>
-
             <Entry x:Name="Tagnames" Placeholder="Tag Name" Text="{Binding Tagname.TagNames}"
                 
                 />
@@ -24,24 +18,34 @@
                       VerticalOptions="FillAndExpand"
                       IsGroupingEnabled="False">
                 <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <StackLayout Orientation="Horizontal">
-                            <StackLayout HorizontalOptions="StartAndExpand" Spacing="0" Padding="2">
-                                    <Label Text="{Binding TagNames}" />
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal">
+                                <StackLayout HorizontalOptions="StartAndExpand" Spacing="0" Padding="2">
+                                    <Label Text="{Binding TagNames}" 
+                                           FontSize="18"
+                                           FontFamily="Roboto Regular"
+                                           />
                                 </StackLayout>
                             </StackLayout>
-                    </ViewCell>
-                </DataTemplate>
+                        </ViewCell>
+                    </DataTemplate>
                 </ListView.ItemTemplate>
-
             </ListView>
-
-
 
             <Button x:Name="CreateTag" Text="Create New Tag" Command="{Binding ChangePage}"
                     HorizontalOptions="CenterAndExpand"
-                    VerticalOptions="CenterAndExpand">
+                    VerticalOptions="CenterAndExpand"
+                    CornerRadius="45"
+                    BorderColor="#17A7B2"
+                    BorderWidth="3"
+                    BackgroundColor="#FFFFFF"
+                    TextColor="#17A7B2"
+                    Font="Roboto"
+                    FontSize="24"
+                    FontAttributes="Bold"
+                    Margin="0, 0, 0, 5"
+                    >
                 
             </Button>
 
