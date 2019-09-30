@@ -5,6 +5,9 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using SQLite;
 
+/// <summary>
+/// Property Class similar to the Contact Class. Has various fields to be entered by the user.
+/// </summary>
 namespace Koinonia.Models
 {
     public class Profile : INotifyPropertyChanged

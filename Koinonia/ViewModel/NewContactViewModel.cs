@@ -6,6 +6,9 @@ using Xamarin.Forms;
 using System;
 using MvvmHelpers;
 
+/// <summary>
+/// Form to add a new contact with the default required fields. Adds newly created contact to the Contact database.
+/// </summary>
 namespace Koinonia.ViewModel
 {
     class NewContactViewModel : BaseViewModel
@@ -17,8 +20,6 @@ namespace Koinonia.ViewModel
         public ICommand SaveCommand { get; private set; }
         public ContactViewModel _parent;
 
-        public string errorLabel = "Hello";
-
         public NewContactViewModel(IPageService pageService, ContactViewModel parent)
         {
             _pageService = pageService;
@@ -27,7 +28,8 @@ namespace Koinonia.ViewModel
             {
                 FirstName = "",
                 LastName = "",
-                PhoneNumber = ""
+                PhoneNumber = "",
+                Notes = ""
             };
             CancelCommand = new Command(CancelPressed);
             SaveCommand = new Command(SavePressed);
@@ -41,11 +43,11 @@ namespace Koinonia.ViewModel
         private async void SavePressed()
         {
             
-            Console.WriteLine("SavePressed");
+           /*Kinda poorly implemented check for all mandatory fields present. At the moment we have no real
+           minimum requirements for a contact, this could change in the future and these checks would change accordingly*/
             if ((newContact.FirstName.Length > 0) && (newContact.LastName.Length > 0) &&
                 (newContact.PhoneNumber.Length > 0))
             {
-                await _pageService.DisplayAlert(newContact.FirstName, newContact.LastName, "Cancel", "OK");
                 await App.Database.SaveContactAsync(newContact);
                 Console.WriteLine(newContact);
                 _parent.AddContact(newContact);
@@ -53,6 +55,7 @@ namespace Koinonia.ViewModel
             }
             else
             {
+                //Gotta have fun with people I guess
                 await _pageService.DisplayAlert("Error", "Please enter all fields", "My Bad!");
             }
         }

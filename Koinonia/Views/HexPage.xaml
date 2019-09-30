@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:xampane="clr-namespace:XamPane;assembly=XamPane"
+             xmlns:polygon="clr-namespace:Xamarin.Forms.PolygonFrame;assembly=Xamarin.Forms.PolygonFrame"
+             mc:Ignorable="d"
+             x:Class="Koinonia.Views.HexPage">
+    <ContentPage.Content>
+        
+        <!-- HexView shits the bed if you try to set its HorizontalOption to center in order to resize.
+        Simple workaround: Have a frame as a 'bounding box' inside a larger frame to achieve the seamless look.
+        Inner Frame is bound to the center of the larger one, enabling the hexview to be scaled without modifying
+        the parameters of hexview directly. -->
+        
+        <ScrollView Orientation="Both">
+            <Frame HeightRequest="{Binding OuterFrame}"
+                   WidthRequest="{Binding OuterFrame}"
+                   BackgroundColor="#17A7B2"
+                   Padding="0"                   >
+                <Frame HeightRequest="{Binding BoundingHeight}"                   
+                       WidthRequest="{Binding BoundingWidth}"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center"
+                       Padding="0"
+                       HasShadow="False"                       
+                       Content="{Binding DisplayHexGrid}"
+                       >
+                    <!--<Frame.GestureRecognizers>
+                        <PinchGestureRecognizer PinchUpdated="PinchGestureRecognizer_PinchUpdated"
+                    </Frame.GestureRecognizers>-->
+                    
+                </Frame>
+            </Frame>
+        </ScrollView>
+    </ContentPage.Content>
+   
+</ContentPage>

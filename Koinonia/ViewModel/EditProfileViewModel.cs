@@ -1,45 +1,54 @@
 ﻿using Koinonia.Models;
+using MvvmHelpers;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
 
+/// <summary>
+/// Edit profile page. May become obsolete: Could implement something similar to ContactInfoViewModel where the fields become
+/// editable without the need for navigation to a separate page.
+/// </summary>
 namespace Koinonia.ViewModel
 {
-    class EditProfileViewModel
+    class EditProfileViewModel : BaseViewModel
     {
-        public Profile newProfile { get; set; }
+        public Profile _mainProfile { get; set; }
+        public Profile editedProfile { get; set; }
+        public ProfileViewModel _parent;
         private readonly IPageService _pageService;        
         public ICommand CancelCommand { get; private set; }
         public ICommand SaveCommand { get; private set; }
 
-        public EditProfileViewModel(IPageService pageService)
+        public EditProfileViewModel(IPageService pageService, ProfileViewModel parent)
         {
+            _parent = parent;
             _pageService = pageService;
-            CancelCommand = new Command(Cancel);
-            SaveCommand = new Command(Save);
-            newProfile = new Profile()
+            _mainProfile = _parent.Profile;
+            editedProfile = new Profile
             {
-                FirstName = "TempContact",
-                LastName = "HardCoded",
-                PhoneNumber = "12345",
-                Email = "Helloworld@email.com"                
+                FirstName = _mainProfile.FirstName,
+                LastName = _mainProfile.LastName,
+                Email = _mainProfile.Email,
+                PhoneNumber = _mainProfile.PhoneNumber
             };
+            
+            SaveCommand = new Command(Save);
+            
         }
 
-        private async void Cancel()
-        {
-            await _pageService.PopAsync();
-        }
 
         private async void Save()
         {
-
-            //Implement a check for all fields valid
-            if (await _pageService.DisplayAlert("Confirm", "Save changes?", "Save", "Cancel"))
+            
+            if (await _pageService.DisplayAlert("Confirm", "Save changes?", "Cancel", "OK"))
             {
-                //Implement Database saving                
+                //As Josh mentioned, two sources of truth. Works for now, but scalability is an issue
+                //Profile exists both as an Object in ProfileViewModel and a database entry, set independently.
+                _mainProfile = editedProfile;
+                await App.Database.UpdateProfileAsync(_mainProfile);
+                _parent.UpdateProfile(_mainProfile);
                 await _pageService.PopAsync();
             }
         }

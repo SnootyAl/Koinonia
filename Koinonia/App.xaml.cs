@@ -11,9 +11,8 @@ namespace Koinonia
     public partial class App : Application
     {
 
-
+        public static int screenHeight, screenWidth;
         static Database _Database;
-
         public static Database Database
 
         {

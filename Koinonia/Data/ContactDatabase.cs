@@ -60,7 +60,7 @@ namespace Koinonia.Data
         {
             return _database.Table<Profile>()
 
-                            .Where(i => i.ContactID == id)
+                            /*.Where(i => i.ContactID == id)*/
                             .FirstOrDefaultAsync();
         }
 
@@ -72,6 +72,11 @@ namespace Koinonia.Data
         public Task<int> SaveProfileAsync(Profile profile)
         {
             return _database.InsertAsync(profile);
+        }
+
+        public Task<int> UpdateProfileAsync(Profile profile)
+        {
+            return _database.UpdateAsync(profile);
         }
 
         //For testing purposes. May also be used for 'Delete profile' functionality?
