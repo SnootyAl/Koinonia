@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
 
+/// <summary>
+/// Contact Class containing different possible fields. AutoIncrementing ContactID for use with Database.
+/// </summary>
 namespace Koinonia.Models
 {
     public class Contact : INotifyPropertyChanged

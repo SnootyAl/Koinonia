@@ -6,6 +6,10 @@ using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
 
+/// <summary>
+/// Edit profile page. May become obsolete: Could implement something similar to ContactInfoViewModel where the fields become
+/// editable without the need for navigation to a separate page.
+/// </summary>
 namespace Koinonia.ViewModel
 {
     class EditProfileViewModel : BaseViewModel
@@ -29,24 +33,14 @@ namespace Koinonia.ViewModel
                 Email = _mainProfile.Email,
                 PhoneNumber = _mainProfile.PhoneNumber
             };
-            //CancelCommand = new Command(Cancel);
+            
             SaveCommand = new Command(Save);
-            //GetProfileDetails();
+            
         }
 
-        /*private async void GetProfileDetails()
-        {
-            newProfile = await App.Database.GetProfileAsync(0);
-        }*/
-
-        /*private async void Cancel()
-        {
-            await _pageService.PopAsync();
-        }*/
 
         private async void Save()
         {
-
             
             if (await _pageService.DisplayAlert("Confirm", "Save changes?", "Cancel", "OK"))
             {

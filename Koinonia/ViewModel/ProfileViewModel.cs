@@ -6,8 +6,6 @@ using Xamarin.Forms;
 using Xamarin.Essentials;
 using Koinonia.Views;
 
-
-
 /// <summary>
 /// Handles displaying the profile information. Fairly barebones, handles navigation to the edit profile page.
 /// </summary>

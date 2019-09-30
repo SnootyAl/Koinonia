@@ -6,6 +6,9 @@ using Xamarin.Forms;
 using System;
 using MvvmHelpers;
 
+/// <summary>
+/// Form to add a new contact with the default required fields. Adds newly created contact to the Contact database.
+/// </summary>
 namespace Koinonia.ViewModel
 {
     class NewContactViewModel : BaseViewModel
@@ -40,7 +43,8 @@ namespace Koinonia.ViewModel
         private async void SavePressed()
         {
             
-           
+           /*Kinda poorly implemented check for all mandatory fields present. At the moment we have no real
+           minimum requirements for a contact, this could change in the future and these checks would change accordingly*/
             if ((newContact.FirstName.Length > 0) && (newContact.LastName.Length > 0) &&
                 (newContact.PhoneNumber.Length > 0))
             {
@@ -50,6 +54,7 @@ namespace Koinonia.ViewModel
             }
             else
             {
+                //Gotta have fun with people I guess
                 await _pageService.DisplayAlert("Error", "Please enter all fields", "My Bad!");
             }
         }

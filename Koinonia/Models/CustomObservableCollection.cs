@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 
+/// <summary>
+/// Custom ObservableCollection allows OnPropertyChanged to fire if an item inside the collections property changes
+/// without the Collection itself changing (Not standard functionality in C#)
+/// </summary>
 namespace Koinonia.Models
 { 
     public class CustomObservableCollection<T> : ObservableCollection<T>
