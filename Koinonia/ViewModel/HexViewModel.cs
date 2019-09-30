@@ -156,7 +156,7 @@ namespace Koinonia.ViewModel
             _pageService = pageService;
             contactSelected = new Command(ContactSelected);
             profileSelected = new Command(ProfileSelected);            
-            _pageService.DisplayAlert("Dimensions", BoundingHeight + "x" + BoundingWidth, "OK");
+            
             ScreenSetup();           
 
         }
@@ -170,8 +170,11 @@ namespace Koinonia.ViewModel
             //Sets initial values for Profile and Contacts list. FilteredContacts is designed for extensibility,
             //and is not used in this MVP.
             UserProfile = await App.Database.GetProfileAsync(0);
-            Contacts = new CustomObservableCollection<Contact>(await App.Database.GetContactsAsync());            
+            Contacts = new CustomObservableCollection<Contact>(await App.Database.GetContactsAsync());
             //FilteredContacts = Contacts;
+
+            await _pageService.DisplayAlert("Developers Note", "Please scroll down and right - couldnt find an" +
+                " elegant way to center this programatically for MVP", "OK");
 
 
 
@@ -187,9 +190,7 @@ namespace Koinonia.ViewModel
             SetScaling();
 
 
-            //Finds number of rows and columns needed to fit all contacts, rounded up for safety
-            contactRows = (int)Math.Round(Math.Sqrt(Contacts.Count()) + 0.5);
-            contactColumns = contactRows;            
+                       
             CreateAndShowGrid();
             
 
@@ -201,10 +202,31 @@ namespace Koinonia.ViewModel
         //WIll probably need a more algorithmic way to set this, workable for MVP.
         private void SetScaling()
         {
+
+            //Finds number of rows and columns needed to fit all contacts, rounded up for safety
+            
+            
             ButtonDiameter = App.screenWidth / 3;
-            BoundingHeight = (ButtonDiameter * Math.Sqrt(Contacts.Count())) * 1.5;            
-            BoundingWidth = BoundingHeight * 1.3;
-            OuterFrame = BoundingHeight * 2;
+
+            if (Contacts.Count() < 5)
+            {
+                contactRows = 3;
+                BoundingHeight = ButtonDiameter * 4;
+                BoundingWidth = BoundingHeight * 1.3;
+                OuterFrame = BoundingHeight * 2;
+            }
+            else
+            {
+                contactRows = (int)Math.Round(Math.Sqrt(Contacts.Count()) + 0.5);
+                BoundingHeight = (ButtonDiameter * Math.Sqrt(Contacts.Count())) * 1.5;
+                BoundingWidth = BoundingHeight * 1.3;
+                OuterFrame = BoundingHeight * 2;
+            }
+
+            contactColumns = contactRows;
+
+
+
         }
 
 
@@ -275,7 +297,7 @@ namespace Koinonia.ViewModel
                     {
 
                         //Check for end of contact list and set flag if ended.
-                        if (contactIndex == numberOfContacts - 1)
+                        if (contactIndex == numberOfContacts)
                         {
                             breakLoops = true;
                             break;
