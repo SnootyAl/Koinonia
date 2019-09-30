@@ -47,7 +47,7 @@ namespace Koinonia.ViewModel
 
                 //Sets flag to skip this page in future.
                 Preferences.Set("ProfileExists", true);
-                await _pageService.PushAsync(new ContactList());
+                await _pageService.PushAsync(new ContactPage());
             }
             else
             {

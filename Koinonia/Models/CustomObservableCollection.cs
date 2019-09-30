@@ -6,6 +6,8 @@ using System.Collections.Specialized;
 /// <summary>
 /// Custom ObservableCollection allows OnPropertyChanged to fire if an item inside the collections property changes
 /// without the Collection itself changing (Not standard functionality in C#)
+/// 
+/// Found online, implemented by Alex
 /// </summary>
 namespace Koinonia.Models
 { 

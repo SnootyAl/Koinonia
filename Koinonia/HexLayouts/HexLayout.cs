@@ -6,6 +6,8 @@ namespace Koinonia.HexLayouts
     /// <summary>
     /// A panel that arranges the elements in a honeycomb pattern.
     /// Based on https://github.com/AlexanderSharykin/HexGrid. Created by Alexander Sharykin.
+    /// 
+    /// Implemented by Alex
     /// </summary>
     public class HexLayout : Layout<View>
     {

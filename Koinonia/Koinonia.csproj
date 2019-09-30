@@ -31,7 +31,7 @@
     <EmbeddedResource Update="Views\ContactInfoPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\ContactList.xaml">
+    <EmbeddedResource Update="Views\ContactPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\CreateTagsPage.xaml">
@@ -75,6 +75,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\ContactPage.xaml.cs">
+      <DependentUpon>ContactPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\HexPage.xaml.cs">
       <DependentUpon>HexPage.xaml</DependentUpon>
     </Compile>

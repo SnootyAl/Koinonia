@@ -5,7 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:behaviours="clr-namespace:EventToCommandBehavior"
              mc:Ignorable="d"
-             x:Class="Koinonia.Views.ContactList"
+             x:Class="Koinonia.Views.ContactPage"
              NavigationPage.HasBackButton="False"
              Title="Contacts">
     <StackLayout>
@@ -46,7 +46,7 @@
                 <behaviours:EventToCommandBehavior EventName="ItemSelected" Command="{Binding ContactSelectedCommand}"/>
             </ListView.Behaviors>
         </ListView>
-        <Button Text="Temp Options"
+        <Button Text="Options"
                 Margin="25, 1, 25, 50"
                 Command="{Binding TempButtonCommand}"
         />

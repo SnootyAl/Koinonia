@@ -7,10 +7,10 @@ using Xamarin.Forms.Xaml;
 namespace Koinonia.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ContactList : ContentPage
+    public partial class ContactPage : ContentPage
     {
         protected ContactViewModel vm;
-        public ContactList()
+        public ContactPage()
         {
             InitializeComponent();
             BindingContext = vm = new ContactViewModel(new PageService());

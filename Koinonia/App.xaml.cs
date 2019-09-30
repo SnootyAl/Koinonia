@@ -32,7 +32,7 @@ namespace Koinonia
             InitializeComponent();
             if(Preferences.Get("ProfileExists", false))
             {
-                MainPage = new NavigationPage(new ContactList());
+                MainPage = new NavigationPage(new ContactPage());
             }
             else
             {
