@@ -49,7 +49,6 @@ namespace Koinonia.ViewModel
                 (newContact.PhoneNumber.Length > 0))
             {
                 await App.Database.SaveContactAsync(newContact);
-                Console.WriteLine(newContact);
                 _parent.AddContact(newContact);
                 await _pageService.PopAsync();
             }
