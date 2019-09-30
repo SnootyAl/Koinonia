@@ -35,22 +35,19 @@ namespace Koinonia.ViewModel
         }
 
 
-        // Navigation for the tag creation page using create tag button page
+        // Save the new tag into the database and added it to the observable collection 
 
-        public Command ChangePage {
+        public Command CreateTags {
             get {
                 return new Command(async () =>
                 {
                     if (Tagname.TagNames.Length > 0)
                     {
-                        // display alert with tag name and 
+                        // display alert with tag name and conformation message
                         await _pageService.DisplayAlert(Tagname.TagNames, "This tag will be created","Cancel", "Okay");
                         await App.Database.SavetagAsync(Tagname);
                         TagNameCollection.Add(Tagname);
-                        // test to see what is being printed (remove when done)
-                        Console.WriteLine(Tagname);
-                        Console.WriteLine(Tagname.TagNames);
-                        
+                                                
                     }
                     else
                     {
@@ -61,7 +58,7 @@ namespace Koinonia.ViewModel
             }
         }
 
-       
+       // create obserable collection for the tags
         private ObservableCollection<Tags> _tags { get; set; }
         public ObservableCollection<Tags> TagNameCollection {
             get { return _tags; }
@@ -75,6 +72,7 @@ namespace Koinonia.ViewModel
             }
         }
 
+        // get the tags from the database
         public async void showtags()
         {
             TagNameCollection = new ObservableCollection<Tags>(await App.Database.getTagsAsync());
