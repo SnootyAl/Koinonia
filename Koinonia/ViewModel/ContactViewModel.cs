@@ -111,10 +111,16 @@ namespace Koinonia.ViewModel
         public async void SetContactCollection()
         {            
             Contacts = new ObservableCollection<Contact>(await App.Database.GetContactsAsync());
+
+            //FilteredContacts for search function
             FilteredContacts = Contacts;
 
-            //For Dummy contacts
-            AddDummyContacts(15);
+            /*Uncomment to add dummy contact buttons to see how the grid scales. Note the buttons are not
+           clickable by design as they only exist locally on this page and do not persist (and thus dont
+           play nicely with the ContactSelected function) Will also dissapear if you go into an info page and
+           back out. Cannot stress enough that this is essentially a demonstration thing*/
+
+            AddDummyContacts(20);
         }
 
         public void AddContact(Contact newContact)
@@ -122,6 +128,7 @@ namespace Koinonia.ViewModel
             Contacts.Add(newContact);
         }
 
+        //Dummy Contacts to showcase the listView. Dummy Contacts will not be clickable by design.
         private void AddDummyContacts(int numberOfContacts)
         {
             for (int i = 0; i < numberOfContacts; i++)

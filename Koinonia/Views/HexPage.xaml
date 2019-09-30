@@ -14,8 +14,7 @@
         Inner Frame is bound to the center of the larger one, enabling the hexview to be scaled without modifying
         the parameters of hexview directly. -->
         
-        <ScrollView Orientation="Both"
-                    x:Name="scrollView">
+        <ScrollView Orientation="Both">
             <Frame HeightRequest="{Binding OuterFrame}"
                    WidthRequest="{Binding OuterFrame}"
                    BackgroundColor="#17A7B2"
@@ -34,9 +33,6 @@
                     
                 </Frame>
             </Frame>
-
-
-
         </ScrollView>
     </ContentPage.Content>
    

@@ -3,8 +3,6 @@ using Koinonia.Models;
 using Koinonia.Views;
 using MvvmHelpers;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
@@ -141,11 +139,10 @@ namespace Koinonia.ViewModel
         }
 
 
-        private double ButtonDiameter;
-        private double BoundingFrameLength;
+        private double ButtonDiameter;        
         private double ScalingFactor;
 
-        public ArrayList coords;
+        
         
 
 
@@ -156,9 +153,7 @@ namespace Koinonia.ViewModel
             contactSelected = new Command(ContactSelected);
             profileSelected = new Command(ProfileSelected);            
             _pageService.DisplayAlert("Dimensions", BoundingHeight + "x" + BoundingWidth, "OK");
-            ScreenSetup();
-            
-            //CreateAndShowGrid();
+            ScreenSetup();           
 
         }
 
@@ -168,35 +163,48 @@ namespace Koinonia.ViewModel
         
         public async void ScreenSetup()
         {
+            //Sets initial values for Profile and Contacts list. FilteredContacts is designed for extensibility,
+            //and is not used in this MVP.
             UserProfile = await App.Database.GetProfileAsync(0);
             Contacts = new CustomObservableCollection<Contact>(await App.Database.GetContactsAsync());            
-            FilteredContacts = Contacts;
+            //FilteredContacts = Contacts;
 
-            //Will not save to database, just in ObserableCollection. Purely to test scaling of HexLayout
-            AddDummyContacts(50);
 
+
+            /*Uncomment to add dummy contact buttons to see how the grid scales. Note the buttons are not
+            clickable by design as they only exist locally on this page and do not persist (and thus dont
+            play nicely with the ContactSelected function) Will also dissapear if you go into an info page and
+            back out. Cannot stress enough that this is essentially a demonstration thing*/
+
+            //AddDummyContacts(20);
+
+
+            //Sets up the display using predefined settings.
             SetScaling();
 
+
+            //Finds number of rows and columns needed to fit all contacts, rounded up for safety
             contactRows = (int)Math.Round(Math.Sqrt(Contacts.Count()) + 0.5);
             contactColumns = contactRows;            
-            CreateAndShowGrid();           
+            CreateAndShowGrid();
+            
+
         }
 
 
-        //Tweak the visual settings for the button size and layout. Could use optimisation or better algorithmic setting.
+        //Tweaks the visual settings for the button size and layout. Could use optimisation or better algorithmic setting.
         //Current settings work well for <20ish contacts. The more you have, the wider the gap between contacts.
         //WIll probably need a more algorithmic way to set this, workable for MVP.
         private void SetScaling()
         {
             ButtonDiameter = App.screenWidth / 3;
-            BoundingHeight = (ButtonDiameter * Math.Sqrt(Contacts.Count())) * 1.5;
-            //BoundingHeight = App.screenHeight;
-            BoundingWidth = BoundingHeight;
+            BoundingHeight = (ButtonDiameter * Math.Sqrt(Contacts.Count())) * 1.5;            
+            BoundingWidth = BoundingHeight * 1.3;
             OuterFrame = BoundingHeight * 2;
         }
 
 
-
+        //Dummy Contacts purely to showcase the hexGrid. Dummy Contacts will not be clickable by design.
         private void AddDummyContacts(int numberOfContacts)
         {
             for (int i = 0; i < numberOfContacts; i++)
@@ -212,6 +220,8 @@ namespace Koinonia.ViewModel
 
         }
 
+
+        //Creates grid, populates profile and contacts, and updates View. This is the big one
         public void CreateAndShowGrid()
         {
             //How many contact buttons to place per 'hop' (leg of spiral)
@@ -314,44 +324,12 @@ namespace Koinonia.ViewModel
                 
                 hopLength++;
 
-            }
-
-
-            /*int contactIndex = 0;
-            int hex_row = 0;
-            int hex_column = 0;
-            Button profileButton = CreateProfileButton(UserProfile);
-            HexLayout.SetRow(profileButton, hex_row);
-            HexLayout.SetColumn(profileButton, hex_column);
-            DisplayHexGrid.Children.Add(profileButton);
-            hex_row++;*/
-
-
-            /*foreach (Contact contact in Contacts)
-            {
-                Button contactButton = CreateContactButton(contact);
-                HexLayout.SetRow(contactButton, hex_row);
-                HexLayout.SetColumn(contactButton, hex_column);
-                DisplayHexGrid.Children.Add(contactButton);
-                if (hex_column == contactColumns - 1)
-                {
-                    hex_column = 0;
-                    hex_row++;
-                }
-                else
-                {
-                    hex_column++;
-                }
-            }*/
+            }           
         }
 
-        private void ClockwiseSpiral()
-        {
-            
-        }
 
         
-
+        //Helper function, creates button with correct parameters for a given Instance of a contact
         private Button CreateContactButton(Contact contact)
         {
             var tempButton = new HexButton
@@ -370,6 +348,7 @@ namespace Koinonia.ViewModel
             return tempButton;
         }
 
+        //Helper function, creates button with correct parameters for a given Profile
         private Button CreateProfileButton(Profile profile)
         {
             var tempButton = new HexButton
@@ -388,29 +367,42 @@ namespace Koinonia.ViewModel
             return tempButton;
         }
 
+
+        //Handles contact button selection and navigation to ContactInfoPage
         public async void ContactSelected(object param)
         {
             //Index becomes ContactID of requested Contact
             int index = Convert.ToInt32(param);
 
-            //Find associated contact object in Contacts ObservableCollection
-            SelectedContact = Contacts.Where(c => c.ContactID == index).Single<Contact>();
+            //Try/Catch to deal with DummyContacts. These are just intended to show grid working, and do not
+            //have a contactID (Would crash here otherwise)
+            try
+            {
+                //Find associated contact object in Contacts ObservableCollection
+                SelectedContact = Contacts.Where(c => c.ContactID == index).Single<Contact>();
 
-            //Set next page to push to
+                //Push new page with this returned contact as the parameter
+                await _pageService.PushAsync(new ContactInfoPage(SelectedContact));
+            }
+            catch (Exception e)
+            {
+
+            };
+
             
-
-            //MessagingCenter.Subscribe<ContactInfoViewModel, Contact>(this, "ContactUpdated", UpdateContact);
-
-            //Push new page with this returned contact as the parameter
-            await _pageService.PushAsync(new ContactInfoPage(SelectedContact));
 
             //await _pageService.DisplayAlert("Hello", index.ToString(), "Ok") ;
         }       
+
+
+        //Handles navigation when profile is selected. Pretty self explanatory, really.
         public async void ProfileSelected()
         {
             await _pageService.PushAsync(new ProfilePage());
         }
 
+
+        //Two update methods to fire OnAppearing to update view. Pretty resource intensive but adheres to MVVM.
         private async void UpdateContacts()
         {
             Contacts = new ObservableCollection<Contact>(await App.Database.GetContactsAsync());
