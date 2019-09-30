@@ -4,6 +4,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
+/// <summary>
+/// Breaks out the Navigation and display aspects into their own class for further separation of concerns.
+/// </summary>
 namespace Koinonia.ViewModel
 {
     public interface IPageService

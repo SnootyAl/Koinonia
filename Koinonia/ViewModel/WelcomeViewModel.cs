@@ -5,6 +5,9 @@ using System.Windows.Input;
 using Xamarin.Forms;
 using Koinonia.Views;
 
+/// <summary>
+/// Landing page for the app when it is opened the first time. Skipped once profile exists.
+/// </summary>
 namespace Koinonia.ViewModel
 {
     class WelcomeViewModel

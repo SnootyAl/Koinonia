@@ -4,7 +4,9 @@ using System.Text;
 using MvvmHelpers;
 using Xamarin.Forms;
 using System.Windows.Input;
-
+/// <summary>
+/// @Calums page
+/// </summary>
 namespace Koinonia.ViewModel
 {
     class TagsViewModel : BaseViewModel

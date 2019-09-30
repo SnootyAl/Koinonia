@@ -4,6 +4,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
+/// <summary>
+/// Works in tandem with IPageService.cs to remove navigation and alert displays in a more MVVM pattern.
+/// </summary>
 namespace Koinonia.ViewModel
 {
     public class PageService : IPageService

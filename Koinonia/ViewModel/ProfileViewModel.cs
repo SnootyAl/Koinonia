@@ -6,17 +6,17 @@ using Xamarin.Forms;
 using Xamarin.Essentials;
 using Koinonia.Views;
 
+/// <summary>
+/// Handles displaying the profile information. Fairly barebones, handles navigation to the edit profile page.
+/// </summary>
 namespace Koinonia.ViewModel
 {
     public class ProfileViewModel : BaseViewModel
     {
         public ICommand DeleteCommand { get; private set; }
         public ICommand EditCommand { get; private set; }
-        //public ICommand AppearingCommand { get; private set; }
-        private readonly IPageService _pageService;
-
-
-        //Super Jank but it works so sue me:
+       
+        private readonly IPageService _pageService;        
         private Profile _profile { get; set; }
         public Profile Profile
         {
@@ -35,8 +35,7 @@ namespace Koinonia.ViewModel
         public ProfileViewModel(IPageService pageService)
         {
             DeleteCommand = new Command(Delete);
-            EditCommand = new Command(Edit);
-            //AppearingCommand = new Command(Appearing);
+            EditCommand = new Command(Edit);            
             _pageService = pageService;
             SetProfile();
         }
@@ -46,7 +45,9 @@ namespace Koinonia.ViewModel
             Profile = await App.Database.GetProfileAsync(0);
         }
 
-
+        
+        //Delete Profile is not really intended to be a feature of the app, in its current state it exists
+        //to allow the tester to return to the first two screens as these are normally skipped if a profile exists
         private async void Delete()
         {
             try

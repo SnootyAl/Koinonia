@@ -26,6 +26,10 @@ namespace Koinonia.iOS
 
             Forms.SetFlags("CollectionView_Experimental");
             global::Xamarin.Forms.Forms.Init();
+
+            //Found at https://www.c-sharpcorner.com/article/absolute-dimensions-of-app-screen-xamarin-forms/
+            App.screenWidth = (int)UIScreen.MainScreen.Bounds.Width;
+            App.screenHeight = (int)UIScreen.MainScreen.Bounds.Height;
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);

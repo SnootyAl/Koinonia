@@ -6,6 +6,10 @@ using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
 
+/// <summary>
+/// Shown when a contact is selected in the app to display relevant info about the contact. Also allows
+/// editing of the contact, and saves back to the database.
+/// </summary>
 namespace Koinonia.ViewModel
 {
     public class ContactInfoViewModel : BaseViewModel
@@ -72,7 +76,7 @@ namespace Koinonia.ViewModel
 
 
         /*Save and edit functionality with if statement. Definitely want to break this out into separate
-        functions at some point soon.*/
+        functions at some point.*/
          private async void Edit()
         {
             EditDisabled = (!EditDisabled);
