@@ -9,6 +9,10 @@ using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
 
+/// <summary>
+/// One of the big ones. Handles all things HexView, from populating and creating custom buttons for each contact,
+/// to handling those buttons pressed, and figuring out how large the hex grid needs to be and displaying it.
+/// </summary>
 namespace Koinonia.ViewModel
 {
     public class HexViewModel : BaseViewModel
