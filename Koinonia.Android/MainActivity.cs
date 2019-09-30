@@ -10,13 +10,14 @@ using Xamarin.Forms;
 
 namespace Koinonia.Droid
 {
-    [Activity(Label = "Koinonia", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    [Activity(Theme = "@style/MainTheme", ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
 
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
+
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 
@@ -26,7 +27,23 @@ namespace Koinonia.Droid
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+
+            //Added from https://www.c-sharpcorner.com/article/absolute-dimensions-of-app-screen-xamarin-forms/ for Android Dimensions
+            GetDimensions();
             LoadApplication(new App());
+        }
+
+        private void GetDimensions()
+        {
+            var pixels = Resources.DisplayMetrics.WidthPixels;
+            var scale = Resources.DisplayMetrics.Density;
+            var dps = (double)((pixels - 0.5f) / scale);
+            var ScreenWidth = (int)dps;
+            App.screenWidth = ScreenWidth;
+            pixels = Resources.DisplayMetrics.HeightPixels;
+            dps = (double)((pixels - 0.5f) / scale);
+            var ScreenHeight = (int)dps;
+            App.screenHeight = ScreenHeight;
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {

@@ -1,6 +1,8 @@
 ﻿using MvvmHelpers;
 
-
+/// <summary>
+/// @Roshens page
+/// </summary>
 namespace Koinonia.ViewModel
 {
     class SettingsViewModel : BaseViewModel

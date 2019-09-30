@@ -6,10 +6,28 @@
              mc:Ignorable="d"
              x:Class="Koinonia.Views.ContactInfoPage">
     <ContentPage.Content>
+        
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+
+            <Label Text="Edit Contact"
+                   Style="{StaticResource TitleTxt}"
+                   HorizontalOptions="CenterAndExpand"
+                   ></Label>
+            <StackLayout Margin="10, 10, 10, 0">
+                <Entry Placeholder="First" Text="{Binding SelectedContact.FirstName}" ReturnType="Next" IsReadOnly="{Binding EditDisabled}"/>
+                <Entry Placeholder="Last" Text="{Binding SelectedContact.LastName}" IsReadOnly="{Binding EditDisabled}"/>
+                <Entry Placeholder="Phone" Text="{Binding SelectedContact.PhoneNumber}" IsReadOnly="{Binding EditDisabled}" Keyboard="Numeric"/>
+                <Entry Placeholder="Email" Text="{Binding SelectedContact.Email}" IsReadOnly="{Binding EditDisabled}"/>
+                <Entry Placeholder="Notes" Text="{Binding SelectedContact.Notes}" IsReadOnly="{Binding EditDisabled}"/>
+            </StackLayout>
+
+
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                <!--Button Text="Cancel" Command="{Binding CancelCommand}"/-->
+                <Button Text="{Binding EditButtonText}" Command="{Binding EditCommand}"/>
+            </StackLayout>
+
         </StackLayout>
+        
     </ContentPage.Content>
 </ContentPage>

@@ -11,7 +11,8 @@
             <Entry Placeholder="First" Text="{Binding newContact.FirstName}"/>
             <Entry Placeholder="Last" Text="{Binding newContact.LastName}"/>
             <Entry Placeholder="Phone" Keyboard="Numeric" Text="{Binding newContact.PhoneNumber}"/>
-            <StackLayout Orientation="Horizontal">
+            <Entry Placeholder="Notes" Text="{Binding newContact.Notes}"/>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
                 <Button Text="Cancel" Command="{Binding CancelCommand}"/>
                 <Button Text="Save" Command="{Binding SaveCommand}"/>
             </StackLayout>
