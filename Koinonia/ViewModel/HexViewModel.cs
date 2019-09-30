@@ -154,27 +154,18 @@ namespace Koinonia.ViewModel
         {
             _pageService = pageService;
             contactSelected = new Command(ContactSelected);
-            profileSelected = new Command(ProfileSelected);
-            SetScaling();
+            profileSelected = new Command(ProfileSelected);            
             _pageService.DisplayAlert("Dimensions", BoundingHeight + "x" + BoundingWidth, "OK");
             ScreenSetup();
-            //CreateAndShowGrid();
             
+            //CreateAndShowGrid();
+
         }
 
         /*All Visual elements are bound/scaled to the size of a button, which in turn is one third the width of the screen
           by default. This lends itself to pinch to zoom in the future, as binding this change to the button size will
           (Hopefully) scale the rest of the UI accordingly.*/
-        private void SetScaling()
-        {
-            ButtonDiameter = App.screenWidth / 4;
-            //Why does Pi always end up in the weirdest spots?
-            BoundingHeight = ButtonDiameter * 6.28;
-            //BoundingHeight = App.screenHeight;
-            BoundingWidth = BoundingHeight;
-            OuterFrame = BoundingHeight * 2;
-            
-        }
+        
         public async void ScreenSetup()
         {
             UserProfile = await App.Database.GetProfileAsync(0);
@@ -183,16 +174,28 @@ namespace Koinonia.ViewModel
 
             //Will not save to database, just in ObserableCollection. Purely to test scaling of HexLayout
             AddDummyContacts(50);
-            
+
+            SetScaling();
 
             contactRows = (int)Math.Round(Math.Sqrt(Contacts.Count()) + 0.5);
             contactColumns = contactRows;            
-            CreateAndShowGrid();
-
-            
+            CreateAndShowGrid();           
         }
 
-       
+
+        //Tweak the visual settings for the button size and layout. Could use optimisation or better algorithmic setting.
+        //Current settings work well for <20ish contacts. The more you have, the wider the gap between contacts.
+        //WIll probably need a more algorithmic way to set this, workable for MVP.
+        private void SetScaling()
+        {
+            ButtonDiameter = App.screenWidth / 3;
+            BoundingHeight = (ButtonDiameter * Math.Sqrt(Contacts.Count())) * 1.5;
+            //BoundingHeight = App.screenHeight;
+            BoundingWidth = BoundingHeight;
+            OuterFrame = BoundingHeight * 2;
+        }
+
+
 
         private void AddDummyContacts(int numberOfContacts)
         {
@@ -237,6 +240,14 @@ namespace Koinonia.ViewModel
             //Place initial button position at the center(ish) of the HexGrid
             int hex_row = (int)Math.Round((contactRows / 2) + 0.5);
             int hex_column = (int)Math.Round((contactColumns / 2) + 0.5);
+
+            //Place Profile button at center of grid
+            Button profileButton = CreateProfileButton(UserProfile);
+            HexLayout.SetRow(profileButton, hex_row);
+            HexLayout.SetColumn(profileButton, hex_column);
+            DisplayHexGrid.Children.Add(profileButton);
+
+
             bool breakLoops = false;
 
             //Place all contacts.
@@ -248,12 +259,15 @@ namespace Koinonia.ViewModel
                     //place a button for every single hop, defined by hopLength. hopLength increments by 1 per two 'right turns'
                     for (int j = 0; j < hopLength; j++)
                     {
+
+                        //Check for end of contact list and set flag if ended.
                         if (contactIndex == numberOfContacts - 1)
                         {
                             breakLoops = true;
                             break;
                         }
 
+                        //Switch statement to change the position of the button about to be created by 1, in the current direction
                         switch (hopDirection)
                         {                            
                             case 0:
@@ -273,6 +287,7 @@ namespace Koinonia.ViewModel
                                 break;                                                        
                         }
 
+                        //Create and add contact button to HexGrid
                         Button contactButton = CreateContactButton(Contacts[contactIndex]);
                         HexLayout.SetRow(contactButton, hex_row);
                         HexLayout.SetColumn(contactButton, hex_column);
@@ -286,6 +301,7 @@ namespace Koinonia.ViewModel
                         break;
                     }
 
+                    //Increment hopDirection to achieve a 'right turn'. Reset to 0 if at 3
                     if (hopDirection == 3)
                     {
                         hopDirection = 0;
@@ -294,15 +310,10 @@ namespace Koinonia.ViewModel
                     {
                         hopDirection++;
                     }
-                    
-
-                    
-                }
-
+                }     
                 
-
                 hopLength++;
-                
+
             }
 
 
