@@ -83,6 +83,10 @@ namespace Koinonia.ViewModel
             }
         }
 
+        public ICommand GotoProfileCommand { get; private set; }
+        public ICommand GotoHexCommand { get; private set; }
+        public ICommand AddNewContactCommand { get; private set; }
+
         
         private void SearchUserText(string _searchText)
         {
@@ -99,13 +103,15 @@ namespace Koinonia.ViewModel
 
         public ContactViewModel(IPageService pageService)
         {
-            TempButtonCommand = new Command(TempButtonPressed);
+            TempButtonCommand = new Command(TempButtonPressed);            
             ContactSelectedCommand = new Command(ContactSelected);
-            
-            _pageService = pageService;
-            SetContactCollection();
-            
 
+            GotoProfileCommand = new Command(GotoProfile);
+            GotoHexCommand = new Command(GotoHex);
+            AddNewContactCommand = new Command(AddNewContact);
+
+            _pageService = pageService;
+            SetContactCollection();   
         }
         
         
@@ -119,6 +125,8 @@ namespace Koinonia.ViewModel
 
             //FilteredContacts for search function
             FilteredContacts = Contacts;
+            
+            
 
             /*Uncomment to add dummy contact buttons to see how the grid scales. Note the buttons are not
            clickable by design as they only exist locally on this page and do not persist (and thus dont
@@ -172,13 +180,28 @@ namespace Koinonia.ViewModel
             SetContactCollection();            
         }
 
+        private async void GotoProfile()
+        {
+            await _pageService.PushAsync(new ProfilePage());
+        }
+
+        private async void GotoHex()
+        {
+            await _pageService.PushAsync(new HexPage());
+        }
+
+        private async void AddNewContact()
+        {
+            await _pageService.PushAsync((new NewContactPage(this)));
+        }
+
 
         /*This button was always intended to be temporary to allow developer navigation in the app. Fell under the
         radar of 'things that needed to be fixed but ran out of time'. Per ContactViewModel summary, this will
         likely be broken out into more pleasing ui elements.*/
         async void TempButtonPressed()
         {
-            var response = await _pageService.DisplayActionSheet("Options", "Cancel", null, "Profile", "Settings", "New Contact", "Clear", "Hex", "Tags");
+            var response = await _pageService.DisplayActionSheet("Options", "Cancel", null, "Settings", "Clear", "Tags");
 
             switch (response)
             {
