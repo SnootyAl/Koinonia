@@ -140,7 +140,7 @@ namespace Koinonia.ViewModel
 
             if (smsMessanger.CanSendSms)
             {
-                smsMessanger.SendSms("+61 411589795", "Welcome to Xamarin.Forms");
+                smsMessanger.SendSms(SelectedContact.PhoneNumber, "Welcome to Xamarin.Forms");
             }
         }
 
@@ -150,7 +150,7 @@ namespace Koinonia.ViewModel
 
             if (phoneDial.CanMakePhoneCall)
             {
-                phoneDial.MakePhoneCall("+61 411589795", "Keighte Phardelle");
+                phoneDial.MakePhoneCall(SelectedContact.PhoneNumber, SelectedContact.FirstName);
             }
         }
     }

@@ -8,6 +8,12 @@
              x:Class="Koinonia.Views.ContactPage"
              NavigationPage.HasBackButton="False"
              Title="Contacts">
+    <!-- Hard coded Icon paths currently, just testing placement/scaling/logic.-->
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="profile_icon.png" Text="Profile" Command="{Binding GotoProfile}"/>
+        <ToolbarItem Icon="hex_icon.png" Text="Hex" Command="{Binding GotoHex}"/>
+        <ToolbarItem Icon="plus_icon.png" Text="Add" Command="{Binding AddNewContact}"/>
+    </ContentPage.ToolbarItems>
     <StackLayout>
     <SearchBar Placeholder="Search" Text="{Binding SearchText}"/>
         
