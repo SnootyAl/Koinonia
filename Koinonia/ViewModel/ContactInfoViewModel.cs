@@ -1,5 +1,6 @@
 ﻿using Koinonia.Models;
 using MvvmHelpers;
+using Plugin.Messaging;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -48,7 +49,6 @@ namespace Koinonia.ViewModel
             }
         }
         public ICommand EditCommand { get; private set; }
-
         private string editButtonText = "Edit";
         public string EditButtonText
         {
@@ -65,13 +65,48 @@ namespace Koinonia.ViewModel
             }
         }
 
+        public ICommand MessageCommand { get; private set; }
+        private string messageButtonText = "SMS";
+        public string MessageButtonText
+        {
+            get { return messageButtonText; }
+            set
+            {
+                if (messageButtonText == value)
+                {
+                    return;
+                }
+                //Throw some stuff here for a dynamic save/edit button label probably
+                messageButtonText = value;
+                OnPropertyChanged(nameof(MessageButtonText));
+            }
+        }
+
+        public ICommand CallCommand { get; private set; }
+        private string callButtonText = "Call";
+        public string CallButtonText
+        {
+            get { return callButtonText; }
+            set
+            {
+                if (callButtonText == value)
+                {
+                    return;
+                }
+                //Throw some stuff here for a dynamic save/edit button label probably
+                callButtonText = value;
+                OnPropertyChanged(nameof(CallButtonText));
+            }
+        }
+
 
         public ContactInfoViewModel(IPageService pageService, Contact _contact)
         {
             SelectedContact = _contact;
             _pageService = pageService;
-            EditCommand = new Command(Edit);      
-            
+            EditCommand = new Command(Edit);
+            MessageCommand = new Command(OpenMessenger);
+            CallCommand = new Command(OpenDialer);
         }
 
 
@@ -94,6 +129,28 @@ namespace Koinonia.ViewModel
             else
             {
                 EditButtonText = "Save";
+            }
+        }
+
+
+        //Messenger and Calling found at https://www.c-sharpcorner.com/article/xamarin-forms-messaging-app/
+        private void OpenMessenger()
+        {
+            var smsMessanger = CrossMessaging.Current.SmsMessenger;
+
+            if (smsMessanger.CanSendSms)
+            {
+                smsMessanger.SendSms("+61 411589795", "Welcome to Xamarin.Forms");
+            }
+        }
+
+        private void OpenDialer()
+        {
+            var phoneDial = CrossMessaging.Current.PhoneDialer;
+
+            if (phoneDial.CanMakePhoneCall)
+            {
+                phoneDial.MakePhoneCall("+61 411589795", "Keighte Phardelle");
             }
         }
     }

@@ -25,6 +25,8 @@
             <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
                 <!--Button Text="Cancel" Command="{Binding CancelCommand}"/-->
                 <Button Text="{Binding EditButtonText}" Command="{Binding EditCommand}"/>
+                <Button Text="{Binding MessageButtonText}" Command="{Binding MessageCommand}"/>
+                <Button Text="{Binding CallButtonText}" Command="{Binding CallCommand}"/>
             </StackLayout>
 
         </StackLayout>
