@@ -1,6 +1,8 @@
 ﻿using Koinonia.Models;
 using Koinonia.Views;
 using MvvmHelpers;
+using Plugin.Permissions;
+using Plugin.Permissions.Abstractions;
 using SQLite;
 using System;
 using System.Collections.Generic;
@@ -105,13 +107,55 @@ namespace Koinonia.ViewModel
         {
             TempButtonCommand = new Command(TempButtonPressed);            
             ContactSelectedCommand = new Command(ContactSelected);
-
             GotoProfileCommand = new Command(GotoProfile);
             GotoHexCommand = new Command(GotoHex);
             AddNewContactCommand = new Command(AddNewContact);
 
+            
+
             _pageService = pageService;
             SetContactCollection();   
+        }
+
+        private async void CheckPermissions()
+        {
+            var status = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Contacts);
+            if(status != PermissionStatus.Granted)
+            {
+                if (await CrossPermissions.Current.ShouldShowRequestPermissionRationaleAsync(Permission.Contacts))
+                {
+                    await _pageService.DisplayAlert("Import Contacts", "Please allow access to " +
+                        "contacts for Koinonia to import contact list", "OK");
+                }
+                var results = await CrossPermissions.Current.RequestPermissionsAsync(Permission.Contacts);
+                await _pageService.DisplayAlert("Hello", "Hello", "Hello");
+
+                if (results.ContainsKey(Permission.Contacts))
+                {
+                    status = results[Permission.Contacts];
+                }
+            }
+
+            if (status == PermissionStatus.Granted)
+            {
+                ImportContacts();
+            }
+        }
+
+        private async void ImportContacts()
+        {
+            var contacts = await Plugin.ContactService.CrossContactService.Current.GetContactListAsync();
+            ObservableCollection<Contact> contactCollection = new ObservableCollection<Contact>();
+            for (int i = 0; i < contacts.Count(); i++)
+            {
+                Contact tempcontact = new Contact
+                {
+                    FirstName = contacts[i].Name,
+                    Email = contacts[i].Email,
+                    PhoneNumber = contacts[i].Number
+                };
+                Contacts.Add(tempcontact);
+            }
         }
         
         
@@ -120,7 +164,8 @@ namespace Koinonia.ViewModel
         This function creates an entirely new ObservableCollection rather than adding to the list.
         Works. call it 'AGILE methodology' --Alex   */
         public async void SetContactCollection()
-        {            
+        {
+            
             Contacts = new ObservableCollection<Contact>(await App.Database.GetContactsAsync());
 
             //FilteredContacts for search function
@@ -195,19 +240,22 @@ namespace Koinonia.ViewModel
             await _pageService.PushAsync((new NewContactPage(this)));
         }
 
-
         /*This button was always intended to be temporary to allow developer navigation in the app. Fell under the
         radar of 'things that needed to be fixed but ran out of time'. Per ContactViewModel summary, this will
         likely be broken out into more pleasing ui elements.*/
-        async void TempButtonPressed()
+        private async void TempButtonPressed()
         {
-            var response = await _pageService.DisplayActionSheet("Options", "Cancel", null, "Settings", "Clear", "Tags");
+            var response = await _pageService.DisplayActionSheet("Options", "Cancel", null, "Import", "Settings", "Clear", "Tags");
 
             switch (response)
             {
 
                 //**BUG** Title back button persists for a moment after pressing, allowing user to spam button and return to SignupPage
                 //Navigate to Profile Info Page
+                case "Import":
+                    CheckPermissions();
+                    break;
+
                 case "Profile":
                     await _pageService.PushAsync(new ProfilePage());
                     break;

@@ -8,6 +8,7 @@ using Android.Widget;
 using Android.OS;
 using Xamarin.Forms;
 using Plugin.Permissions;
+using Plugin.CurrentActivity;
 
 namespace Koinonia.Droid
 {
@@ -30,7 +31,8 @@ namespace Koinonia.Droid
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
 
             //from https://github.com/jamesmontemagno/PermissionsPlugin
-            Plugin.CurrentActivity.CrossCurrentActivity.Current.Init(this, savedInstanceState);
+            CrossCurrentActivity.Current.Init(this, savedInstanceState);
+
 
             //Added from https://www.c-sharpcorner.com/article/absolute-dimensions-of-app-screen-xamarin-forms/ for Android Dimensions
             GetDimensions();
