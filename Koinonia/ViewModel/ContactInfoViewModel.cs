@@ -124,6 +124,14 @@ namespace Koinonia.ViewModel
             MessageCommand = new Command(OpenMessenger);
             CallCommand = new Command(OpenDialer);
             TakePhotoCommand = new Command(TakePhoto);
+            if (SelectedContact.ImageURI != null)
+            {
+                ContactImageURI = SelectedContact.ImageURI;
+            }
+            else
+            {
+                ContactImageURI = "add_photo_default.png";
+            }
         }
 
 
