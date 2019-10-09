@@ -3,13 +3,8 @@ using Koinonia.Views;
 using MvvmHelpers;
 using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
-using SQLite;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Linq;
-using System.Threading;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -148,9 +143,18 @@ namespace Koinonia.ViewModel
             ObservableCollection<Contact> contactCollection = new ObservableCollection<Contact>();
             for (int i = 0; i < contacts.Count(); i++)
             {
+                string[] names = contacts[i].Name.Split(' ');
+                string firstName = names[0];
+                string lastName = "";
+                if (names.Length > 1)
+                {
+                    //Both first and last name present                    
+                    lastName = names[1];
+                }
                 Contact tempcontact = new Contact
                 {
-                    FirstName = contacts[i].Name,
+                    FirstName = firstName,
+                    LastName = lastName,
                     Email = contacts[i].Email,
                     PhoneNumber = contacts[i].Number
                 };
