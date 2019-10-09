@@ -140,7 +140,7 @@ namespace Koinonia.ViewModel
 
             if (smsMessanger.CanSendSms)
             {
-                smsMessanger.SendSms(SelectedContact.PhoneNumber, "Welcome to Xamarin.Forms");
+                smsMessanger.SendSms(SelectedContact.PhoneNumber, "");
             }
         }
 

@@ -154,6 +154,7 @@ namespace Koinonia.ViewModel
                     Email = contacts[i].Email,
                     PhoneNumber = contacts[i].Number
                 };
+                await App.Database.SaveContactAsync(tempcontact);
                 Contacts.Add(tempcontact);
             }
         }
