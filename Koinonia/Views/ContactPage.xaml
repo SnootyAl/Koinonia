@@ -21,8 +21,7 @@
                   HasUnevenRows="True" 
                   ItemsSource="{Binding FilteredContacts}" 
                   RefreshCommand="{Binding ContactSelectedCommand}"
-                  SelectedItem="{Binding SelectedContact, Mode=TwoWay}"
-        >
+                  SelectedItem="{Binding SelectedContact, Mode=TwoWay}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
@@ -34,7 +33,9 @@
 
                                 <Label Text="{Binding FirstName}" />
 
-                                <Label Text="{Binding Status}" TextColor="{StaticResource NormalButtonTxtColor}" />
+                                <Label Text="{Binding LastName}" />
+
+                                <!-- <Label Text="{Binding Status}" TextColor="{StaticResource NormalButtonTxtColor}" /> -->
 
                                 <Label Text="{Binding PhoneNumber}" TextColor="{StaticResource Gray}" />
 

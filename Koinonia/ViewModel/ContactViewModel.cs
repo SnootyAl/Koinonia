@@ -143,11 +143,13 @@ namespace Koinonia.ViewModel
             ObservableCollection<Contact> contactCollection = new ObservableCollection<Contact>();
             for (int i = 0; i < contacts.Count(); i++)
             {
+                //Bug: Splits with space, wont work for last names with more than one word
+                //Found at https://alexdunn.org/2017/09/08/xamarin-tip-read-all-contacts-in-android/
                 string[] names = contacts[i].Name.Split(' ');
                 string firstName = names[0];
                 string lastName = "";
                 if (names.Length > 1)
-                {
+                { 
                     //Both first and last name present                    
                     lastName = names[1];
                 }

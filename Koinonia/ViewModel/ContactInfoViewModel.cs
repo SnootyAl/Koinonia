@@ -1,5 +1,6 @@
 ﻿using Koinonia.Models;
 using MvvmHelpers;
+using Plugin.Media;
 using Plugin.Messaging;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -96,6 +97,24 @@ namespace Koinonia.ViewModel
             }
         }
 
+        public ICommand TakePhotoCommand { get; private set; }
+
+        private string contactImageURI { get; set; }
+        public string ContactImageURI
+        {
+            get { return contactImageURI; }
+            set
+            {
+                if (contactImageURI == value)
+                {
+                    return;
+                }
+
+                contactImageURI = value;
+                OnPropertyChanged(nameof(ContactImageURI));
+            }
+        }
+
 
         public ContactInfoViewModel(IPageService pageService, Contact _contact)
         {
@@ -104,6 +123,7 @@ namespace Koinonia.ViewModel
             EditCommand = new Command(Edit);
             MessageCommand = new Command(OpenMessenger);
             CallCommand = new Command(OpenDialer);
+            TakePhotoCommand = new Command(TakePhoto);
         }
 
 
@@ -149,6 +169,38 @@ namespace Koinonia.ViewModel
             {
                 phoneDial.MakePhoneCall(SelectedContact.PhoneNumber, SelectedContact.FirstName);
             }
+        }
+
+        private async void TakePhoto()
+        {
+            await CrossMedia.Current.Initialize();
+
+            if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
+            {
+                await _pageService.DisplayAlert("No Camera", ":( No camera available.", "OK");
+                return;
+            }
+
+            var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
+            {
+                Directory = "ContactImages",
+                Name = ("contact_" + SelectedContact.ContactID + ".jpg")
+            });
+
+            if (file == null)
+                return;
+
+            //await _pageService.DisplayAlert("File Location", file.Path, "OK");
+            SelectedContact.ImageURI = file.Path;
+            ContactImageURI = file.Path;
+            await App.Database.SaveContactAsync(SelectedContact);
+            
+
+            /*image.Source = ImageSource.FromStream(() =>
+            {
+                var stream = file.GetStream();
+                return stream;
+            });*/
         }
     }
 }
