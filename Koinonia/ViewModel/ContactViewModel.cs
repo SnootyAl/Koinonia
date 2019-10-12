@@ -178,7 +178,7 @@ namespace Koinonia.ViewModel
         likely be broken out into more pleasing ui elements.*/
         async void TempButtonPressed()
         {
-            var response = await _pageService.DisplayActionSheet("Options", "Cancel", null, "Profile", "Settings", "New Contact", "Clear", "Hex", "Tags");
+            var response = await _pageService.DisplayActionSheet("Options", "Cancel", null, "Profile", "Settings", "New Contact", "Clear", "Hex", "Tags", "Sign");
 
             switch (response)
             {
@@ -219,6 +219,11 @@ namespace Koinonia.ViewModel
                     await _pageService.PushAsync(new TagsPage());
                     break;
 
+                case "Sign":
+                    await _pageService.PushAsync(new SignupPage());
+                    break;
+
+                       
 
             }
         }
