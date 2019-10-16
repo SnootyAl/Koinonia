@@ -3,13 +3,51 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:image="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
              mc:Ignorable="d"
              x:Class="Koinonia.Views.SettingsPage"
+             xmlns:vm="clr-namespace:Koinonia.ViewModel"
              Title="Settings">
+    <ContentPage.BindingContext>
+        <vm:SettingsViewModel />
+    </ContentPage.BindingContext>
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Settings"
-                Style="{StaticResource TitleTxt}"/>
-        </StackLayout>
+        <Grid RowSpacing="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <StackLayout Margin="10" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" VerticalOptions="CenterAndExpand" >
+                <image:CircleImage BorderColor="BlueViolet" BorderThickness="2" Source="xamarin_logo.png" WidthRequest="100" HeightRequest="100" Aspect="AspectFill" VerticalOptions="Start" HorizontalOptions="FillAndExpand" />
+            </StackLayout>
+            <WebView BackgroundColor="White" IsEnabled="{Binding ShowTnc}" IsVisible="{Binding ShowTnC}" x:Name="Tnc" VerticalOptions="FillAndExpand"/>
+            <WebView BackgroundColor="White" IsEnabled="{Binding ShowPrivacyPolicy}" IsVisible="{Binding ShowPrivacyPolicy}" x:Name="PnP" VerticalOptions="FillAndExpand"/>
+            <TableView Intent="Settings" Grid.Column="0" Grid.Row="2" HorizontalOptions="FillAndExpand">
+                <TableRoot>
+                    <TableSection>
+                        <SwitchCell Text="Dark Mode" />
+                    </TableSection>
+                </TableRoot>
+            </TableView>
+            <Picker Margin="5" Grid.Column="0" Grid.Row="3" x:Name="Sorting" HeightRequest="60" HorizontalOptions="FillAndExpand" Title="Sorting">
+                <Picker.Items>
+                    <x:String>Ascending</x:String>
+                    <x:String>Descending</x:String>
+                </Picker.Items>
+            </Picker>
+            <Button Grid.Column="0" Grid.Row="4" Style="{StaticResource SettingsButton}" Text="Change Password"/>
+            <Button Grid.Column="0" Grid.Row="5" Style="{StaticResource SettingsButton}" Text="Privacy Policy" Command="{Binding OpenPrivacyPolicy}"/>
+            <Button Grid.Column="0" Grid.Row="6" Style="{StaticResource SettingsButton}" Text="Terms and Conditions" Command="{Binding OpenTnC}"/>
+            <Button Grid.Column="0" Grid.Row="7" Style="{StaticResource SettingsButton}" Text="Logout"/>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

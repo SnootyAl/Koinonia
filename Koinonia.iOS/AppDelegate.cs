@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Foundation;
+using ImageCircle.Forms.Plugin.iOS;
 using UIKit;
 using Xamarin.Forms;
 
@@ -30,6 +31,7 @@ namespace Koinonia.iOS
             //Found at https://www.c-sharpcorner.com/article/absolute-dimensions-of-app-screen-xamarin-forms/
             App.screenWidth = (int)UIScreen.MainScreen.Bounds.Width;
             App.screenHeight = (int)UIScreen.MainScreen.Bounds.Height;
+            ImageCircleRenderer.Init();
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);
