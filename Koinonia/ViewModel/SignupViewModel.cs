@@ -5,6 +5,10 @@ using Xamarin.Forms;
 using MvvmHelpers;
 using Koinonia.Views;
 using Xamarin.Essentials;
+using Plugin.Media;
+using System;
+using Plugin.Media.Abstractions;
+
 
 /// <summary>
 /// First page with user interaction, a Form to enter profile information. This page will only be viewed once,
@@ -58,7 +62,50 @@ namespace Koinonia.ViewModel
             
         }
 
-        
+
+        // Photo Support 
+        // All the user to import a photo for the profile picture
+
+        public Command addimage {
+            get
+            {
+                return new Command(async () =>
+                {
+                    await CrossMedia.Current.Initialize();
+
+                    // Check for decive compatiablity 
+                    if (!CrossMedia.Current.IsPickPhotoSupported)
+                    {
+                        await _pageService.DisplayAlert("Not Supported", "This device is not supported with this feature", "Ok");
+
+                    }
+
+                    // test image button press
+                    // await _pageService.DisplayActionSheet("test", "testing button press commands", "okay");
+
+                    // set the size of the image 
+
+                    var mediaOptions = new PickMediaOptions()
+                    {
+                        PhotoSize = PhotoSize.Small
+                    };
+
+                    // set the selected image to that size 
+                    var selectedImageFile = await CrossMedia.Current.PickPhotoAsync(mediaOptions);
+
+                    // check to see if image is not null 
+
+                    if(selectedImageFile == null)
+                    {
+                        await _pageService.DisplayAlert("Error", "there was a problem with the image, please try again", "ok");
+                    }
+                    
+                });
+            }
+        }
+
+
+                
     }
 
     
