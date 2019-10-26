@@ -7,21 +7,22 @@
              mc:Ignorable="d"
              x:Class="Koinonia.Views.SettingsPage"
              xmlns:vm="clr-namespace:Koinonia.ViewModel"
+             xmlns:local="clr-namespace:Koinonia.Converters"
              Title="Settings">
     <ContentPage.BindingContext>
         <vm:SettingsViewModel />
     </ContentPage.BindingContext>
     <ContentPage.Content>
-        <Grid RowSpacing="5">
+        <Grid RowSpacing="1" Margin="0,0,20,0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
+                <RowDefinition Height=".3*" />
+                <RowDefinition Height=".1*" />
+                <RowDefinition Height=".1*" />
+                <RowDefinition Height=".1*" />
+                <RowDefinition Height=".1*" />
+                <RowDefinition Height=".1*" />
+                <RowDefinition Height=".1*" />
+                <RowDefinition Height=".1*" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -29,8 +30,6 @@
             <StackLayout Margin="10" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" VerticalOptions="CenterAndExpand" >
                 <image:CircleImage BorderColor="BlueViolet" BorderThickness="2" Source="xamarin_logo.png" WidthRequest="100" HeightRequest="100" Aspect="AspectFill" VerticalOptions="Start" HorizontalOptions="FillAndExpand" />
             </StackLayout>
-            <WebView BackgroundColor="White" IsEnabled="{Binding ShowTnc}" IsVisible="{Binding ShowTnC}" x:Name="Tnc" VerticalOptions="FillAndExpand"/>
-            <WebView BackgroundColor="White" IsEnabled="{Binding ShowPrivacyPolicy}" IsVisible="{Binding ShowPrivacyPolicy}" x:Name="PnP" VerticalOptions="FillAndExpand"/>
             <TableView Intent="Settings" Grid.Column="0" Grid.Row="2" HorizontalOptions="FillAndExpand">
                 <TableRoot>
                     <TableSection>
@@ -45,9 +44,11 @@
                 </Picker.Items>
             </Picker>
             <Button Grid.Column="0" Grid.Row="4" Style="{StaticResource SettingsButton}" Text="Change Password"/>
-            <Button Grid.Column="0" Grid.Row="5" Style="{StaticResource SettingsButton}" Text="Privacy Policy" Command="{Binding OpenPrivacyPolicy}"/>
-            <Button Grid.Column="0" Grid.Row="6" Style="{StaticResource SettingsButton}" Text="Terms and Conditions" Command="{Binding OpenTnC}"/>
+            <Button Grid.Column="0" Grid.Row="5" Style="{StaticResource SettingsButton}" IsVisible="{Binding ShowPrivacyPolicyButton}" Text="Privacy Policy" Command="{Binding OpenPrivacyPolicy}"/>
+            <Button Grid.Column="0" Grid.Row="6" Style="{StaticResource SettingsButton}" IsVisible="{Binding ShowTnCButton}" Text="Terms and Conditions" Command="{Binding OpenTnC}"/>
             <Button Grid.Column="0" Grid.Row="7" Style="{StaticResource SettingsButton}" Text="Logout"/>
+            <WebView BackgroundColor="White" Grid.Row="0" Grid.Column="0" Grid.RowSpan="8" IsEnabled="{Binding ShowTnc}" IsVisible="{Binding ShowTnC, Mode=TwoWay}" x:Name="Tnc" VerticalOptions="FillAndExpand"/>
+            <WebView BackgroundColor="White" Grid.Row="0" Grid.Column="0" Grid.RowSpan="8" IsEnabled="{Binding ShowPrivacyPolicy}" IsVisible="{Binding ShowPrivacyPolicy, Mode=TwoWay}" x:Name="PnP" VerticalOptions="FillAndExpand"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

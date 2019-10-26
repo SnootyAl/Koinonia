@@ -10,12 +10,32 @@ namespace Koinonia.ViewModel
     public class SettingsViewModel : BaseViewModel
     {
         public bool _showTnC = false;
+        public bool _showTnCButton = true;
+        public bool _showPrivacyPolicyButton = true;
         public bool _showPrivacyPolicy = false;
         public SettingsViewModel()
         {
             Title = "Settings";
-            OpenTnC = new Command(() => { ShowTnC = true; });
-            OpenPrivacyPolicy = new Command(() => { ShowPrivacyPolicy = true; });
+            OpenTnC = new Command(() => 
+            { 
+                ShowTnC = true;
+                ShowTnCButton = false;
+            });
+            OpenPrivacyPolicy = new Command(() => 
+            { 
+                ShowPrivacyPolicy = true;
+                ShowPrivacyPolicyButton = false;
+            });
+        }
+
+        public bool ShowTnCButton
+        {
+            get => _showTnCButton;
+            set
+            {
+                _showTnCButton = value;
+                OnPropertyChanged("ShowTnCButton");
+            }
         }
 
         public bool ShowTnC
@@ -25,6 +45,16 @@ namespace Koinonia.ViewModel
             {
                 _showTnC = value;
                 OnPropertyChanged("ShowTnC");
+            }
+        }
+
+        public bool ShowPrivacyPolicyButton
+        {
+            get => _showPrivacyPolicyButton;
+            set
+            {
+                _showPrivacyPolicyButton = value;
+                OnPropertyChanged("ShowPrivacyPolicyButton");
             }
         }
 
@@ -43,11 +73,13 @@ namespace Koinonia.ViewModel
         public void CloseTnC()
         {
             ShowTnC = false;
+            ShowTnCButton = true;
         }
 
         public void ClosePrivacyPolicy()
         {
             ShowPrivacyPolicy = false;
+            ShowPrivacyPolicyButton = true;
         }
     }
 }
