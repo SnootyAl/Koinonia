@@ -62,7 +62,6 @@ namespace Koinonia.ViewModel
             
         }
 
-
         // Photo Support 
         // All the user to import a photo for the profile picture
 
@@ -72,6 +71,8 @@ namespace Koinonia.ViewModel
                 return new Command(async () =>
                 {
                     await CrossMedia.Current.Initialize();
+                    var storagestatus = await Plugin.Permissions.CrossPermissions.Current.CheckPermissionStatusAsync(Plugin.Permissions.Abstractions.Permission.Storage);
+
 
                     // Check for decive compatiablity 
                     if (!CrossMedia.Current.IsPickPhotoSupported)
