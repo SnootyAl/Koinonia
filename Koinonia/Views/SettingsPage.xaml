@@ -7,7 +7,6 @@
              mc:Ignorable="d"
              x:Class="Koinonia.Views.SettingsPage"
              xmlns:vm="clr-namespace:Koinonia.ViewModel"
-             xmlns:local="clr-namespace:Koinonia.Converters"
              Title="Settings">
     <ContentPage.BindingContext>
         <vm:SettingsViewModel />
