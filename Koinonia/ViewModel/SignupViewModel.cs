@@ -8,6 +8,7 @@ using Xamarin.Essentials;
 using Plugin.Media;
 using System;
 using Plugin.Media.Abstractions;
+using System.Text.RegularExpressions;
 
 
 /// <summary>
@@ -22,6 +23,9 @@ namespace Koinonia.ViewModel
         public Profile Profile { get; set; }
         private readonly IPageService _pageService; 
         public ICommand NextButtonCommand { get; private set; }
+        
+        // image for profile picture 
+        private string image { get; set; }
 
 
         public SignupViewModel(IPageService pageService)
@@ -41,8 +45,11 @@ namespace Koinonia.ViewModel
 
         private async void Next()
         {
+            // check if email is valid 
+            var regexemail = new Regex("[@]");        
+
             if ((Profile.FirstName.Length > 0) && (Profile.LastName.Length > 0) &&
-                (Profile.PhoneNumber.Length > 0) && (Profile.Email.Length > 0))
+                (Profile.PhoneNumber.Length > 0) && (Profile.Email.Length > 0) && regexemail.IsMatch(Profile.Email))
             {
                 await _pageService.DisplayAlert("Check", "Are these details correct?", "No", "Yep!");
 
@@ -62,6 +69,7 @@ namespace Koinonia.ViewModel
             
         }
 
+
         // Photo Support 
         // All the user to import a photo for the profile picture
 
@@ -71,8 +79,11 @@ namespace Koinonia.ViewModel
                 return new Command(async () =>
                 {
                     await CrossMedia.Current.Initialize();
+
                     var storagestatus = await Plugin.Permissions.CrossPermissions.Current.CheckPermissionStatusAsync(Plugin.Permissions.Abstractions.Permission.Storage);
 
+                    // create string for image 
+        
 
                     // Check for decive compatiablity 
                     if (!CrossMedia.Current.IsPickPhotoSupported)
@@ -99,8 +110,10 @@ namespace Koinonia.ViewModel
                     if(selectedImageFile == null)
                     {
                         await _pageService.DisplayAlert("Error", "there was a problem with the image, please try again", "ok");
+                        image = "add_image";
+                        
                     }
-                    
+                                       
                 });
             }
         }
