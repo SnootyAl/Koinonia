@@ -7,6 +7,7 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 using Xamarin.Forms;
+using Plugin.CurrentActivity;
 
 namespace Koinonia.Droid
 {
@@ -14,7 +15,7 @@ namespace Koinonia.Droid
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
 
-
+      
         protected override void OnCreate(Bundle savedInstanceState)
         {
 
@@ -27,6 +28,8 @@ namespace Koinonia.Droid
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+
+            CrossCurrentActivity.Current.Init(this, savedInstanceState);
 
             //Added from https://www.c-sharpcorner.com/article/absolute-dimensions-of-app-screen-xamarin-forms/ for Android Dimensions
             GetDimensions();
