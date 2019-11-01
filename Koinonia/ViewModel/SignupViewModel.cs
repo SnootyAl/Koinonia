@@ -46,6 +46,15 @@ namespace Koinonia.ViewModel
             NextButtonCommand = new Command(Next);
             Photobutton = new Command(photopermission);
 
+            // if the image is not null then show the selected photo else display the defualt image
+            if(Profile.ImageURL != null)
+            {
+                ProfileImageURL = Profile.ImageURL;
+            }
+            else
+            {
+                ProfileImageURL = "add_photo_default.png";
+            }
         }
 
 
@@ -96,6 +105,8 @@ namespace Koinonia.ViewModel
                   status = results[Permission.Storage];
               }
             }
+
+            // if permission is granted then call the photos functions
               if(status == PermissionStatus.Granted)
               {
                  photos();
@@ -111,11 +122,6 @@ namespace Koinonia.ViewModel
         {
             await CrossMedia.Current.Initialize();
 
-            var storagestatus = await Plugin.Permissions.CrossPermissions.Current.CheckPermissionStatusAsync(Plugin.Permissions.Abstractions.Permission.Storage);
-
-            // create string for image 
-
-
             // Check for decive compatiablity 
             if (!CrossMedia.Current.IsPickPhotoSupported)
             {
@@ -123,32 +129,42 @@ namespace Koinonia.ViewModel
 
             }
 
-            // test image button press
-            // await _pageService.DisplayActionSheet("test", "testing button press commands", "okay");
-
             // set the size of the image 
-
             var mediaOptions = new PickMediaOptions()
             {
                 PhotoSize = PhotoSize.Small
             };
 
-            // set the selected image to that size 
-            var selectedImageFile = await CrossMedia.Current.PickPhotoAsync(mediaOptions);
+            
+            var file = await CrossMedia.Current.PickPhotoAsync().ConfigureAwait(true);
 
-            // check to see if image is not null 
+            // set the Image URL to the file path of the photo on the phone
+            Profile.ImageURL = file.Path;
+            ProfileImageURL = file.Path;
 
-            if (selectedImageFile == null)
-            {
-                await _pageService.DisplayAlert("Error", "there was a problem with the image, please try again", "ok");
-                image = "add_photo_default.png";
-
-            }
-
-            Console.WriteLine("helllllo");
         }
 
-        
+        // image onchange event 
+
+        private string profileImageURL { get; set; }
+
+        public string ProfileImageURL
+        {
+            get
+            {
+                return profileImageURL;
+            }
+            set
+            {
+                if(profileImageURL == value)
+                {
+                    return;
+                }
+
+                profileImageURL = value;
+                OnPropertyChanged(nameof(ProfileImageURL));
+            }
+        }
 
 
     }
