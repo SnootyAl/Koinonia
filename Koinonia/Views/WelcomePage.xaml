@@ -1,35 +1,65 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d"
 
-             x:Class="Koinonia.Views.WelcomePage">
-    <ContentPage.Content>
-        <StackLayout>
-            <!--Image />-->
+<CarouselPage xmlns="http://xamarin.com/schemas/2014/forms"
+              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+              mc:Ignorable="d"
+              x:Class="Koinonia.Views.WelcomePage"
+              BackgroundColor="Transparent">
 
-            <Label
-                Text="Nonia is the app to help you map, manage, sort and track your relationships."
-                LineBreakMode="WordWrap"
-                Margin="25, 1, 25, 50"
-                HorizontalTextAlignment="Center"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand"
+    <ContentPage
+        BackgroundColor="{DynamicResource Background}">
+        <ContentPage.Content>
+            <StackLayout HorizontalOptions="Center"
+                         VerticalOptions="Center"
+                         Padding="40">
+                <Label Text="Easily create new contacts and reminders"
+                       FontAttributes="Bold"
+                       TextColor="{DynamicResource NormalTxtColor}"
+                       HorizontalTextAlignment="Center"/>
+                <Label Text="to increase your relationship efficiency"
+                       TextColor="{DynamicResource NormalTxtColor}"
+                       HorizontalTextAlignment="Center"/>
+            </StackLayout>
+        </ContentPage.Content>
+    </ContentPage>
 
-            />
-            <Button Text="Start Now"
-                    TextColor="White"
-                    FontFamily="Roboto"
-                    FontSize="Large"
-                    FontAttributes="Bold"
-                    CornerRadius="20"
-                    BackgroundColor="#17A7B2"
-                    Command="{Binding StartNowCommand}"
-                    Margin="25, 1, 25, 50"
-            />
-                    <!--Margin: left, top, right, bottom-->
-        </StackLayout>
-    </ContentPage.Content>
-</ContentPage>
+    <ContentPage
+        BackgroundColor="{DynamicResource Background}">
+        <ContentPage.Content>
+            <StackLayout HorizontalOptions="Center"
+                         VerticalOptions="Center"
+                         Padding="40">
+                <Label Text="Keep track over ever detail"
+                       FontAttributes="Bold"
+                       TextColor="{DynamicResource NormalTxtColor}"
+                       HorizontalTextAlignment="Center"/>
+                <Label Text="through filtering of interaction notes and profile tags"
+                       TextColor="{DynamicResource NormalTxtColor}"
+                       HorizontalTextAlignment="Center"/>
+            </StackLayout>
+        </ContentPage.Content>
+    </ContentPage>
+
+    <ContentPage
+        BackgroundColor="{DynamicResource Background}">
+        <ContentPage.Content>
+            <StackLayout HorizontalOptions="Center"
+                         VerticalOptions="Center"
+                         Padding="40">
+                <Label Text="Getting started is easy!"
+                       FontAttributes="Bold"
+                       TextColor="{DynamicResource NormalTxtColor}"
+                       HorizontalTextAlignment="Center"/>
+                <Label Text="Add your contacts and start                        building better relationships."
+                       TextColor="{DynamicResource NormalTxtColor}"
+                       HorizontalTextAlignment="Center"/>
+                <Button Text="Start Now"
+                        Command="{Binding StartNowCommand}"/>
+                <Label Text=""/>
+            </StackLayout>
+        </ContentPage.Content>
+    </ContentPage>
+
+</CarouselPage>

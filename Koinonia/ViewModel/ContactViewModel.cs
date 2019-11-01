@@ -213,14 +213,15 @@ namespace Koinonia.ViewModel
                     await _pageService.PushAsync(new HexPage());
                     break;
 
-
                 //Navigate to Tags page
                 case "Tags":
+
                     await _pageService.PushAsync(new TagsPage());
                     break;
 
                 //Navigate to Set Reminder Page
                 case "Reminder":
+
                     await _pageService.PushAsync(new ReminderSetupPage());
                     break;
             }

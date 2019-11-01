@@ -4,13 +4,14 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="Koinonia.Views.ContactInfoPage">
+             x:Class="Koinonia.Views.ContactInfoPage"
+             BackgroundColor="{DynamicResource Background}">
     <ContentPage.Content>
         
         <StackLayout>
 
             <Label Text="Edit Contact"
-                   Style="{StaticResource TitleTxt}"
+                   Style="{DynamicResource TitleTxt}"
                    HorizontalOptions="CenterAndExpand"
                    ></Label>
             <StackLayout Margin="10, 10, 10, 0">

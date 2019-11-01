@@ -5,7 +5,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"             
              mc:Ignorable="d"
              x:Class="Koinonia.Views.ProfilePage"
-             Title="Profile">
+             Title="Profile"
+             BackgroundColor="{DynamicResource Background}">
     
     <ContentPage.Content>
         <!-- Add binding context to remove Profile.property necessity? -->
@@ -13,38 +14,36 @@
             <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
 
                 <Label Text="{Binding Profile.FirstName}"
-                       Style="{StaticResource TitleTxt}"
-                />
+                       Style="{DynamicResource TitleTxt}"/>
 
                 <Label Text="{Binding Profile.LastName}"
-                       Style="{StaticResource TitleTxt}"
-                />
+                       Style="{DynamicResource TitleTxt}"/>
 
             </StackLayout>
 
             <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
 
                 <Label Text="{Binding Profile.PhoneNumber}"
-                       Margin="0, 0, 0, 20"
-                />
+                       Margin="0, 0, 0, 20"/>
 
             </StackLayout>
 
             <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
 
                 <Label Text="{Binding Profile.Email}"
-                       Margin="0, 0, 0, 20"
-                />
+                       Margin="0, 0, 0, 20"/>
 
             </StackLayout>
 
-            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+            <StackLayout
+                Orientation="Horizontal"
+                HorizontalOptions="CenterAndExpand"
+                Margin="25, 1, 25, 50">
+
                 <Button Text="Delete Profile"
-                        Command="{Binding DeleteCommand}"
-                />
+                        Command="{Binding DeleteCommand}"/>
                 <Button Text="Edit"
-                        Command="{Binding EditCommand}"
-                />
+                        Command="{Binding EditCommand}"/>
             </StackLayout>
 
         </StackLayout>

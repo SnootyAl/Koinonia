@@ -5,7 +5,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="Koinonia.Views.TagsPage"
-             Title="Tags">
+             Title="Tags"
+             BackgroundColor="{DynamicResource Background}">
              
     <ContentPage.Content>
         <StackLayout>
@@ -14,11 +15,13 @@
                 
                 />
             <!-- bind the list view to the tagnamecollection to show the string in the database and then display them in a label -->
-            <ListView x:Name="list" ItemsSource="{Binding TagNameCollection}" 
+            <ListView x:Name="list"
+                      ItemsSource="{Binding TagNameCollection}" 
                       HorizontalOptions="CenterAndExpand" 
                       VerticalOptions="FillAndExpand"
                       IsGroupingEnabled="False"
-                      SeparatorColor="#17A7B2">
+                      SeparatorColor="{DynamicResource Primary}"
+                      BackgroundColor="Transparent">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -35,24 +38,11 @@
                 </ListView.ItemTemplate>
             </ListView>
             <!-- Bind the button to createtags this will save them to the database -->
-            <Button x:Name="CreateTag" Text="Create New Tag" Command="{Binding CreateTags}"
-                    HorizontalOptions="CenterAndExpand"
-                    VerticalOptions="CenterAndExpand"
-                    CornerRadius="45"
-                    BorderColor="#17A7B2"
-                    BorderWidth="3"
-                    BackgroundColor="#FFFFFF"
-                    TextColor="#17A7B2"
-                    Font="Roboto"
-                    FontSize="24"
-                    FontAttributes="Bold"
-                    Margin="0, 0, 0, 5"
-                    >
-                
-            </Button>
+            <Button x:Name="CreateTag"
+                    Text="Create New Tag"
+                    Margin="25, 1, 25, 50"
+                    Command="{Binding CreateTags}"/>
 
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
-    
- 

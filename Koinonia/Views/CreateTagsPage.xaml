@@ -4,7 +4,8 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="Koinonia.Views.CreateTagsPage">
+             x:Class="Koinonia.Views.CreateTagsPage"
+             BackgroundColor="{DynamicResource Background}">
     <ContentPage.Content>
         <StackLayout>
             <Label Text="Create Tag"

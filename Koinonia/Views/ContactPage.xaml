@@ -7,11 +7,13 @@
              mc:Ignorable="d"
              x:Class="Koinonia.Views.ContactPage"
              NavigationPage.HasBackButton="False"
-             Title="Contacts">
+             Title="Contacts"
+             BackgroundColor="{DynamicResource Background}">
     <StackLayout>
     <SearchBar Placeholder="Search" Text="{Binding SearchText}"/>
         
-        <ListView SeparatorColor="{StaticResource Primary}" 
+        <ListView SeparatorColor="{DynamicResource Primary}"
+                  BackgroundColor="Transparent"
                   HasUnevenRows="True" 
                   ItemsSource="{Binding FilteredContacts}" 
                   RefreshCommand="{Binding ContactSelectedCommand}"
@@ -26,11 +28,11 @@
 
                             <StackLayout HorizontalOptions="StartAndExpand" Spacing="0" Padding="2">
 
-                                <Label Text="{Binding FirstName}" />
+                                <Label Text="{Binding FirstName}" TextColor="{DynamicResource NormalTxtColor}" />
 
-                                <Label Text="{Binding Status}" TextColor="{StaticResource NormalButtonTxtColor}" />
+                                <Label Text="{Binding Status}" TextColor="{DynamicResource NormalTxtColor}" />
 
-                                <Label Text="{Binding PhoneNumber}" TextColor="{StaticResource Gray}" />
+                                <Label Text="{Binding PhoneNumber}" TextColor="{DynamicResource Gray}" />
 
                             </StackLayout>
                             

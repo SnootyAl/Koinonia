@@ -7,12 +7,13 @@
              mc:Ignorable="d"
              x:Class="Koinonia.Views.SettingsPage"
              xmlns:vm="clr-namespace:Koinonia.ViewModel"
-             Title="Settings">
+             Title="Settings"
+             BackgroundColor="{DynamicResource Background}">
     <ContentPage.BindingContext>
         <vm:SettingsViewModel />
     </ContentPage.BindingContext>
     <ContentPage.Content>
-        <Grid RowSpacing="1" Margin="0,0,20,0">
+        <Grid RowSpacing="1" Margin="20,20,20,20">
             <Grid.RowDefinitions>
                 <RowDefinition Height=".3*" />
                 <RowDefinition Height=".1*" />
@@ -26,28 +27,86 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <StackLayout Margin="10" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" VerticalOptions="CenterAndExpand" >
-                <image:CircleImage BorderColor="BlueViolet" BorderThickness="2" Source="xamarin_logo.png" WidthRequest="100" HeightRequest="100" Aspect="AspectFill" VerticalOptions="Start" HorizontalOptions="FillAndExpand" />
+            <StackLayout
+                Margin="10"
+                Grid.Row="0"
+                Grid.Column="0"
+                Grid.RowSpan="2"
+                VerticalOptions="CenterAndExpand" >
+                <image:CircleImage
+                    BorderColor="{DynamicResource Primary}"
+                    BorderThickness="4"
+                    Source="xamarin_logo.png"
+                    WidthRequest="100"
+                    HeightRequest="100"
+                    Aspect="AspectFill"
+                    VerticalOptions="Start"
+                    HorizontalOptions="FillAndExpand"/>
             </StackLayout>
-            <TableView Intent="Settings" Grid.Column="0" Grid.Row="2" HorizontalOptions="FillAndExpand">
+            <TableView
+                Intent="Settings"
+                Grid.Column="0"
+                Grid.Row="2"
+                HorizontalOptions="FillAndExpand">
                 <TableRoot>
                     <TableSection>
-                        <SwitchCell Text="Dark Mode" />
+                        <SwitchCell Text="Dark Mode"
+                                    OnColor="{DynamicResource Primary}"
+                                    />
                     </TableSection>
                 </TableRoot>
+
             </TableView>
-            <Picker Margin="5" Grid.Column="0" Grid.Row="3" x:Name="Sorting" HeightRequest="60" HorizontalOptions="FillAndExpand" Title="Sorting">
+            <Picker
+                Margin="5"
+                Grid.Column="0"
+                Grid.Row="3"
+                x:Name="Sorting"
+                HeightRequest="60"
+                HorizontalOptions="FillAndExpand"
+                Title="Sorting">
                 <Picker.Items>
                     <x:String>Ascending</x:String>
                     <x:String>Descending</x:String>
                 </Picker.Items>
             </Picker>
-            <Button Grid.Column="0" Grid.Row="4" Style="{StaticResource SettingsButton}" Text="Change Password"/>
-            <Button Grid.Column="0" Grid.Row="5" Style="{StaticResource SettingsButton}" IsVisible="{Binding ShowPrivacyPolicyButton}" Text="Privacy Policy" Command="{Binding OpenPrivacyPolicy}"/>
-            <Button Grid.Column="0" Grid.Row="6" Style="{StaticResource SettingsButton}" IsVisible="{Binding ShowTnCButton}" Text="Terms and Conditions" Command="{Binding OpenTnC}"/>
-            <Button Grid.Column="0" Grid.Row="7" Style="{StaticResource SettingsButton}" Text="Logout"/>
-            <WebView BackgroundColor="White" Grid.Row="0" Grid.Column="0" Grid.RowSpan="8" IsEnabled="{Binding ShowTnc}" IsVisible="{Binding ShowTnC, Mode=TwoWay}" x:Name="Tnc" VerticalOptions="FillAndExpand"/>
-            <WebView BackgroundColor="White" Grid.Row="0" Grid.Column="0" Grid.RowSpan="8" IsEnabled="{Binding ShowPrivacyPolicy}" IsVisible="{Binding ShowPrivacyPolicy, Mode=TwoWay}" x:Name="PnP" VerticalOptions="FillAndExpand"/>
+            <Button
+                Grid.Column="0"
+                Grid.Row="4"
+                Text="Change Password"/>
+            <Button
+                Grid.Column="0"
+                Grid.Row="5"
+                IsVisible="{Binding ShowPrivacyPolicyButton}"
+                Text="Privacy Policy"
+                Command="{Binding OpenPrivacyPolicy}"/>
+            <Button
+                Grid.Column="0"
+                Grid.Row="6"
+                IsVisible="{Binding ShowTnCButton}"
+                Text="Terms and Conditions"
+                Command="{Binding OpenTnC}"/>
+            <Button
+                Grid.Column="0"
+                Grid.Row="7"
+                Text="Logout"/>
+            <WebView
+                BackgroundColor="White"
+                Grid.Row="0"
+                Grid.Column="0"
+                Grid.RowSpan="8"
+                IsEnabled="{Binding ShowTnc}"
+                IsVisible="{Binding ShowTnC, Mode=TwoWay}"
+                x:Name="Tnc"
+                VerticalOptions="FillAndExpand"/>
+            <WebView
+                Grid.Row="0"
+                Grid.Column="0"
+                Grid.RowSpan="8"
+                IsEnabled="{Binding ShowPrivacyPolicy}"
+                IsVisible="{Binding ShowPrivacyPolicy, Mode=TwoWay}"
+                x:Name="PnP"
+                VerticalOptions="FillAndExpand"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>
