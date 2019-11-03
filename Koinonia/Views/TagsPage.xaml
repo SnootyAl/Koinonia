@@ -11,10 +11,9 @@
     <ContentPage.Content>
         <StackLayout>
             <!-- Bind the entry text to tagnames-->
-            <Entry x:Name="Tagnames" Placeholder="Tag Name" Text="{Binding Tagname.TagNames}"
-                
-                />
-            <!-- bind the list view to the tagnamecollection to show the string in the database and then display them in a label -->
+            <Entry x:Name="Tagnames" Placeholder="Tag Name" Text="{Binding Tagname.TagNames}"/>
+
+            <!-- Bind the list view to the tagnamecollection to show the string in the database and then display them in a label -->
             <ListView x:Name="list"
                       ItemsSource="{Binding TagNameCollection}" 
                       HorizontalOptions="CenterAndExpand" 
@@ -37,6 +36,7 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+
             <!-- Bind the button to createtags this will save them to the database -->
             <Button x:Name="CreateTag"
                     Text="Create New Tag"
