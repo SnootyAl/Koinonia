@@ -41,7 +41,14 @@
                     <Setter Property="FontSize" Value="Large"></Setter>
                     <Setter Property="Margin" Value="0, 20, 0, 30"></Setter>
                 </Style>
-
+                <Style x:Key="SettingsButton" TargetType="Button">
+                    <Setter Property="FontSize" Value="Small"></Setter>
+                    <Setter Property="BackgroundColor" Value="#B2B2B2"></Setter>
+                    <Setter Property="TextColor" Value="#2E2E2E"></Setter>
+                    <Setter Property="Margin" Value="5"></Setter>
+                    <Setter Property="HeightRequest" Value="35"></Setter>
+                    <Setter Property="VerticalOptions" Value="Fill"></Setter>
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

@@ -1,8 +1,7 @@
 ﻿using Koinonia.Models;
 using MvvmHelpers;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using Plugin.Media;
+using Plugin.Messaging;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -48,7 +47,6 @@ namespace Koinonia.ViewModel
             }
         }
         public ICommand EditCommand { get; private set; }
-
         private string editButtonText = "Edit";
         public string EditButtonText
         {
@@ -65,13 +63,75 @@ namespace Koinonia.ViewModel
             }
         }
 
+        public ICommand MessageCommand { get; private set; }
+        private string messageButtonText = "SMS";
+        public string MessageButtonText
+        {
+            get { return messageButtonText; }
+            set
+            {
+                if (messageButtonText == value)
+                {
+                    return;
+                }
+                //Throw some stuff here for a dynamic save/edit button label probably
+                messageButtonText = value;
+                OnPropertyChanged(nameof(MessageButtonText));
+            }
+        }
+
+        public ICommand CallCommand { get; private set; }
+        private string callButtonText = "Call";
+        public string CallButtonText
+        {
+            get { return callButtonText; }
+            set
+            {
+                if (callButtonText == value)
+                {
+                    return;
+                }
+                //Throw some stuff here for a dynamic save/edit button label probably
+                callButtonText = value;
+                OnPropertyChanged(nameof(CallButtonText));
+            }
+        }
+
+        public ICommand TakePhotoCommand { get; private set; }
+
+        private string contactImageURI { get; set; }
+        public string ContactImageURI
+        {
+            get { return contactImageURI; }
+            set
+            {
+                if (contactImageURI == value)
+                {
+                    return;
+                }
+
+                contactImageURI = value;
+                OnPropertyChanged(nameof(ContactImageURI));
+            }
+        }
+
 
         public ContactInfoViewModel(IPageService pageService, Contact _contact)
         {
             SelectedContact = _contact;
             _pageService = pageService;
-            EditCommand = new Command(Edit);      
-            
+            EditCommand = new Command(Edit);
+            MessageCommand = new Command(OpenMessenger);
+            CallCommand = new Command(OpenDialer);
+            TakePhotoCommand = new Command(TakePhoto);
+            if (SelectedContact.ImageURI != null)
+            {
+                ContactImageURI = SelectedContact.ImageURI;
+            }
+            else
+            {
+                ContactImageURI = "add_photo_default.png";
+            }
         }
 
 
@@ -95,6 +155,60 @@ namespace Koinonia.ViewModel
             {
                 EditButtonText = "Save";
             }
+        }
+
+
+        //Messenger and Calling found at https://www.c-sharpcorner.com/article/xamarin-forms-messaging-app/
+        private void OpenMessenger()
+        {
+            var smsMessanger = CrossMessaging.Current.SmsMessenger;
+
+            if (smsMessanger.CanSendSms)
+            {
+                smsMessanger.SendSms(SelectedContact.PhoneNumber, "");
+            }
+        }
+
+        private void OpenDialer()
+        {
+            var phoneDial = CrossMessaging.Current.PhoneDialer;
+
+            if (phoneDial.CanMakePhoneCall)
+            {
+                phoneDial.MakePhoneCall(SelectedContact.PhoneNumber, SelectedContact.FirstName);
+            }
+        }
+
+        private async void TakePhoto()
+        {
+            await CrossMedia.Current.Initialize();
+
+            if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
+            {
+                await _pageService.DisplayAlert("No Camera", ":( No camera available.", "OK");
+                return;
+            }
+
+            var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
+            {
+                Directory = "ContactImages",
+                Name = ("contact_" + SelectedContact.ContactID + ".jpg")
+            });
+
+            if (file == null)
+                return;
+
+            //await _pageService.DisplayAlert("File Location", file.Path, "OK");
+            SelectedContact.ImageURI = file.Path;
+            ContactImageURI = file.Path;
+            await App.Database.SaveContactAsync(SelectedContact);
+            
+
+            /*image.Source = ImageSource.FromStream(() =>
+            {
+                var stream = file.GetStream();
+                return stream;
+            });*/
         }
     }
 }
