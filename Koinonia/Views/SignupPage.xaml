@@ -11,8 +11,8 @@
              BackgroundColor="{DynamicResource Background}">
 
     <ContentPage.Content>
-
-        <StackLayout>
+        <ScrollView>
+            <StackLayout>
 
             <Label Text="Sign Up"
                    HorizontalOptions="Center"
@@ -75,5 +75,6 @@
                     <!--Margin: left, top, right, bottom-->
 
         </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

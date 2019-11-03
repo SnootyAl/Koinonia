@@ -142,8 +142,15 @@ namespace Koinonia.ViewModel
             var file = await CrossMedia.Current.PickPhotoAsync().ConfigureAwait(true);
 
             // set the Image URL to the file path of the photo on the phone
-            Profile.ImageURL = file.Path;
-            ProfileImageURL = file.Path;
+            try
+            {
+                Profile.ImageURL = file.Path;
+                ProfileImageURL = file.Path;
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine("No picture selected, leave blank");
+            }
 
         }
 
