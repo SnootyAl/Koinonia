@@ -7,7 +7,10 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 using Xamarin.Forms;
+using Plugin.Permissions;
+using Plugin.CurrentActivity;
 using ImageCircle.Forms.Plugin.Droid;
+
 
 namespace Koinonia.Droid
 {
@@ -29,6 +32,10 @@ namespace Koinonia.Droid
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
 
+            //from https://github.com/jamesmontemagno/PermissionsPlugin
+            CrossCurrentActivity.Current.Init(this, savedInstanceState);
+
+
             //Added from https://www.c-sharpcorner.com/article/absolute-dimensions-of-app-screen-xamarin-forms/ for Android Dimensions
             GetDimensions();
             LoadApplication(new App());
@@ -48,8 +55,7 @@ namespace Koinonia.Droid
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
-            Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
-
+            PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
 

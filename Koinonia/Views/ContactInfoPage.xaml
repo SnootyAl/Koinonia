@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
              mc:Ignorable="d"
              x:Class="Koinonia.Views.ContactInfoPage">
     <ContentPage.Content>
@@ -13,6 +14,19 @@
                    Style="{StaticResource TitleTxt}"
                    HorizontalOptions="CenterAndExpand"
                    ></Label>
+            <!-- Imagesource dimensions currently hard coded just to make sure logic for image selection is working-->
+            <controls:CircleImage
+                
+                HorizontalOptions="Center"
+                HeightRequest="150"
+                WidthRequest="150"
+                Aspect="AspectFill"
+                Source="{Binding ContactImageURI}">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding TakePhotoCommand}" />
+                </Image.GestureRecognizers>
+            </controls:CircleImage>
+            <!-- <ImageButton Source="{Binding ContactImageURI}" Command="{Binding TakePhotoCommand}" BackgroundColor="Aqua" HeightRequest="150" WidthRequest="150" HorizontalOptions="Center" CornerRadius="75"/> -->
             <StackLayout Margin="10, 10, 10, 0">
                 <Entry Placeholder="First" Text="{Binding SelectedContact.FirstName}" ReturnType="Next" IsReadOnly="{Binding EditDisabled}"/>
                 <Entry Placeholder="Last" Text="{Binding SelectedContact.LastName}" IsReadOnly="{Binding EditDisabled}"/>
@@ -25,6 +39,8 @@
             <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
                 <!--Button Text="Cancel" Command="{Binding CancelCommand}"/-->
                 <Button Text="{Binding EditButtonText}" Command="{Binding EditCommand}"/>
+                <Button Text="{Binding MessageButtonText}" Command="{Binding MessageCommand}"/>
+                <Button Text="{Binding CallButtonText}" Command="{Binding CallCommand}"/>                
             </StackLayout>
 
         </StackLayout>
