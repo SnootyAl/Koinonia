@@ -38,6 +38,9 @@ namespace Koinonia.Models
         public string Email { get; set; }
         public string ImageURL { get; set; }
         public string PhoneNumber { get; set; }
+        public string Position { get; set; }
+        public string Location { get; set; }
+        public string Work { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 

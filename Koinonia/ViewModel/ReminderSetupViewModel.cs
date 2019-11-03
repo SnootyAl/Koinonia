@@ -1,3 +1,4 @@
+
 ﻿using MvvmHelpers;
 using Plugin.LocalNotifications;
 using System;
@@ -87,5 +88,6 @@ namespace Koinonia.ViewModel
             var random = new Random();
             return random.Next(100, 999);
         } 
+
     }
 }

@@ -12,6 +12,9 @@
             <Entry x:Name="Last" Placeholder="Last" Text="{Binding editedProfile.LastName}"/>
             <Entry x:Name="Phone" Placeholder="Phone" Keyboard="Numeric" Text="{Binding editedProfile.PhoneNumber}"/>
             <Entry x:Name="Email" Placeholder="Email" Text="{Binding editedProfile.Email}"/>
+            <Entry x:Name="Position" Placeholder="Position" Text="{Binding editedProfile.Position}"/>
+            <Entry x:Name="Location" Placeholder="Location" Text="{Binding editedProfile.Location}"/>
+            <Entry x:Name="Work" Placeholder="Work" Text="{Binding editedProfile.Work}"/>
 
             <StackLayout  Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
                     <!--Button Text="Cancel" Command="{Binding CancelCommand}"/-->

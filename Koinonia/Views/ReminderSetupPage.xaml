@@ -33,5 +33,6 @@
             <TimePicker Grid.Column="1" Grid.Row="3" Time="{Binding SelectedReminderTime}" Format="T"/>
             <Button Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" VerticalOptions="End" Command="{Binding SaveReminderCommand}" Style="{StaticResource SettingsButton}" Text="Save"/>
         </Grid>
+
     </ContentPage.Content>
 </ContentPage>

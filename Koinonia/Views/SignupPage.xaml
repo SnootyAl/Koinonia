@@ -3,20 +3,63 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
              mc:Ignorable="d"
              x:Class="Koinonia.Views.SignupPage"
              NavigationPage.BackButtonTitle="false"
              NavigationPage.HasBackButton="false">
     <ContentPage.Content>
 
-        <StackLayout >
-            
-            <Entry Placeholder="First" Text="{Binding Profile.FirstName}"/>
-            <Entry Placeholder="Last" Text="{Binding Profile.LastName}"/>
-            <Entry Placeholder="Phone" Keyboard="Numeric" Text="{Binding Profile.PhoneNumber}"/>
-            <Entry Placeholder="Email" Text="{Binding Profile.Email}"/>
-            
+        <StackLayout>
 
+            <Label Text="Sign Up"
+                   HorizontalOptions="Center"
+                   FontSize="36"
+                   FontFamily="Somatic"
+                   Margin="0,20,0,0"
+            />
+            
+            <controls:CircleImage    
+                HorizontalOptions="Center"
+                HeightRequest="150"
+                WidthRequest="150"
+                Aspect="AspectFill"
+                Source="{Binding ProfileImageURL}">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding Photobutton}" />
+                </Image.GestureRecognizers>
+            </controls:CircleImage>
+
+            <Entry Placeholder="First" 
+                   Text="{Binding Profile.FirstName}"
+                   Margin="0,10,0,2"
+            />
+            <Entry Placeholder="Last" 
+                   Text="{Binding Profile.LastName}"
+                   Margin="0,0,0,2"
+            />
+            <Entry Placeholder="Phone" Keyboard="Numeric" 
+                   Text="{Binding Profile.PhoneNumber}"
+                   Margin="0,0,0,2"
+            />
+            <Entry Placeholder="Email" 
+                   Text="{Binding Profile.Email}"
+                   Margin="0,0,0,2"
+            />
+            <Entry Placeholder="Position" 
+                   Text="{Binding Profile.Position}"
+                   Margin="0,0,0,2"
+            />
+            <Entry Placeholder="Location" 
+                   Text="{Binding Profile.Location}"
+                   Margin="0,0,0,2"
+            />
+            <Entry Placeholder="Work" 
+                   Text="{Binding Profile.Work}"
+                   Margin="0,0,0,2"
+            />
+            
+            
             <Button Text="Next"
                     TextColor="White"
                     FontFamily="Roboto"
