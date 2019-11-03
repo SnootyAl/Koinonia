@@ -178,28 +178,46 @@ namespace Koinonia.ViewModel
         likely be broken out into more pleasing ui elements.*/
         async void TempButtonPressed()
         {
-            var response = await _pageService.DisplayActionSheet("Options", "Cancel", null, "Profile", "Settings", "New Contact", "Clear", "Hex", "Tags", "Sign");
+            var response = await _pageService.DisplayActionSheet("Options", "Cancel", null, "New Contact", "Tags", "New Remainder", "Your Profile", "Settings", "Hex View");
 
             switch (response)
             {
 
                 //**BUG** Title back button persists for a moment after pressing, allowing user to spam button and return to SignupPage
                 //Navigate to Profile Info Page
+
+                //Navigate to NewContactPage
+                case "New Contact":
+
+                    await _pageService.PushAsync((new NewContactPage(this)));
+                    break;
+
+                //Navigate to Tags page
+                case "Tags":
+                    await _pageService.PushAsync(new TagsPage());
+                    break;
+
+                // Navigate to Remainders 
+                case "Remainders":
+                    await _pageService.PushAsync(new ReminderSetupPage());
+                    break;
+
+                // Navagate to Profile Page 
                 case "Profile":
                     await _pageService.PushAsync(new ProfilePage());
                     break;
 
-                    //Navigate to SettingsPage
+                //Navigate to SettingsPage
                 case "Settings":
                     await _pageService.PushAsync(new SettingsPage());
                     break;
                 
-                    //Navigate to NewContactPage
-                case "New Contact":
+                    //Navigate to HexGrid page
+                case "Hex":
 
-                    await _pageService.PushAsync((new NewContactPage(this)));                    
+                    await _pageService.PushAsync(new HexPage());
                     break;
-
+                 
                     //Clear all contacts
                 case "Clear":
 
@@ -207,23 +225,10 @@ namespace Koinonia.ViewModel
                     Contacts.Clear();
                     break;
 
-                    //Navigate to HexGrid page
-                case "Hex":
-
-                    await _pageService.PushAsync(new HexPage());
-                    break;
-
-
-                    //Navigate to Tags page
-                case "Tags":
-                    await _pageService.PushAsync(new TagsPage());
-                    break;
 
                 case "Sign":
                     await _pageService.PushAsync(new SignupPage());
                     break;
-
-                       
 
             }
         }
