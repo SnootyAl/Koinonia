@@ -20,6 +20,7 @@
 
                 <!--<Image
                     Source="../Images/Screen1_onboarding.png"/>-->
+                <Image Source="Screen1_onboarding.png"/>
 
                 <Label
                     Text="Easily create new contacts and reminders"

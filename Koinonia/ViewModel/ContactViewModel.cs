@@ -224,6 +224,7 @@ namespace Koinonia.ViewModel
 
                     await _pageService.PushAsync(new ReminderSetupPage());
                     break;
+
             }
         }
     }
