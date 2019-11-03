@@ -41,7 +41,10 @@ namespace Koinonia.ViewModel
                 FirstName = "",
                 LastName = "",
                 PhoneNumber = "",
-                Email = ""
+                Email = "",
+                Position = "",
+                Location = "",
+                Work = ""
             };
             NextButtonCommand = new Command(Next);
             Photobutton = new Command(photopermission);

@@ -30,23 +30,35 @@
                 </Image.GestureRecognizers>
             </controls:CircleImage>
 
-
             <Entry Placeholder="First" 
                    Text="{Binding Profile.FirstName}"
-                   Margin="0,20,0,20"
+                   Margin="0,10,0,2"
             />
             <Entry Placeholder="Last" 
                    Text="{Binding Profile.LastName}"
-                   Margin="0,0,0,20"
+                   Margin="0,0,0,2"
             />
             <Entry Placeholder="Phone" Keyboard="Numeric" 
                    Text="{Binding Profile.PhoneNumber}"
-                   Margin="0,0,0,20"
+                   Margin="0,0,0,2"
             />
             <Entry Placeholder="Email" 
                    Text="{Binding Profile.Email}"
-                   Margin="0,0,0,20"
+                   Margin="0,0,0,2"
             />
+            <Entry Placeholder="Position" 
+                   Text="{Binding Profile.Position}"
+                   Margin="0,0,0,2"
+            />
+            <Entry Placeholder="Location" 
+                   Text="{Binding Profile.Location}"
+                   Margin="0,0,0,2"
+            />
+            <Entry Placeholder="Work" 
+                   Text="{Binding Profile.Work}"
+                   Margin="0,0,0,2"
+            />
+            
             
             <Button Text="Next"
                     TextColor="White"

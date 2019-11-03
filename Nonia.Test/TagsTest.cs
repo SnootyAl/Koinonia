@@ -11,11 +11,12 @@ namespace Nonia.Test
     [TestClass]
     public class TagsTest: BaseViewModel
     {
-       [TestMethod]
+       
+       private readonly IPageService _pageService;
 
-       public async Task Tagname()
-        {
-            
+        public void AddCommandTest()
+        { 
+            //var vm = new TagsViewModel();
         }
     }
 }

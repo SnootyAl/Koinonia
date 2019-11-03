@@ -34,7 +34,7 @@ namespace Koinonia.ViewModel
             showtags();
         }
 
-
+        
         // Save the new tag into the database and added it to the observable collection 
 
         public Command CreateTags {
@@ -44,10 +44,14 @@ namespace Koinonia.ViewModel
                     if (Tagname.TagNames.Length > 0)
                     {
                         // display alert with tag name and conformation message
-                        await _pageService.DisplayAlert(Tagname.TagNames, "This tag will be created","Cancel", "Okay");
-                        await App.Database.SavetagAsync(Tagname);
-                        TagNameCollection.Add(Tagname);
-                                                
+                        bool answer = await _pageService.DisplayAlert(Tagname.TagNames, "This tag will be created","Cancel", "Okay");
+                        
+                        // if the answer is true then create and add the tag
+                        if(answer == true)
+                        {
+                            await App.Database.SavetagAsync(Tagname);
+                            TagNameCollection.Add(Tagname);
+                        }                          
                     }
                     else
                     {

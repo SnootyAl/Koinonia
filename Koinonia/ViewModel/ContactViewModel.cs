@@ -178,7 +178,7 @@ namespace Koinonia.ViewModel
         likely be broken out into more pleasing ui elements.*/
         async void TempButtonPressed()
         {
-            var response = await _pageService.DisplayActionSheet("Options", "Cancel", null, "New Contact", "Tags", "New Remainder", "Your Profile", "Settings", "Hex View");
+            var response = await _pageService.DisplayActionSheet("Options", "Cancel", null, "New Contact", "Tags", "New Remainder", "Your Profile", "Settings", "Hex View", "Sign");
 
             switch (response)
             {
@@ -198,12 +198,12 @@ namespace Koinonia.ViewModel
                     break;
 
                 // Navigate to Remainders 
-                case "Remainders":
+                case "New Remainder":
                     await _pageService.PushAsync(new ReminderSetupPage());
                     break;
 
                 // Navagate to Profile Page 
-                case "Profile":
+                case "Your Profile":
                     await _pageService.PushAsync(new ProfilePage());
                     break;
 
@@ -213,7 +213,7 @@ namespace Koinonia.ViewModel
                     break;
                 
                     //Navigate to HexGrid page
-                case "Hex":
+                case "Hex View":
 
                     await _pageService.PushAsync(new HexPage());
                     break;
