@@ -144,6 +144,9 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Icon.png" />
+    <BundleResource Include="Resources\Screen3_onboarding.png" />
+    <BundleResource Include="Resources\Screen2_onboarding.png" />
+    <BundleResource Include="Resources\Screen1_onboarding.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Renders\" />
