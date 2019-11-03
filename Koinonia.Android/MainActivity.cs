@@ -9,6 +9,8 @@ using Android.OS;
 using Xamarin.Forms;
 using Plugin.Permissions;
 using Plugin.CurrentActivity;
+using ImageCircle.Forms.Plugin.Droid;
+
 
 namespace Koinonia.Droid
 {
@@ -26,7 +28,7 @@ namespace Koinonia.Droid
             base.OnCreate(savedInstanceState);
 
             Forms.SetFlags("CollectionView_Experimental");
-
+            ImageCircleRenderer.Init();
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
 

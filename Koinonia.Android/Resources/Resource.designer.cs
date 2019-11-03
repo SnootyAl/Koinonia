@@ -26,6 +26,7 @@ namespace Koinonia.Droid
 		
 		public static void UpdateIdValues()
 		{
+			global::Plugin.LocalNotifications.Resource.Drawable.plugin_lc_smallicon = global::Koinonia.Droid.Resource.Drawable.plugin_lc_smallicon;
 			global::Xamarin.Essentials.Resource.Attribute.alpha = global::Koinonia.Droid.Resource.Attribute.alpha;
 			global::Xamarin.Essentials.Resource.Attribute.coordinatorLayoutStyle = global::Koinonia.Droid.Resource.Attribute.coordinatorLayoutStyle;
 			global::Xamarin.Essentials.Resource.Attribute.font = global::Koinonia.Droid.Resource.Attribute.font;
@@ -6454,6 +6455,7 @@ namespace Koinonia.Droid
 			public const int notification_template_icon_low_bg = 2131165497;
 			
 			// aapt resource value: 0x7F07013A
+
 			public const int notification_tile_bg = 2131165498;
 			
 			// aapt resource value: 0x7F07013B
@@ -6473,6 +6475,11 @@ namespace Koinonia.Droid
 			
 			// aapt resource value: 0x7F070140
 			public const int tooltip_frame_light = 2131165504;
+
+			public const int plugin_lc_smallicon = 2131165498;
+			
+			
+
 			
 			static Drawable()
 			{

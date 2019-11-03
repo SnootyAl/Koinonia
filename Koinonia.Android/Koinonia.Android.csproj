@@ -52,6 +52,7 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
+
     <PackageReference Include="Plugin.Permissions">
       <Version>3.0.0.12</Version>
     </PackageReference>
@@ -60,6 +61,9 @@
     </PackageReference>
     <PackageReference Include="Xam.Plugins.Forms.ImageCircle">
       <Version>3.0.0.5</Version>
+    </PackageReference>
+    <PackageReference Include="Xam.Plugins.Notifier">
+      <Version>3.0.1</Version>
     </PackageReference>
     <PackageReference Include="Xam.Plugins.Messaging">
       <Version>5.2.0</Version>
@@ -76,6 +80,7 @@
     <PackageReference Include="Xamarin.Forms.Contacts">
       <Version>1.0.5</Version>
     </PackageReference>
+
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
@@ -198,6 +203,7 @@
       </Generator>
     </AndroidResource>
   </ItemGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\Koinonia\Koinonia.csproj">
       <Project>{2590D690-0AD4-4253-8240-C09E810C1F33}</Project>

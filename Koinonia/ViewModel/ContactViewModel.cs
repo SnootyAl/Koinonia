@@ -18,9 +18,9 @@ namespace Koinonia.ViewModel
 {
     public class ContactViewModel : BaseViewModel
     {
-        public ICommand TempButtonCommand { get; private set; }        
+        public ICommand TempButtonCommand { get; private set; }
         public ICommand ContactSelectedCommand { get; set; }
-        private readonly IPageService _pageService;       
+        private readonly IPageService _pageService;
 
         private ObservableCollection<Contact> _contacts { get; set; }
         public ObservableCollection<Contact> Contacts
@@ -53,7 +53,7 @@ namespace Koinonia.ViewModel
         }
 
         private Contact _selectedContact;
-        public Contact  SelectedContact
+        public Contact SelectedContact
         {
             get { return _selectedContact; }
             set
@@ -63,7 +63,7 @@ namespace Koinonia.ViewModel
                     return;
                 }
                 _selectedContact = value;
-                OnPropertyChanged(nameof(SelectedContact));                
+                OnPropertyChanged(nameof(SelectedContact));
             }
         }
 
@@ -76,15 +76,15 @@ namespace Koinonia.ViewModel
                 _searchText = value;
                 SearchUserText(_searchText);
                 OnPropertyChanged(nameof(SearchText));
-                
+
             }
         }
+
 
         public ICommand GotoProfileCommand { get; private set; }
         public ICommand GotoHexCommand { get; private set; }
         public ICommand AddNewContactCommand { get; private set; }
 
-        
         private void SearchUserText(string _searchText)
         {
             var searchText = _searchText.Trim();
@@ -102,6 +102,7 @@ namespace Koinonia.ViewModel
         {
             TempButtonCommand = new Command(TempButtonPressed);            
             ContactSelectedCommand = new Command(ContactSelected);
+
             GotoProfileCommand = new Command(GotoProfile);
             GotoHexCommand = new Command(GotoHex);
             AddNewContactCommand = new Command(AddNewContact);
@@ -124,6 +125,7 @@ namespace Koinonia.ViewModel
                 }
                 var results = await CrossPermissions.Current.RequestPermissionsAsync(Permission.Contacts);
                 await _pageService.DisplayAlert("Hello", "Hello", "Hello");
+
 
                 if (results.ContainsKey(Permission.Contacts))
                 {
@@ -164,15 +166,15 @@ namespace Koinonia.ViewModel
                 Contacts.Add(tempcontact);
             }
         }
-        
-        
+
+
         /*I believe this is pretty inefficient, some way to optimise?
         CUrrently, Addnewcontact page adds to the database, then calls this function.
         This function creates an entirely new ObservableCollection rather than adding to the list.
         Works. call it 'AGILE methodology' --Alex   */
         public async void SetContactCollection()
         {
-            
+
             Contacts = new ObservableCollection<Contact>(await App.Database.GetContactsAsync());
 
             //FilteredContacts for search function
@@ -207,9 +209,9 @@ namespace Koinonia.ViewModel
                 };
                 Contacts.Add(temp);
             }
-            
+
         }
-        
+
         public void UpdateContact(Contact updatedContact)
         {
             Contact contact = Contacts.Where(c => c.ContactID == updatedContact.ContactID).Single<Contact>();
@@ -220,16 +222,16 @@ namespace Koinonia.ViewModel
         async void ContactSelected()
         {
             //Kind of ugly way to deal with deselecting SelectedContact to remove selection on list screen
-            if(SelectedContact != null)
+            if (SelectedContact != null)
             {
                 await _pageService.PushAsync(new ContactInfoPage(SelectedContact));
                 SelectedContact = null;
-            }            
+            }
         }
 
         public void OnAppearing()
         {
-            SetContactCollection();            
+            SetContactCollection();
         }
 
         private async void GotoProfile()
@@ -252,6 +254,7 @@ namespace Koinonia.ViewModel
         likely be broken out into more pleasing ui elements.*/
         private async void TempButtonPressed()
         {
+
             var response = await _pageService.DisplayActionSheet("Options", "Cancel", null, "Import", "Settings", "Clear", "Tags");
 
             switch (response)
@@ -267,40 +270,43 @@ namespace Koinonia.ViewModel
                     await _pageService.PushAsync(new ProfilePage());
                     break;
 
-                    //Navigate to SettingsPage
+                //Navigate to SettingsPage
                 case "Settings":
                     await _pageService.PushAsync(new SettingsPage());
                     break;
-                
-                    //Navigate to NewContactPage
+
+                //Navigate to NewContactPage
                 case "New Contact":
 
-                    await _pageService.PushAsync((new NewContactPage(this)));                    
+                    await _pageService.PushAsync((new NewContactPage(this)));
                     break;
 
-                    //Clear all contacts
+                //Clear all contacts
                 case "Clear":
 
                     await App.Database.DeleteAllContactsAsync();
                     Contacts.Clear();
                     break;
 
-                    //Navigate to HexGrid page
+                //Navigate to HexGrid page
                 case "Hex":
 
                     await _pageService.PushAsync(new HexPage());
                     break;
 
 
-                    //Navigate to Tags page
+                //Navigate to Tags page
                 case "Tags":
                     await _pageService.PushAsync(new TagsPage());
                     break;
 
-
+                //Navigate to Set Reminder Page
+                case "Reminder":
+                    await _pageService.PushAsync(new ReminderSetupPage());
+                    break;
             }
         }
     }
 
- 
+
 }
