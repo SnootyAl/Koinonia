@@ -11,9 +11,16 @@
              Title="Contacts">
     <!-- Hard coded Icon paths currently, just testing placement/scaling/logic.-->
     <ContentPage.ToolbarItems>
-        <ToolbarItem Icon="profile_icon.png" Text="Profile" Command="{Binding GotoProfileCommand}"/>
-        <ToolbarItem Icon="hex_icon.png" Text="Hex" Command="{Binding GotoHexCommand}"/>
-        <ToolbarItem Icon="plus_icon.png" Text="Add" Command="{Binding AddNewContactCommand}"/>
+        <ToolbarItem Icon="profile_icon.png"
+                     Order="Secondary"
+                     Command="{Binding GotoProfileCommand}"/>
+        <ToolbarItem Icon="hex_icon.png"
+                     Order="Secondary"
+                     RelativeLayout.WidthConstraint="5"
+                     Command="{Binding GotoHexCommand}"/>
+        <ToolbarItem Icon="plus_icon.png"
+                     Order="Secondary"
+                     Command="{Binding AddNewContactCommand}"/>
     </ContentPage.ToolbarItems>
     <StackLayout>
     <SearchBar Placeholder="Search" Text="{Binding SearchText}"/>

@@ -11,17 +11,17 @@
     
     <ContentPage.Content>
         <!-- Add binding context to remove Profile.property necessity? -->
-        <Grid>
+        <Grid Margin="10, 0, 0, 0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="200" />
-                <RowDefinition Height="75" />
-                <RowDefinition Height="75" />
+                <RowDefinition Height="200"/>
+                <RowDefinition Height="75"/>
+                <RowDefinition Height="75"/>
                 <RowDefinition Height="250"/>
             </Grid.RowDefinitions>
             
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="210" />
-                <ColumnDefinition Width="200" />
+                <ColumnDefinition Width="210"/>
+                <ColumnDefinition Width="180"/>
             </Grid.ColumnDefinitions>
             
             <controls:CircleImage    
@@ -35,15 +35,26 @@
             </controls:CircleImage>
 
 
-            <StackLayout Grid.Column="1" Grid.Row="0">
+            <StackLayout Grid.Column="1"
+                         Grid.Row="0">
                 
                 <StackLayout Orientation="Horizontal">
-                    <Label Text="{Binding Profile.FirstName}" Padding="10,50,0,10" TextColor="{DynamicResource TitleTxt}" />
-                    <Label Text="{Binding Profile.LastName}" Padding="2,50,0,0" TextColor="{DynamicResource TitleTxt}"/>
+                    <Label Text="{Binding Profile.FirstName}"
+                           Padding="10,50,0,10"
+                           TextColor="{DynamicResource TitleTxt}" />
+                    <Label Text="{Binding Profile.LastName}"
+                           Padding="2,50,0,0"
+                           TextColor="{DynamicResource TitleTxt}"/>
                 </StackLayout>
 
-                <Label Text="{Binding Profile.Position}" Padding="10,0,0,10" TextColor="{DynamicResource TitleTxt}"/>
-                <Label Text="{Binding Profile.Location}" Padding="10,0,0,0" TextColor="{DynamicResource TitleTxt}"/>
+                <Label Text="{Binding Profile.Position}"
+                       Padding="10,0,0,10"
+                       LineBreakMode="WordWrap"
+                       TextColor="{DynamicResource TitleTxt}"/>
+                <Label Text="{Binding Profile.Location}"
+                       Padding="10,0,0,0"
+                       LineBreakMode="WordWrap"
+                       TextColor="{DynamicResource TitleTxt}"/>
                 
             </StackLayout>
             

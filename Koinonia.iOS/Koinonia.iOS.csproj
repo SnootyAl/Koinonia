@@ -164,6 +164,10 @@
     <BundleResource Include="Resources\Screen3_onboarding.png" />
     <BundleResource Include="Resources\Screen2_onboarding.png" />
     <BundleResource Include="Resources\Screen1_onboarding.png" />
+    <BundleResource Include="Resources\profile_icon.png" />
+    <BundleResource Include="Resources\plus_icon.png" />
+    <BundleResource Include="Resources\add_photo_default.png" />
+    <BundleResource Include="Resources\hex_icon.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Renders\" />

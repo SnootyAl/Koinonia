@@ -18,8 +18,8 @@
         <ScrollView Orientation="Both">
             <Frame HeightRequest="{Binding OuterFrame}"
                    WidthRequest="{Binding OuterFrame}"
-                   BackgroundColor="#17A7B2"
-                   Padding="0"                   >
+                   BackgroundColor="{DynamicResource Primary}"
+                   Padding="0">
                 <Frame HeightRequest="{Binding BoundingHeight}"                   
                        WidthRequest="{Binding BoundingWidth}"
                        VerticalOptions="Center"
