@@ -31,7 +31,11 @@ namespace Koinonia.ViewModel
                 FirstName = _mainProfile.FirstName,
                 LastName = _mainProfile.LastName,
                 Email = _mainProfile.Email,
-                PhoneNumber = _mainProfile.PhoneNumber
+                PhoneNumber = _mainProfile.PhoneNumber,
+                Position = _mainProfile.Position, 
+                Location = _mainProfile.Location,
+                Work = _mainProfile.Work,
+                ImageURL = _mainProfile.ImageURL
             };
             
             SaveCommand = new Command(Save);

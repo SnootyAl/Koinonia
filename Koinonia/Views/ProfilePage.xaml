@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"             
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+              xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
              mc:Ignorable="d"
              x:Class="Koinonia.Views.ProfilePage"
              Title="Profile"
@@ -10,31 +11,90 @@
     
     <ContentPage.Content>
         <!-- Add binding context to remove Profile.property necessity? -->
-        <StackLayout>
-            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="200" />
+                <RowDefinition Height="75" />
+                <RowDefinition Height="75" />
+                <RowDefinition Height="250"/>
+            </Grid.RowDefinitions>
+            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="210" />
+                <ColumnDefinition Width="200" />
+            </Grid.ColumnDefinitions>
+            
+            <controls:CircleImage    
+                HorizontalOptions="Center"
+                HeightRequest="150"
+                WidthRequest="150"
+                Aspect="AspectFill"
+                Source="{Binding Profile.ImageURL}"
+                Grid.Row="0"
+                Grid.Column="0">
+            </controls:CircleImage>
 
+//Jordan_v2_onboarding
                 <Label Text="{Binding Profile.FirstName}"
                        Style="{DynamicResource TitleTxt}"/>
 
                 <Label Text="{Binding Profile.LastName}"
                        Style="{DynamicResource TitleTxt}"/>
+//=======
 
+
+            <StackLayout Grid.Column="1" Grid.Row="0">
+                
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="{Binding Profile.FirstName}" Padding="10,50,0,10" />
+                    <Label Text="{Binding Profile.LastName}" Padding="2,50,0,0"/>
+                </StackLayout>
+                
+                <Label Text="{Binding Profile.Position}" Padding="10,0,0,10"/>
+                <Label Text="{Binding Profile.Location}" Padding="10,0,0,0"/>
+                
             </StackLayout>
+//Jordan_v2_onboarding
 
             <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
 
                 <Label Text="{Binding Profile.PhoneNumber}"
                        Margin="0, 0, 0, 20"/>
 
+//=======
+            
+            <StackLayout Grid.Column="0" Grid.Row="1">
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Email:" Padding="10" WidthRequest="200"/>
+                </StackLayout>
+                <Label Text="{Binding Profile.Email}" Padding="10,0,0,100" Grid.ColumnSpan="2" WidthRequest="200"/>
+// master
             </StackLayout>
 
-            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+            <StackLayout Grid.Column="0" Grid.Row="2" Grid.RowSpan="2">
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Phone Number:" Padding="10" WidthRequest="200"/>
+                </StackLayout>
+                <Label Text="{Binding Profile.PhoneNumber}" Padding="10,0,0,50" Grid.ColumnSpan="2" WidthRequest="200"/>
+            </StackLayout>
 
+// Jordan_v2_onboarding
                 <Label Text="{Binding Profile.Email}"
                        Margin="0, 0, 0, 20"/>
+//=======
+            <StackLayout Grid.Column="0" Grid.Row="3" Grid.RowSpan="2">
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Work:" Padding="10" WidthRequest="200"/>
+                </StackLayout>
+                <Label Text="{Binding Profile.Work}" Padding="10,0,0,50" Grid.ColumnSpan="2" WidthRequest="200"/>
+            </StackLayout>
+// master
 
+            <StackLayout Grid.Column="0" Grid.Row="4" Grid.RowSpan="2">
+                <Button Text="Edit" Padding="10" Command="{Binding EditCommand}"/>
             </StackLayout>
 
+// Jordan_v2_onboarding
             <StackLayout
                 Orientation="Horizontal"
                 HorizontalOptions="CenterAndExpand"
@@ -44,8 +104,12 @@
                         Command="{Binding DeleteCommand}"/>
                 <Button Text="Edit"
                         Command="{Binding EditCommand}"/>
+//=======
+            <StackLayout Grid.Column="1" Grid.Row="4">
+                <Button Text="Delete Profile" Command="{Binding DeleteCommand}"/>
+// master
             </StackLayout>
 
-        </StackLayout>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
