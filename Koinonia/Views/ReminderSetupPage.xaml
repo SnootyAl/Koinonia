@@ -27,25 +27,28 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Label
-                Text="Event Name"
+                Text="Reminder"
+                Margin="0, 16, 0, 0"
                 Grid.Column="0"
                 Grid.Row="0"></Label>
             <Entry
-                Placeholder="Enter Event Name"
+                Placeholder="Reminder Name"
                 Text="{Binding EventName}"
                 Grid.Row="0"
                 Grid.Column="1"/>
             <Label
-                Text="Event Description"
+                Text="Reminder Description"
+                Margin="0, 16, 0, 0"
                 Grid.Column="0"
                 Grid.Row="1"/>
             <Entry
-                Placeholder="Enter Event Description"
+                Placeholder="Description"
                 Text="{Binding EventDescription}"
                 Grid.Row="1"
                 Grid.Column="1"/>
             <Label
-                Text="Event Date"
+                Text="Reminder Date"
+                Margin="0, 16, 0, 0"
                 Grid.Column="0"
                 Grid.Row="2"/>
             <DatePicker
@@ -53,7 +56,10 @@
                 Grid.Row="2"
                 MinimumDate="{Binding MinimumDate}"
                 Date="{Binding SelectedReminderDate}"/>
-            <Label Text="Event Time" Grid.Column="0" Grid.Row="3"/>
+            <Label Text="Reminder Time"
+                   Margin="0, 16, 0, 0"
+                   Grid.Column="0"
+                   Grid.Row="3"/>
             <TimePicker
                 Grid.Column="1"
                 Grid.Row="3"
