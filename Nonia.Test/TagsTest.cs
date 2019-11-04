@@ -11,12 +11,34 @@ namespace Nonia.Test
     [TestClass]
     public class TagsTest: BaseViewModel
     {
-       
-       private readonly IPageService _pageService;
-
+       [TestMethod]
+       // test adding tag with a name
         public void AddCommandTest()
-        { 
-            //var vm = new TagsViewModel();
+        {
+            var vm = new TagsViewModel(new PageService());
+
+            vm.Tagname.TagNames = "test";
+
+            vm.CreateTags.CanExecute(null);
+
+            Assert.AreEqual("test", vm.Tagname.TagNames);
+            
+        }
+
+        [TestMethod]
+        
+        // test adding tag with no name
+        public void Addcommandwithnull()
+        {
+            var vm = new TagsViewModel(new PageService());
+
+            vm.Tagname.TagNames = null;
+
+            vm.CreateTags.CanExecute(null);
+
+           // Assert.AreEqual("", vm.Tagname.TagNames);
+            Assert.IsNull(vm.Tagname.TagNames);
+            
         }
     }
 }
