@@ -38,34 +38,34 @@
             <StackLayout Grid.Column="1" Grid.Row="0">
                 
                 <StackLayout Orientation="Horizontal">
-                    <Label Text="{Binding Profile.FirstName}" Padding="10,50,0,10" Style="{DynamicResource TitleTxt}" />
-                    <Label Text="{Binding Profile.LastName}" Padding="2,50,0,0" Style="{DynamicResource TitleTxt}"/>
+                    <Label Text="{Binding Profile.FirstName}" Padding="10,50,0,10" TextColor="{DynamicResource TitleTxt}" />
+                    <Label Text="{Binding Profile.LastName}" Padding="2,50,0,0" TextColor="{DynamicResource TitleTxt}"/>
                 </StackLayout>
-                
-                <Label Text="{Binding Profile.Position}" Padding="10,0,0,10" Style="{DynamicResource TitleTxt}"/>
-                <Label Text="{Binding Profile.Location}" Padding="10,0,0,0" Style="{DynamicResource TitleTxt}"/>
+
+                <Label Text="{Binding Profile.Position}" Padding="10,0,0,10" TextColor="{DynamicResource TitleTxt}"/>
+                <Label Text="{Binding Profile.Location}" Padding="10,0,0,0" TextColor="{DynamicResource TitleTxt}"/>
                 
             </StackLayout>
             
             <StackLayout Grid.Column="0" Grid.Row="1">
                 <StackLayout Orientation="Horizontal">
-                    <Label Text="Email:" Padding="10" WidthRequest="200" Style="{DynamicResource TitleTxt}"/>
+                    <Label Text="Email:" Padding="10" WidthRequest="200" TextColor="{DynamicResource TitleTxt}"/>
                 </StackLayout>
-                <Label Text="{Binding Profile.Email}" Padding="10,0,0,100" Grid.ColumnSpan="2" WidthRequest="200" Style="{DynamicResource TitleTxt}"/>
+                <Label Text="{Binding Profile.Email}" Padding="10,0,0,100" Grid.ColumnSpan="2" WidthRequest="200" TextColor="{DynamicResource TitleTxt}"/>
             </StackLayout>
 
             <StackLayout Grid.Column="0" Grid.Row="2" Grid.RowSpan="2">
                 <StackLayout Orientation="Horizontal">
-                    <Label Text="Phone Number:" Padding="10" WidthRequest="200" Style="{DynamicResource TitleTxt}"/>
+                    <Label Text="Phone Number:" Padding="10" WidthRequest="200" TextColor="{DynamicResource TitleTxt}"/>
                 </StackLayout>
-                <Label Text="{Binding Profile.PhoneNumber}" Padding="10,0,0,50" Grid.ColumnSpan="2" WidthRequest="200" Style="{DynamicResource TitleTxt}"/>
+                <Label Text="{Binding Profile.PhoneNumber}" Padding="10,0,0,50" Grid.ColumnSpan="2" WidthRequest="200" TextColor="{DynamicResource TitleTxt}"/>
             </StackLayout>
 
             <StackLayout Grid.Column="0" Grid.Row="3" Grid.RowSpan="2">
                 <StackLayout Orientation="Horizontal">
-                    <Label Text="Work:" Padding="10" WidthRequest="200" Style="{DynamicResource TitleTxt}"/>
+                    <Label Text="Work:" Padding="10" WidthRequest="200" TextColor="{DynamicResource TitleTxt}"/>
                 </StackLayout>
-                <Label Text="{Binding Profile.Work}" Padding="10,0,0,50" Grid.ColumnSpan="2" WidthRequest="200" Style="{DynamicResource TitleTxt}"/>
+                <Label Text="{Binding Profile.Work}" Padding="10,0,0,50" Grid.ColumnSpan="2" WidthRequest="200" TextColor="{DynamicResource TitleTxt}"/>
             </StackLayout>
 
             <StackLayout Grid.Column="0" Grid.Row="4" Grid.RowSpan="2">
