@@ -79,7 +79,6 @@
     <Folder Include="Assets\ContactImages\" />
     <Folder Include="Assets\TagImages\" />
     <Folder Include="Properties\PublishProfiles\" />
-    <Folder Include="Styles\" />
   </ItemGroup>
 
   <ItemGroup>

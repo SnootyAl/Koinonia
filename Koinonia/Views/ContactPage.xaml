@@ -7,10 +7,6 @@
              mc:Ignorable="d"
              x:Class="Koinonia.Views.ContactPage"
              NavigationPage.HasBackButton="False"
-
-             Title="Contacts"
-             BackgroundColor="{DynamicResource Background}">
-
              Title="Contacts">
     <!-- Hard coded Icon paths currently, just testing placement/scaling/logic.-->
     <ContentPage.ToolbarItems>
@@ -18,12 +14,10 @@
         <ToolbarItem Icon="hex_icon.png" Text="Hex" Command="{Binding GotoHexCommand}"/>
         <ToolbarItem Icon="plus_icon.png" Text="Add" Command="{Binding AddNewContactCommand}"/>
     </ContentPage.ToolbarItems>
-
     <StackLayout>
     <SearchBar Placeholder="Search" Text="{Binding SearchText}"/>
         
-        <ListView SeparatorColor="{DynamicResource Primary}"
-                  BackgroundColor="Transparent"
+        <ListView SeparatorColor="{StaticResource Primary}" 
                   HasUnevenRows="True" 
                   ItemsSource="{Binding FilteredContacts}" 
                   RefreshCommand="{Binding ContactSelectedCommand}"
@@ -37,17 +31,13 @@
 
                             <StackLayout HorizontalOptions="StartAndExpand" Spacing="0" Padding="2">
 
-                                <Label Text="{Binding FirstName}" TextColor="{DynamicResource NormalTxtColor}" />
-
-
-                                <Label Text="{Binding Status}" TextColor="{DynamicResource NormalTxtColor}" />
+                                <Label Text="{Binding FirstName}" />
 
                                 <Label Text="{Binding LastName}" />
 
                                 <!-- <Label Text="{Binding Status}" TextColor="{StaticResource NormalButtonTxtColor}" /> -->
 
-
-                                <Label Text="{Binding PhoneNumber}" TextColor="{DynamicResource Gray}" />
+                                <Label Text="{Binding PhoneNumber}" TextColor="{StaticResource Gray}" />
 
                             </StackLayout>
                             

@@ -4,10 +4,9 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="Koinonia.Views.EditProfilePage"
-             BackgroundColor="{DynamicResource Background}">
+             x:Class="Koinonia.Views.EditProfilePage">
     <ContentPage.Content>
-        <StackLayout x:Name="profileDetails" Margin="10, 10, 10, 0">
+        <StackLayout x:Name="profileDetails">
             
             <Entry x:Name="First" Placeholder="First" Text="{Binding editedProfile.FirstName}"/>
             <Entry x:Name="Last" Placeholder="Last" Text="{Binding editedProfile.LastName}"/>

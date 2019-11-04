@@ -1,125 +1,35 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
 
-<CarouselPage xmlns="http://xamarin.com/schemas/2014/forms"
-              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-              mc:Ignorable="d"
-              x:Class="Koinonia.Views.WelcomePage"
-              BackgroundColor="Transparent">
+             x:Class="Koinonia.Views.WelcomePage">
+    <ContentPage.Content>
+        <StackLayout>
+            <!--Image />-->
 
-    <ContentPage
-        BackgroundColor="{DynamicResource Background}">
+            <Label
+                Text="Nonia is the app to help you map, manage, sort and track your relationships."
+                LineBreakMode="WordWrap"
+                Margin="25, 1, 25, 50"
+                HorizontalTextAlignment="Center"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand"
 
-        <ContentPage.Content>
-
-            <StackLayout
-                HorizontalOptions="Center"
-                VerticalOptions="Center"
-                Padding="40">
-
-                <!--<Image
-                    Source="../Images/Screen1_onboarding.png"/>-->
-
-                <Image Source="Screen1_onboarding.png"/>
-
-                <Label
-                    Text="Easily create new contacts and reminders"
+            />
+            <Button Text="Start Now"
+                    TextColor="White"
+                    FontFamily="Roboto"
+                    FontSize="Large"
                     FontAttributes="Bold"
-                    TextColor="{DynamicResource NormalTxtColor}"
-                    HorizontalTextAlignment="Center"/>
-
-                <Label
-                    Text="to increase your relationship efficiency"
-                    TextColor="{DynamicResource NormalTxtColor}"
-                    HorizontalTextAlignment="Center"
-                    Margin="0, 0, 0, 20"/>
-
-                <Label
-                    Text="swipe to learn more >"
-                    TextColor="{DynamicResource NormalTxtColor}"
-                    HorizontalTextAlignment="Center"/>
-
-            </StackLayout>
-
-        </ContentPage.Content>
-
-    </ContentPage>
-
-    <ContentPage
-        BackgroundColor="{DynamicResource Background}">
-
-        <ContentPage.Content>
-
-            <StackLayout
-                HorizontalOptions="Center"
-                VerticalOptions="Center"
-                Padding="40">
-
-                <Image Source="Screen2_onboarding.png"/>
-
-                <Label
-                    Text="Keep track over every detail"
-                    FontAttributes="Bold"
-                    TextColor="{DynamicResource NormalTxtColor}"
-                    HorizontalTextAlignment="Center"/>
-
-                <Label
-                    Text="through filtering of interaction"
-                    TextColor="{DynamicResource NormalTxtColor}"
-                    HorizontalTextAlignment="Center"/>
-
-                <Label
-                    Text="notes and profile tags"
-                    TextColor="{DynamicResource NormalTxtColor}"
-                    HorizontalTextAlignment="Center"
-                    Margin="0, 0, 0, 20"/>
-                
-                <Label
-                    Text="swipe to learn more >"
-                    TextColor="{DynamicResource NormalTxtColor}"
-                    HorizontalTextAlignment="Center"/>
-
-            </StackLayout>
-
-        </ContentPage.Content>
-    </ContentPage>
-
-    <ContentPage
-        BackgroundColor="{DynamicResource Background}">
-        <ContentPage.Content>
-
-            <StackLayout
-                HorizontalOptions="Center"
-                VerticalOptions="Center"
-                Padding="40">
-                
-                <Image Source="Screen3_onboarding.png"/>
-
-                <Label
-                    Text="Getting started is easy!"
-                    FontAttributes="Bold"
-                    TextColor="{DynamicResource NormalTxtColor}"
-                    HorizontalTextAlignment="Center"/>
-
-                <Label
-                    Text="Add your contacts and start"
-                    TextColor="{DynamicResource NormalTxtColor}"
-                    HorizontalTextAlignment="Center"/>
-
-                <Label
-                    Text="building better relationships."
-                    TextColor="{DynamicResource NormalTxtColor}"
-                    HorizontalTextAlignment="Center"
-                    Margin="0, 0, 0, 20"/>
-
-                <Button
-                    Text="Start Now"
-                    Command="{Binding StartNowCommand}"/>
-
-            </StackLayout>
-
-        </ContentPage.Content>
-    </ContentPage>
-
-</CarouselPage>
+                    CornerRadius="20"
+                    BackgroundColor="#17A7B2"
+                    Command="{Binding StartNowCommand}"
+                    Margin="25, 1, 25, 50"
+            />
+                    <!--Margin: left, top, right, bottom-->
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

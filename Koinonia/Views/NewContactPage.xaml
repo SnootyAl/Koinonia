@@ -5,10 +5,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="Koinonia.Views.NewContactPage"
-             Title="New Contact"
-             BackgroundColor="{DynamicResource Background}">
+             Title="New Contact">
     <ContentPage.Content>
-        <StackLayout Margin="10, 10, 10, 0">
+        <StackLayout>
             <Entry Placeholder="First" Text="{Binding newContact.FirstName}"/>
             <Entry Placeholder="Last" Text="{Binding newContact.LastName}"/>
             <Entry Placeholder="Phone" Keyboard="Numeric" Text="{Binding newContact.PhoneNumber}"/>
