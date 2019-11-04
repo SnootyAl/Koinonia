@@ -7,7 +7,9 @@
              mc:Ignorable="d"
              x:Class="Koinonia.Views.SignupPage"
              NavigationPage.BackButtonTitle="false"
-             NavigationPage.HasBackButton="false">
+             NavigationPage.HasBackButton="false"
+             BackgroundColor="{DynamicResource Background}">
+
     <ContentPage.Content>
 
         <StackLayout>
@@ -66,7 +68,7 @@
                     FontSize="Large"
                     FontAttributes="Bold"
                     CornerRadius="20"
-                    BackgroundColor="#17A7B2"
+                    BackgroundColor="{DynamicResource Primary}"
                     Command="{Binding NextButtonCommand}"
                     Margin="25, 1, 25, 50"
             />

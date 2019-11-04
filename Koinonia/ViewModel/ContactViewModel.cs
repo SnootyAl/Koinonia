@@ -279,9 +279,10 @@ namespace Koinonia.ViewModel
                     await App.Database.DeleteAllContactsAsync();
                     Contacts.Clear();
                     break;
-                    
+
                 //Navigate to Tags page
                 case "Tags":
+
                     await _pageService.PushAsync(new TagsPage());
                     break;
 
@@ -304,6 +305,7 @@ namespace Koinonia.ViewModel
                 case "New Contact":
                     await _pageService.PushAsync((new NewContactPage(this)));
                     break;
+
             }
         }
     }

@@ -6,7 +6,8 @@
              xmlns:xampane="clr-namespace:XamPane;assembly=XamPane"
              xmlns:polygon="clr-namespace:Xamarin.Forms.PolygonFrame;assembly=Xamarin.Forms.PolygonFrame"
              mc:Ignorable="d"
-             x:Class="Koinonia.Views.HexPage">
+             x:Class="Koinonia.Views.HexPage"
+             BackgroundColor="{DynamicResource Background}">
     <ContentPage.Content>
         
         <!-- HexView shits the bed if you try to set its HorizontalOption to center in order to resize.
