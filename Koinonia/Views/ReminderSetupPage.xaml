@@ -6,12 +6,15 @@
              mc:Ignorable="d"
              x:Class="Koinonia.Views.ReminderSetupPage"
              xmlns:vm="clr-namespace:Koinonia.ViewModel"
-             Title="Reminder Setup">
+             Title="Reminder Setup"
+             BackgroundColor="{DynamicResource Background}">
     <ContentPage.BindingContext>
         <vm:ReminderSetupViewModel/>
     </ContentPage.BindingContext>
     <ContentPage.Content>
-        <Grid RowSpacing="1" Margin="0,0,20,0">
+        <Grid
+            RowSpacing="1"
+            Margin="20,20,20,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height=".1*" />
                 <RowDefinition Height=".1*" />
@@ -23,15 +26,47 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Label Text="Event Name" Grid.Column="0" Grid.Row="0"></Label>
-            <Entry Placeholder="Enter Event Name" Text="{Binding EventName}" Grid.Row="0" Grid.Column="1"></Entry>
-            <Label Text="Event Description" Grid.Column="0" Grid.Row="1"></Label>
-            <Entry Placeholder="Enter Event Description" Text="{Binding EventDescription}" Grid.Row="1" Grid.Column="1"></Entry>
-            <Label Text="Event Date" Grid.Column="0" Grid.Row="2"></Label>
-            <DatePicker Grid.Column="1" Grid.Row="2" MinimumDate="{Binding MinimumDate}" Date="{Binding SelectedReminderDate}"/>
-            <Label Text="Event Time" Grid.Column="0" Grid.Row="3"></Label>
-            <TimePicker Grid.Column="1" Grid.Row="3" Time="{Binding SelectedReminderTime}" Format="T"/>
-            <Button Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" VerticalOptions="End" Command="{Binding SaveReminderCommand}" Style="{StaticResource SettingsButton}" Text="Save"/>
+            <Label
+                Text="Event Name"
+                Grid.Column="0"
+                Grid.Row="0"></Label>
+            <Entry
+                Placeholder="Enter Event Name"
+                Text="{Binding EventName}"
+                Grid.Row="0"
+                Grid.Column="1"/>
+            <Label
+                Text="Event Description"
+                Grid.Column="0"
+                Grid.Row="1"/>
+            <Entry
+                Placeholder="Enter Event Description"
+                Text="{Binding EventDescription}"
+                Grid.Row="1"
+                Grid.Column="1"/>
+            <Label
+                Text="Event Date"
+                Grid.Column="0"
+                Grid.Row="2"/>
+            <DatePicker
+                Grid.Column="1"
+                Grid.Row="2"
+                MinimumDate="{Binding MinimumDate}"
+                Date="{Binding SelectedReminderDate}"/>
+            <Label Text="Event Time" Grid.Column="0" Grid.Row="3"/>
+            <TimePicker
+                Grid.Column="1"
+                Grid.Row="3"
+                Time="{Binding SelectedReminderTime}"
+                Format="T"/>
+            <Button
+                Grid.Column="0"
+                Grid.Row="5"
+                Grid.ColumnSpan="2"
+                VerticalOptions="End"
+                Command="{Binding SaveReminderCommand}"
+                Margin="0, 0, 0, 25"
+                Text="Save"/>
         </Grid>
 
     </ContentPage.Content>

@@ -6,49 +6,8 @@
              mc:Ignorable="d"
              x:Class="Koinonia.App">
     <Application.Resources>
-        <ResourceDictionary>
+   
+        <ResourceDictionary Source="/Styles/LightTheme.xaml"/>
 
-            <!-- COLOURS -->
-                <Color x:Key="Primary">#17A7B2</Color>
-                <Color x:Key="Gray">#C4C4C4</Color>
-                <Color x:Key="LightGray">#E5E5E5</Color>
-                <Color x:Key="White">#FFFFFF</Color>
-                <Color x:Key="NormalButtonTxtColor">#FFFFFF</Color>
-                <Color x:Key="NormalTxtColor">#5B5B5B</Color>
-                <Color x:Key="LightBackground">#FFFFFF</Color>
-                <Color x:Key="DarkBackground">#121212</Color>
-
-            <!-- BUTTONS -->
-
-                <Style TargetType="Button">
-                    <Setter Property="BackgroundColor" Value="{StaticResource Primary}"></Setter>
-                    <Setter Property="TextColor" Value="{StaticResource NormalButtonTxtColor}"></Setter>
-                    <Setter Property="FontFamily" Value="Roboto"></Setter>
-                    <Setter Property="FontSize" Value="Large"></Setter>
-                    <Setter Property="CornerRadius" Value="20"></Setter>
-                    <Setter Property="Padding" Value="15, 0, 15, 0"></Setter>
-                </Style>
-
-            
-            <!-- LABELS -->
-
-                <Style TargetType="Label">
-                    <Setter Property="TextColor" Value="{StaticResource NormalTxtColor}"></Setter>
-                </Style>
-
-                <Style x:Key="TitleTxt" TargetType="Label">
-                    <Setter Property="FontAttributes" Value="Bold"></Setter>
-                    <Setter Property="FontSize" Value="Large"></Setter>
-                    <Setter Property="Margin" Value="0, 20, 0, 30"></Setter>
-                </Style>
-                <Style x:Key="SettingsButton" TargetType="Button">
-                    <Setter Property="FontSize" Value="Small"></Setter>
-                    <Setter Property="BackgroundColor" Value="#B2B2B2"></Setter>
-                    <Setter Property="TextColor" Value="#2E2E2E"></Setter>
-                    <Setter Property="Margin" Value="5"></Setter>
-                    <Setter Property="HeightRequest" Value="35"></Setter>
-                    <Setter Property="VerticalOptions" Value="Fill"></Setter>
-            </Style>
-        </ResourceDictionary>
     </Application.Resources>
 </Application>

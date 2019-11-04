@@ -282,6 +282,7 @@ namespace Koinonia.ViewModel
                     
                 //Navigate to Tags page
                 case "Tags":
+
                     await _pageService.PushAsync(new TagsPage());
                     break;
 

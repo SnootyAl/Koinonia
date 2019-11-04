@@ -5,13 +5,14 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
              mc:Ignorable="d"
-             x:Class="Koinonia.Views.ContactInfoPage">
+             x:Class="Koinonia.Views.ContactInfoPage"
+             BackgroundColor="{DynamicResource Background}">
     <ContentPage.Content>
         
         <StackLayout>
 
             <Label Text="Edit Contact"
-                   Style="{StaticResource TitleTxt}"
+                   Style="{DynamicResource TitleTxt}"
                    HorizontalOptions="CenterAndExpand"
                    ></Label>
             <!-- Imagesource dimensions currently hard coded just to make sure logic for image selection is working-->

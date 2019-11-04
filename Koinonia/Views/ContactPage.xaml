@@ -7,6 +7,7 @@
              mc:Ignorable="d"
              x:Class="Koinonia.Views.ContactPage"
              NavigationPage.HasBackButton="False"
+             BackgroundColor="{DynamicResource Background}">
              Title="Contacts">
     <!-- Hard coded Icon paths currently, just testing placement/scaling/logic.-->
     <ContentPage.ToolbarItems>
@@ -17,7 +18,8 @@
     <StackLayout>
     <SearchBar Placeholder="Search" Text="{Binding SearchText}"/>
         
-        <ListView SeparatorColor="{StaticResource Primary}" 
+        <ListView SeparatorColor="{DynamicResource Primary}"
+                  BackgroundColor="Transparent"
                   HasUnevenRows="True" 
                   ItemsSource="{Binding FilteredContacts}" 
                   RefreshCommand="{Binding ContactSelectedCommand}"
@@ -31,13 +33,12 @@
 
                             <StackLayout HorizontalOptions="StartAndExpand" Spacing="0" Padding="2">
 
-                                <Label Text="{Binding FirstName}" />
+                                <Label Text="{Binding FirstName}" TextColor="{DynamicResource NormalTxtColor}" />
 
-                                <Label Text="{Binding LastName}" />
+                                <Label Text="{Binding LastName}" TextColor="{DynamicResource NormalTxtColor}" />
+                                <Label Text="{Binding Status}" TextColor="{DynamicResource NormalTxtColor}" />
 
-                                <!-- <Label Text="{Binding Status}" TextColor="{StaticResource NormalButtonTxtColor}" /> -->
-
-                                <Label Text="{Binding PhoneNumber}" TextColor="{StaticResource Gray}" />
+                                <Label Text="{Binding PhoneNumber}" TextColor="{DynamicResource Gray}" />
 
                             </StackLayout>
                             
