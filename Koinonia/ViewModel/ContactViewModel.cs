@@ -124,7 +124,7 @@ namespace Koinonia.ViewModel
                         "contacts for Koinonia to import contact list", "OK");
                 }
                 var results = await CrossPermissions.Current.RequestPermissionsAsync(Permission.Contacts);
-                await _pageService.DisplayAlert("Hello", "Hello", "Hello");
+                
 
 
                 if (results.ContainsKey(Permission.Contacts))
