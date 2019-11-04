@@ -7,7 +7,7 @@
              mc:Ignorable="d"
              x:Class="Koinonia.Views.ContactPage"
              NavigationPage.HasBackButton="False"
-             BackgroundColor="{DynamicResource Background}">
+             BackgroundColor="{DynamicResource Background}"
              Title="Contacts">
     <!-- Hard coded Icon paths currently, just testing placement/scaling/logic.-->
     <ContentPage.ToolbarItems>
